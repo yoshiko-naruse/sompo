@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--{include("./_global/_global.html#meta")}-->
+    <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="../main.css" rel="stylesheet" type="text/css">
+    <!--{/include}-->
+    <!--{include("./_global/_global.html#title")}-->
+    <title>Tiffany&nbsp;&amp;&nbsp;Co.&nbsp;ユニフォーム調達システム</title>
+    <!--{/include}-->
+
+    <script language="JavaScript">
+    <!--
+    function setStaff(staffId, nextUrl) {
+
+      document.pagingForm.staffId.value = staffId;
+      document.pagingForm.searchFlg.value = '1';
+      //document.pagingForm.searchHonbuId.value = '';
+      //document.pagingForm.searchShitenId.value = '';
+      //document.pagingForm.searchEigyousyoId.value = '';
+      document.pagingForm.action = nextUrl; 
+      document.pagingForm.submit();
+     
+      return false;
+
+    }
+    // -->
+    </script>
+  </head>
+
+
+  </head>
+  <body>
+    <div id="main">
+      <div align="center">
+        <!--{include("./_global/_global.html#header")}-->
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td colspan="7"><a href="../top.html"><img src="../img/logo.gif" alt="logo" width="163" height="42" border="0"></a><img src="../img/logo_02.gif" width="569" height="42"></td>
+          </tr>
+          <tr>
+            <td><a href="../hachu/hachu_top.html"><img src="../img/bt_01.gif" alt="発注" width="114" height="35" border="0"></a></td>
+            <td><a href="../koukan/koukan_top.html"><img src="../img/bt_02.gif" alt="交換" width="100" height="35" border="0"></a></td>
+            <td><a href="../henpin/henpin_top.html"><img src="../img/bt_03.gif" alt="返却" width="100" height="35" border="0"></a></td>
+            <td><a href="./chakuyou.html"><img src="../img/bt_04-2.gif" alt="着用状況" width="100" height="35" border="0"></a></td>
+            <td><a href="../rireki/rireki.html"><img src="../img/bt_05.gif" alt="申請履歴" width="100" height="35" border="0"></a></td>
+            <td><a href="../denpyo/denpyo_irai.html"><img src="../img/bt_06.gif" alt="着払い伝票依頼" width="100" height="35" border="0"></a></td>
+            <td><img src="../img/bt_07.gif" alt="管理機能" width="118" height="35" border="0"></td>
+          </tr>
+          <tr>
+            <td colspan="7" class="headimg" height="20px" align="right"><a href="../index.html"><img src="../img/logout.gif" alt="ログアウト" width="82" height="21" border="0"></a></td>
+          </tr>	
+        </table>
+        <!--{/include}-->
+        <!--{//satrt}-->
+        <form method="post" action="./select_staff.php" name="pagingForm">
+          <div id="contents">
+            <h1>{title}</h1>
+            <table border="0" width="700" cellpadding="0" cellspacing="0" class="tb_1">
+              <!--{if(!isLevelAdmin)}-->
+              <tr height="40">
+                <td width="100" class="line"><span class="fbold">事業部</span></td>
+                <td width="450" class="line">{honbuID}&nbsp;&nbsp;{honbuName}</td>
+                <td width="150" class="line">&nbsp;</td>
+              </tr>
+              <tr height="40">
+                <td width="100" class="line"><span class="fbold">エリア</span></td>
+                <td width="450" class="line">{shitenID}&nbsp;&nbsp;{shitenName}</td>
+                <td width="150" class="line">&nbsp;</td>
+              </tr>
+              <tr height="40">
+                <td width="100" class="line"><span class="fbold">施設</span></td>
+                <td width="450" class="line">{compCd}&nbsp;&nbsp;{compName}</td>
+                <td width="150" class="line">&nbsp;</td>
+              </tr>
+              <!--{/if}-->
+              <!--{if(isLevelAdmin)}-->
+              <input type="hidden" name="searchSelectflg">
+              <!--{if(isLevelItc)}-->
+              <tr height="40">
+                <td width="100" align="left"><span class="fbold">事業部</span></td>
+                <td align="left" colspan="2">
+                  <select name="searchHonbuId" class="select-300px" onChange="document.pagingForm.action='./select_staff.php'; document.pagingForm.searchSelectflg.value='1'; document.pagingForm.submit(); return false;">
+                    <option value="">--事業部選択--</option>
+                    <!--{iterate(honbu)}-->
+                    <!--{if(honbu.selected)}-->
+                    <option value="{honbu.value}" selected="selected">{honbu.display}</option>
+                    <!--{/if}-->
+                    <!--{if(!honbu.selected)}-->
+                    <option value="{honbu.value}">{honbu.display}</option>
+                    <!--{/if}-->
+                    <!--{/iterate}-->
+                  </select>
+                </td>
+              </tr>
+              <!--{/if}-->
+              <!--{if(!isLevelItc)}-->
+              <tr height="40">
+                <td width="100" class="line"><span class="fbold">事業部</span></td>
+                <td width="450" class="line">{honbuID}&nbsp;&nbsp;{honbuName}</td>
+                <td width="150" class="line">&nbsp;</td>
+              </tr>
+              <!--{/if}-->
+              <!--{if(isLevelShibu)}-->
+              <tr height="40">
+                <td width="100" class="line"><span class="fbold">エリア</span></td>
+                <td width="450" class="line">{shitenID}&nbsp;&nbsp;{shitenName}</td>
+                <td width="150" class="line">&nbsp;</td>
+              </tr>
+              <!--{/if}-->
+              <!--{if(!isLevelShibu)}-->
+              <tr height="40">
+                <td width="100" align="left"><span class="fbold">エリア</span></td>
+                <td align="left" colspan="2">
+                  <select name="searchShitenId" class="select-300px" onChange="document.pagingForm.action='./select_staff.php'; document.pagingForm.searchSelectflg.value='2'; document.pagingForm.submit(); return false;">
+                    <option value="">--エリア選択--</option>
+                    <!--{iterate(shiten)}-->
+                    <!--{if(shiten.selected)}-->
+                    <option value="{shiten.value}" selected="selected">{shiten.display}</option>
+                    <!--{/if}-->
+                    <!--{if(!shiten.selected)}-->
+                    <option value="{shiten.value}">{shiten.display}</option>
+                    <!--{/if}-->
+                    <!--{/iterate}-->
+                  </select>
+                </td>
+              </tr>
+              <!--{/if}-->
+              <tr height="40">
+                <td width="100" align="left"><span class="fbold">施設</span></td>
+                <td align="left" colspan="2">
+                  <select name="searchEigyousyoId" class="select-300px" onChange="document.pagingForm.action='./select_staff.php'; document.pagingForm.searchSelectflg.value='3'; document.pagingForm.submit(); return false;">
+                    <option value="">--施設選択--</option>
+                    <!--{iterate(eigyousyo)}-->
+                    <!--{if(eigyousyo.selected)}-->
+                    <option value="{eigyousyo.value}" selected="selected">{eigyousyo.display}</option>
+                    <!--{/if}-->
+                    <!--{if(!eigyousyo.selected)}-->
+                    <option value="{eigyousyo.value}">{eigyousyo.display}</option>
+                    <!--{/if}-->
+                    <!--{/iterate}-->
+                  </select>　<span style="color:red"></span>
+                </td>
+              </tr>
+              <!--{/if}-->
+
+              <tr height="40">
+                <td width="100" class="line"><span class="fbold">職員コード</span></td>
+                <td width="450" class="line">
+                  <input type="text" name="searchStaffCode" value="{staffCode}" style="width:100px;" maxlength="12" placeholder="部分一致">&nbsp;&nbsp;&nbsp;<b>氏名</b>　<input type="text" name="searchPersonName" value="{personName}" style="width:260px;" placeholder="部分一致※苗字と名前の間は全角スペース">
+                  <input type="hidden" name="staffId" value="">
+                  <input type="hidden" name="appliReason" value="{appliReason}">
+                  <input type="hidden" name="searchFukusyuID" value="">
+                  <input type="hidden" name="searchGenderKbn" value="">
+                </td>
+                <td width="150" class="line" align="center">
+                  <input name="staff_btn" type="button" value="職員検索" onclick="document.pagingForm.action='./select_staff.php'; document.pagingForm.searchFlg.value='1'; document.pagingForm.submit(); return false;">
+                </td>
+              </tr>
+            </table>
+
+            <!--{if(isSearched)}-->
+            <h3>◆職員一覧</h3>
+            <!--{if(staffs)}-->
+            <table width="700" border="0" class="tb_1" cellpadding="0" cellspacing="3">
+              <!--{if(isExchangeFirst)}-->
+              <tr>
+                <td colspan="7"><font color="red">{exchangeGuideMessage}</font></td>
+              </tr>
+              <!--{/if}-->
+              <tr>
+                <th width="100">事業部</th>
+                <th width="100">エリア</th>
+                <th width="60">施設CD</th>
+                <th width="200">施設名</th>
+                <th width="60">職員コード</th>
+                <th width="120">職員名</th>
+                <th width="60">&nbsp;</th>
+              </tr>
+              <!--{iterate(staffs)}-->
+              <tr height="20">
+                <td class="line2" align="center">{staffs.HonbuName}</td>
+                <td class="line2" align="center">{staffs.ShibuName}</td>
+                <td class="line2" align="left">{staffs.CompCd}</td>
+                <td class="line2" align="center">{staffs.CompName}</td>
+                <td class="line2" align="left">{staffs.StaffCode}</td>
+                <td class="line2" align="center">{staffs.StaffName}</td>
+                <td class="line2" align="center">
+<!--                  <input type="button" value="次へ" onclick="setStaff('{staffs.StaffID}', '{staffs.StaffCode}', '{staffs.StaffName}');">-->
+                  <input type="button" value="次へ" onclick="setStaff('{staffs.StaffID}', '{nextUrl}');">
+                </td>
+              </tr>
+              <!--{/iterate}-->
+
+            </table>
+            <!--{// ページング部分は共通テンプレートに置換する}-->
+            
+            <!--{include("./_global/_paging.html#paging")}-->
+            <br>
+            <table border="0" width="660" cellpadding="0" cellspacing="0" class="tb_1">
+              <tr>
+                <td align="left">
+                  <input name="prev_btn" type="button" value="&lt;&lt;" onclick="document.pagingForm.action='./select_staff.php'; document.pagingForm.nowPage.value='{paging.prev}'; document.pagingForm.submit(); return false;">
+                </td>
+                <td align="right">
+                  <input name="next_btn" type="button" value="&gt;&gt;" onclick="document.pagingForm.action='./select_staff.php'; document.pagingForm.nowPage.value='{paging.next}'; document.pagingForm.submit(); return false;">
+                </td>
+              </tr>
+            </table>
+            <input type="hidden" name="nowPage" value="{paging.nowPage}">
+            <!--{/include}-->
+            <!--{/if}-->
+            <!--{if(!staffs)}-->
+            <table width="730" border="0" class="tb_1" cellpadding="0" cellspacing="3">
+              <tr>
+               <td colspan="9" align="center"><span style="color=red"><b>該当する申請データが登録されていません。</b></span></td>
+              </tr>
+             </table>
+            <!--{/if}-->
+            <!--{/if}-->
+
+
+          </div>
+          <input type="hidden" name="encodeHint" value="京">
+          <input type="hidden" name="searchFlg">
+          <input type="hidden" name="isSearched" value="{isSearched}">
+        </form>
+
+        <!--{include("./_global/_global.html#footer")}-->
+        <!--{/include}-->
+        <!--{//end}-->
+      </div>
+    </div>
+  </body>
+</html>

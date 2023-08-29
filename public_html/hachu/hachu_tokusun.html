@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--{include("../_global/_global.html#meta")}-->
+    <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="../main.css" rel="stylesheet" type="text/css">
+    <!--{/include}-->
+    <!--{include("../_global/_global.html#title")}-->
+    <title>NTT DOCOMO 北陸　ユニフォーム調達システム</title>
+    <!--{/include}-->
+  </head>
+  <body>
+    <div id="main">
+      <div align="center">
+        <!--{include("../_global/_global.html#header")}-->
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td colspan="7"><a href="../top.html"><img src="../img/logo.gif" alt="logo" width="163" height="42" border="0"></a><img src="../img/logo_02.gif" width="569" height="42"></td>
+          </tr>
+          <tr>
+            <td><a href="./hachu_top.html"><img src="../img/bt_01-2.gif" alt="発注" width="114" height="35" border="0"></a></td>
+            <td><a href="../koukan/koukan_top.html"><img src="../img/bt_02.gif" alt="交換" width="100" height="35" border="0"></a></td>
+            <td><a href="../henpin/henpin_top.html"><img src="../img/bt_03.gif" alt="返却" width="100" height="35" border="0"></a></td>
+            <td><a href="../chakuyou/chakuyou.html"><img src="../img/bt_04.gif" alt="着用状況" width="100" height="35" border="0"></a></td>
+            <td><a href="../rireki/rireki.html"><img src="../img/bt_05.gif" alt="申請履歴" width="100" height="35" border="0"></a></td>
+            <td><a href="../denpyo/denpyo_irai.html"><img src="../img/bt_06.gif" alt="着払い伝票依頼" width="100" height="35" border="0"></a></td>
+            <td><img src="../img/bt_07.gif" alt="管理機能" width="118" height="35" border="0"></td>
+          </tr>
+          <tr>
+            <td colspan="7" class="headimg" height="20px" align="right"><a href="../index.html"><img src="../img/logout.gif" alt="ログアウト" width="82" height="21" border="0"></a></td>
+          </tr>	
+        </table>
+        <!--{/include}-->
+        <!--{//satrt}-->
+        <div id="contents">
+          <!--{if(!haveRirekiFlg)}-->
+          <h1>特注サイズ入力</h1>
+          <!--{/if}-->
+          <!--{if(haveRirekiFlg)}-->
+          <!--{{
+          <h1>特注サイズ入力　（<span style="color:red">訂正</span>）</h1>
+          }}-->
+          <!--{/if}-->
+          <div><b>ヌード寸法の測り方</b></div><br>
+          <table border="0" width="700" cellpadding="0" cellspacing="0" class="tb_1">
+            <tr>
+              <td width="100" class="line">バスト</td>
+              <td width="600" class="line">両脇下部の周囲を、胸の一番高いところを通って水平に測る。</td>
+            </tr>
+            <tr>
+              <td class="line">ウエスト</td>
+              <td class="line">ウエスト帯部の周囲。（胴部の最も細い部分の水平周囲）</td>
+            </tr>
+            <tr>
+              <td class="line">ヒップ</td>
+              <td class="line">腰部の最も大きい部分の水平周囲。</td>
+            </tr>
+            <tr>
+              <td class="line">肩幅</td>
+              <td class="line">後ろ衿ぐりの中央を通って、左右の肩先から肩先までを測る。</td>
+            </tr>
+            <tr>
+              <td class="line">袖丈</td>
+              <td class="line">肩先から袖口端まで測る</td>
+            </tr>
+            <tr>
+              <td class="line">着丈</td>
+              <td class="line">後ろ衿ぐりの中央から後身頃の裾までを垂直に測る。</td>
+            </tr>
+            <tr>
+              <td class="line">裄丈</td>
+              <td class="line">後ろ衿ぐりの中央から肩先を通って袖口の端までを測る。</td>
+            </tr>
+            <tr>
+              <td class="line">股下</td>
+              <td class="line">股の中心からくるぶしまで。</td>
+            </tr>
+            <tr>
+              <td class="line">首周り</td>
+              <td class="line">シャツのネック箇所（一周）を測る。</td>
+            </tr>
+          </table>
+          <br>
+          <br>
+          <h3>◆ヌード寸法を入力して下さい。</h3>
+          <form action="{nextUrl}" name="confForm" method="post">
+            <table width="500" border="0" class="tb_2" cellpadding="0" cellspacing="3">
+              <tr>
+                <th align="center" width="100">身長</th>
+                <th align="center" width="100">体重</th>
+                <th align="center" width="100">バスト</th>
+                <th align="center" width="100">ウエスト</th>
+                <th align="center" width="100">ヒップ</th>
+              </tr>
+              <tr height="25" valign="middle">
+                <td align="center"><input name="high" type="text" value="{high}" size="6">cm</td>
+                <td align="center"><input name="weight" type="text" value="{weight}" size="6">kg</td>
+                <td align="center"><input name="bust" type="text" value="{bust}" size="6">cm</td>
+                <td align="center"><input name="waist" type="text" value="{waist}" size="6">cm</td>
+                <td align="center"><input name="hips" type="text" value="{hips}" size="6">cm</td>
+              </tr>
+              <tr>
+                <th align="center" width="100">肩幅</th>
+                <th align="center" width="100">袖丈</th>
+                <th align="center" width="100">着丈</th>
+                <th align="center" width="100">裄丈</th>
+                <th align="center" width="100">股下</th>
+              </tr>
+              <tr height="25" valign="middle">
+                <td align="center"><input name="shoulder" type="text" value="{shoulder}" size="6">cm</td>
+                <td align="center"><input name="sleeve" type="text" value="{sleeve}" size="6">cm</td>
+                <td align="center"><input name="kitake" type="text" value="{kitake}" size="6">cm</td>
+                <td align="center"><input name="yukitake" type="text" value="{yukitake}" size="6">cm</td>
+                <td align="center"><input name="inseam" type="text" value="{inseam}" size="6">cm</td>
+              </tr>
+              <tr>
+                <th align="center" width="100">首周り</th>
+                <th align="center" width="100">&nbsp;</th>
+                <th align="center" width="100">&nbsp;</th>
+                <th align="center" width="100">&nbsp;</th>
+                <th align="center" width="100">&nbsp;</th>
+              </tr>
+              <tr height="25" valign="middle">
+                <td align="center"><input name="length" type="text" value="{length}" size="6">cm</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+                <td align="center">&nbsp;</td>
+              </tr>
+            </table>
+            <br>
+            <table width="500" border="0" class="tb_2" cellpadding="0" cellspacing="3">
+              <tr>
+                <th align="center">特注備考</th>
+              </tr>
+              <tr height="25" valign="middle">
+                <td align="center">
+                  <input name="tokMemo" type="text" value="{tokMemo}" size="90"><br>
+                </td>
+              </tr>
+            </table>
+            <table width="680" border="0" cellpadding="0" cellspacing="3">
+              <tr height="40">
+                <td align="left" valign="bottom">
+                  <span style="color:red">
+                  6L・7Lサイズは数枚ご用意がありますが、それ以外は特注となり60日程度の納期を頂きます。<br>
+                  6L・7Lをご希望の場合は備考欄にご記入下さい。
+                  </span>
+                </td>
+              </tr>
+            </table>
+            <!--{{
+            <div class="bot" align="center"><a href="#" onclick="document.confForm.action='{returnUrl}'; document.confForm.submit(); return false;"><img src="../img/modoru.gif" alt="戻る" width="112" height="32" border="0"></a> &nbsp;&nbsp;&nbsp;&nbsp; <a href="#" onclick="document.confForm.tokFlg.value='1'; document.confForm.submit(); return false;"><img src="../img/tsugihe.gif" alt="次へ" width="112" height="32" border="0"></a></div>
+            }}-->
+            <!--{}-->
+            <div class="bot" align="center"><a href="hachu_shinsei_ladies_ss.html"><img src="../img/modoru.gif" alt="戻る" width="112" height="32" border="0"></a> &nbsp;&nbsp;&nbsp;&nbsp; <a href="#"><img src="../img/tsugihe.gif" alt="次へ" width="112" height="32" border="0"></a></div>
+            <!--{/}-->
+            <!--{if(haveRirekiFlg)}-->
+            <input type="hidden" name="rirekiFlg" value="1">
+            <!--{/if}-->
+            <input type="hidden" name="tokFlg">
+            <!--{include("../_global/_create_hidden.html#hidden")}-->
+            <!--{/include}-->
+          </form>
+          <!--{//end}-->
+        </div>
+        <!--{include("../_global/_global.html#footer")}-->
+        <!--{/include}-->
+      </div>
+    </div>
+  </body>
+</html>

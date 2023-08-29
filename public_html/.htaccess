@@ -1,0 +1,12 @@
+Options -Indexes
+
+AddDefaultCharset UTF-8
+
+<IfModule php_module>
+  php_flag  output_buffering              Off
+  php_value output_handler                none
+  php_value default_charset               UTF-8
+  php_value mbstring.language             japanese
+  php_flag  mbstring.encoding_translation On
+  php_value mbstring.substitute_character none
+</IfModule>

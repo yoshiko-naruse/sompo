@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--{include("./_global/_global.html#meta")}-->
+    <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="./main.css" rel="stylesheet" type="text/css">
+    <!--{/include}-->
+    <script language="JavaScript">
+    <!--
+    function setStaff(staffId, staffCode, staffName, fukusyuId, genderKbn)
+    {
+
+      if(!window.opener || window.opener.closed)
+      {
+        window.close(); 
+      } 
+
+      window.opener.document.selectForm.staffId.value = staffId;
+      window.opener.document.selectForm.searchStaffCd.value = staffCode;
+      window.opener.document.selectForm.searchPersonName.value = staffName;
+      window.opener.document.selectForm.searchFukusyuID.value = fukusyuId;
+      window.opener.document.selectForm.searchGenderKbn.value = genderKbn;
+
+      window.close();
+      return false;
+
+    }
+
+    function funcFormOnKeyDown() {
+
+      var src = window.event.srcElement;
+
+      if(event.keyCode == 13) {
+        if (src.type == '' ) {
+          src.click();
+        }
+        else if (src.type != 'submit'
+          && src.type != 'button'
+          && src.type != 'textarea' ) {
+
+          return false;
+        }
+      }
+    }
+    // -->
+    </script>
+    <!--{include("./_global/_global.html#title")}-->
+    <title>Tiffany & Co.　ユニフォーム調達システム</title>
+    <!--{/include}-->
+  </head>
+  <body>
+    <div id="main3">
+      <!--{//start}-->
+      <form method="post" action="./search_staff.php?appliReason={appliReason}" name="pagingForm" onkeydown="javascript:return funcFormOnKeyDown();">
+        <div id="contents">
+          <p class="fbold tb_1" style="margin-top:20px; font-size:120%">職員検索</p>
+          <table border="0" width="450" cellpadding="0" cellspacing="0" class="tb_1">
+            <tr>
+              <td colspan="5" height="20">※ 検索したい職員の情報を入力してください。（部分一致）</td>
+            </tr>
+            <tr>
+              <td width="70"  align="left" class="line">事業部コード</td>
+              <td width="80"  align="left" class="line">{searchHonbuId}</td>
+              <td width="50"  align="left" class="line">事業部名</td>
+              <td width="150" align="left" class="line">{searchHonbuName}</td>
+            </tr>
+
+            <tr>
+              <td width="70"  align="left" class="line">エリアコード</td>
+              <td width="80"  align="left" class="line">{searchShitenId}</td>
+              <td width="50"  align="left" class="line">エリア名</td>
+              <td width="150" align="left" class="line">{searchShitenName}</td>
+            </tr>
+
+            <tr>
+              <td width="70"  align="left" class="line">施設コード</td>
+              <td width="80"  align="left" class="line">{searchCompCode}</td>
+              <td width="50"  align="left" class="line">施設名</td>
+              <td width="150" align="left" class="line">{searchCompName}</td>
+
+              <td width="100" rowspan="2" align="center" class="line"><input name="staff_btn" type="button" value="　検索　" onclick="document.pagingForm.searchFlg.value='1'; document.pagingForm.submit(); return false;"></td>
+            </tr>
+            <tr>
+              <td width="70"  align="left" class="line">職員コード</td>
+              <td width="80"  align="left" class="line"><input type="text" name="searchStaffCode" value="{searchStaffCode}" size="10"></td>
+              <td width="50"  align="left" class="line">氏名</td>
+              <td width="150" align="left" class="line"><input type="text" name="searchPersonName" value="{searchPersonName}" size="24"></td>
+            </tr>
+            <input type="hidden" name="searchHonbuId" value="{searchHonbuId}">
+            <input type="hidden" name="searchShitenId" value="{searchShitenId}">
+            <input type="hidden" name="searchEigyousyoId" value="{searchEigyousyoId}">
+            
+          </table>
+          <!--{if(!isSearched)}-->
+	          <!--{if(isEmpty)}-->
+	           <span style="color:red">該当する職員データはありません。</span>
+	          <!--{/if}-->
+          <!--{/if}-->
+          <!--{if(isSearched)}-->
+          <p class="fbold tb_1" style="font-size:120%">◆該当職員</p>
+          <table border="0" width="410" cellpadding="0" cellspacing="2" class="tb_1">
+            <tr>
+              <th width="80">職員コード</th>
+              <th width="120">氏名</th>
+              <th width="80">施設コード</th>
+              <th width="130">施設名</th>
+            </tr>
+            <!--{iterate(staffs)}-->
+            <tr height="20">
+              <td class="line2" width="80"  align="center"><a href="#" onclick="setStaff('{staffs.StaffID}', '{staffs.StaffCode}', '{staffs.StaffName}', '{staffs.FukusyuID}', '{staffs.GenderKbn}');">{staffs.StaffCode}</a></td>
+              <td class="line2" width="120"  align="left">{staffs.StaffName}</td>
+              <td class="line2" width="80"  align="center">{staffs.CompCd}</td>
+              <td class="line2" width="130" align="left">{staffs.CompName}</td>
+            </tr>
+            <!--{/iterate}-->
+          </table>
+          <br>
+          <!--{include("./_global/_paging.html#paging")}-->
+          <table border="0" width="400" cellpadding="0" cellspacing="0" class="tb_1">
+            <tr>
+              <td width="120" align="left"><input name="prev_btn" type="button" value="<<"></td>
+              <td width="200">&nbsp;</td>
+              <td width="120" align="right"><input name="prev_btn" type="button" value=">>"></td>
+            </tr>
+          </table>
+          <!--{/include}-->
+          <!--{/if}-->
+          <br>
+          <div align="center">
+          <table border="0" cellpadding="0" cellspacing="0">
+            <tr>
+              <td>
+              <td align="center" colspan="5">
+                <a href="javascript:window.close()"><img src="./img/close.gif" width="112" height="32" border="0"></a></div>
+              </td>
+            </tr>
+          </table>
+          </div>
+        </div>
+        <input type="hidden" name="encodeHint" value="京">
+        <input type="hidden" name="searchFlg">
+        <input type="hidden" name="isSearched" value="{isSearched}">
+      </form>
+      <!--{include("./_global/_global.html#footer")}-->
+      <!--{/include}-->
+      <!--{//end}-->
+    </div>
+  </body>
+</html>

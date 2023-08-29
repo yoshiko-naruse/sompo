@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <!--{include("../_global/_global.html#meta")}-->
+    <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="../main.css" rel="stylesheet" type="text/css">
+    <!--{/include}-->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+    <!--{include("../_global/_global.html#title")}-->
+    <title>被服管理システム</title>
+    <!--{/include}-->
+        <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        <script src="//rawgit.com/jquery/jquery-ui/master/ui/i18n/datepicker-ja.js"></script>
+    <script type="text/javascript">
+      $(function() {
+        $("#datepicker1").datepicker();
+        $('#datepicker1').datepicker("option", "dateFormat", 'yy/mm/dd' );
+        $("#datepicker1").datepicker("setDate", "{inputFromDay}");
+        $("#datepicker2").datepicker();
+        $('#datepicker2').datepicker("option", "dateFormat", 'yy/mm/dd' );
+        $("#datepicker2").datepicker("setDate", "{inputToDay}");
+      });
+    </script>
+  </head>
+  <body>
+    <div id="main">
+      <div align="center">
+        <!--{include("../_global/_global.html#header")}-->
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td colspan="7"><a href="mainte_top.html"><img src="../img/logo.gif" alt="logo" width="163" height="42" border="0"></a><img src="../img/logo_02.gif" width="569" height="42"></td>
+          </tr>
+          <tr>
+            <td><a href="../hachu/hachu_top.html"><img src="../img/bt_01.gif" alt="発注" width="114" height="35" border="0"></a></td>
+            <td><a href="../koukan/koukan_top.html"><img src="../img/bt_02.gif" alt="交換" width="100" height="35" border="0"></a></td>
+            <td><a href="../henpin/henpin_top.html"><img src="../img/bt_03.gif" alt="返却" width="100" height="35" border="0"></a></td>
+            <td><a href="../chakuyou/chakuyou.html"><img src="../img/bt_04.gif" alt="着用状況" width="100" height="35" border="0"></a></td>
+            <td><a href="../rireki/rireki.html"><img src="../img/bt_05.gif" alt="申請履歴" width="100" height="35" border="0"></a></td>
+            <td><a href="../denpyo/denpyo_irai.html"><img src="../img/bt_06.gif" alt="着払い伝票依頼" width="100" height="35" border="0"></a></td>
+            <td><img src="../img/bt_07-2.gif" alt="管理機能" width="118" height="35" border="0"></td>
+          </tr>
+          <tr>
+            <td colspan="7" class="headimg" height="20px" align="right"><a href="index.html"><img src="../img/logout.gif" alt="ログアウト" width="82" height="21" border="0"></a></td>
+          </tr>
+        </table>
+        <!--{/include}-->
+        <!--{//satrt}-->
+        <form method="post" action="./seikyumeisai_download.php" name="pagingForm">
+          <div id="contents">
+            <h1>請求明細ダウンロード</h1>
+            <table border="0" width="700" cellpadding="0" cellspacing="0" class="tb_1">
+              <tr height="40">
+                <td width="100" class="line"><font class="fbold">集計開始日</font></td>
+                <td width="175" class="line"><input name="inputFromDay" type="text" value="{inputFromDay}" style="width:100px;" maxlength="10" id="datepicker1"></td>
+                <td width="100" class="line"><font class="fbold">集計終了日</font></td>
+                <td width="175" class="line"><input name="inputToDay" type="text" value="{inputToDay}" style="width:100px;" maxlength="10" id="datepicker2"></td>
+                <td width="150" class="line" align="center">
+                  <input type="button" value="請求明細出力" onclick="document.pagingForm.action='./seikyumeisai_excel_dl.php'; document.pagingForm.submit(); document.pagingForm.action='./seikyumeisai_download.php'; return false;">
+                </td>
+              </tr>
+            </table>
+            <br>
+            <div class="bot"><a href="#" onclick="document.pagingForm.action='./admin_select.php'; document.pagingForm.submit(); return false;"><img src="../img/modoru.gif" alt="戻る" width="112" height="32" border="0"></a></div>
+          </div>
+          <input type="hidden" name="encodeHint" value="京">
+        </form>
+        <!--{include("../_global/_global.html#footer")}-->
+        <!--{/include}-->
+        <!--{//end}-->
+      </div>
+    </div>
+  </body>
+</html>

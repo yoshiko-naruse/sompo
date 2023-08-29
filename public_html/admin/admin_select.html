@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--{include("../_global/_global.html#meta")}-->
+    <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="../main.css" rel="stylesheet" type="text/css">
+    <!--{/include}-->
+    <!--{include("../_global/_global.html#title")}-->
+    <title>Tiffany&nbsp;&amp;&nbsp;Co.&nbsp;ユニフォーム調達システム</title>
+    <!--{/include}-->
+  </head>
+  <body>
+    <div id="main">
+      <div align="center">
+        <!--{include("../_global/_global.html#header")}-->
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td colspan="7"><a href="../top.html"><img src="../img/logo.gif" alt="logo" width="163" height="42" border="0"></a><img src="../img/logo_02.gif" width="569" height="42"></td>
+          </tr>
+          <tr>
+            <td><a href="../hachu/hachu_top.html"><img src="../img/bt_01.gif" alt="発注" width="114" height="35" border="0"></a></td>
+            <td><a href="../koukan/koukan_top.html"><img src="../img/bt_02.gif" alt="交換" width="100" height="35" border="0"></a></td>
+            <td><a href="../henpin/henpin_top.html"><img src="../img/bt_03.gif" alt="返却" width="100" height="35" border="0"></a></td>
+            <td><a href="./chakuyou.html"><img src="../img/bt_04-2.gif" alt="着用状況" width="100" height="35" border="0"></a></td>
+            <td><a href="../rireki/rireki.html"><img src="../img/bt_05.gif" alt="申請履歴" width="100" height="35" border="0"></a></td>
+            <td><a href="../denpyo/denpyo_irai.html"><img src="../img/bt_06.gif" alt="着払い伝票依頼" width="100" height="35" border="0"></a></td>
+            <td><img src="../img/bt_07.gif" alt="管理機能" width="118" height="35" border="0"></td>
+          </tr>
+          <tr>
+            <td colspan="7" class="headimg" height="20px" align="right"><a href="../index.html"><img src="../img/logout.gif" alt="ログアウト" width="82" height="21" border="0"></a></td>
+          </tr>	
+        </table>
+        <!--{/include}-->
+        <!--{//satrt}-->
+        <form method="post" action="" name="selectForm">
+          <div id="contents">
+            <h1>管理機能メニュー</h1>
+            <table border="0" width="450" cellpadding="0" cellspacing="0" class="tb_1">
+              <tr height="60">
+                <td class="line" width="250">職員マスタメンテ</td>
+                <td class="line" width="200"><input type="button" value="　　選　択　　" onclick="javascript:location.href='../mainte/usermainte_top.php'"></td>
+              </tr>
+              <!--{if(isLevelSyonin)}-->
+              <tr height="60">
+                <td class="line" width="250">パスワード初期化</td>
+                <td class="line" width="200"><input type="button" value="　　選　択　　" onclick="javascript:location.href='clear_password.php'"></td>
+              </tr>
+              <!--{/if}-->
+              <!--{if(isLevelItc)}-->
+              <tr height="60">
+                <td class="line" width="250">在庫照会</td>
+                <td class="line" width="200"><input type="button" value="　　選　択　　" onclick="javascript:location.href='../zaiko/zaiko.php'"></td>
+              </tr>
+              <tr height="60">
+                <td class="line" width="250">パスワード初期化</td>
+                <td class="line" width="200"><input type="button" value="　　選　択　　" onclick="javascript:location.href='clear_password.php'"></td>
+              </tr>
+              <tr height="60">
+                <td class="line" width="250">請求明細ダウンロード</td>
+                <td class="line" width="200"><input type="button" value="　　選　択　　" onclick="javascript:location.href='seikyumeisai_download.php'"></td>
+              </tr>
+              <!--{if(isItcAdmin)}-->
+              <tr height="60">
+                <td class="line" width="250">特寸申請一覧</td>
+                <td class="line" width="200"><input type="button" value="　　選　択　　" onclick="javascript:location.href='tokusunSendStatus.php'"></td>
+              </tr>
+              <!--{/if}-->
+              <!--{/if}-->
+            </table>
+          </div>
+        </form>
+        <!--{include("../_global/_global.html#footer")}-->
+        <!--{/include}-->
+        <!--{//end}-->
+      </div>
+    </div>
+  </body>
+</html>

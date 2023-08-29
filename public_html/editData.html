@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--{include("./_global/_global.html#meta")}-->
+    <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="./main.css" rel="stylesheet" type="text/css">
+    <!--{/include}-->
+    <!--{include("./_global/_global.html#title")}-->
+    <title>NTT DOCOMO 北陸　ユニフォーム調達システム</title>
+    <!--{/include}-->
+    <script language="JavaScript">
+    <!--
+    function change_data(oid,as,ccd,sid,no,url) {
+
+      document.pagingForm.orderId.value=oid; 
+      document.pagingForm.seasonMode.value=as; 
+      document.pagingForm.syokukai.value=ccd;
+      document.pagingForm.uid.value=sid;
+      document.pagingForm.AppliNo.value=no;
+      document.pagingForm.action=url; 
+      document.pagingForm.submit();
+      return false;
+
+    }
+    // -->
+    </script>
+  </head>
+<!--{if(!isLevelAdmin)}-->
+ <!--{if(!isLevelSyonin)}-->
+  <body onLoad="document.pagingForm.searchAppliNo.focus()">
+ <!--{/if}-->
+ <!--{if(isLevelSyonin)}-->
+  <body onLoad="document.pagingForm.searchStaffCode.focus()">
+ <!--{/if}-->
+<!--{/if}-->
+<!--{if(isLevelAdmin)}-->
+  <body onLoad="document.pagingForm.searchStaffCode.focus()">
+<!--{/if}-->
+    <div id="main">
+      <div align="center">
+        <!--{include("./_global/_global.html#header")}-->
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td colspan="7"><a href="top.html"><img src="./img/logo.gif" alt="logo" width="163" height="42" border="0"></a><img src="./img/logo_02.gif" width="569" height="42"></td>
+          </tr>
+          <tr>
+            <td><a href="./hachu/hachu_top.html"><img src="./img/bt_01.gif" alt="発注" width="114" height="35" border="0"></a></td>
+            <td><a href="./koukan/koukan_top.html"><img src="./img/bt_02.gif" alt="交換" width="100" height="35" border="0"></a></td>
+            <td><a href="./henpin/henpin_top.html"><img src="./img/bt_03.gif" alt="返却" width="100" height="35" border="0"></a></td>
+            <td><a href="./chakuyou/chakuyou.html"><img src="./img/bt_04.gif" alt="着用状況" width="100" height="35" border="0"></a></td>
+            <td><a href="./rireki/rireki.html"><img src="./img/bt_05.gif" alt="申請履歴" width="100" height="35" border="0"></a></td>
+            <td><a href="./denpyo/denpyo_irai.html"><img src="./img/bt_06.gif" alt="着払い伝票依頼" width="100" height="35" border="0"></a></td>
+            <td><img src="./img/bt_07.gif" alt="管理機能" width="118" height="35" border="0"></td>
+          </tr>
+          <tr>
+            <td colspan="7" class="headimg" height="20px" align="right"><a href="index.html"><img src="./img/logout.gif" alt="ログアウト" width="82" height="21" border="0"></a></td>
+          </tr>	
+        </table>
+        <!--{/include}-->
+        <form method="post" action="./editData.php" name="pagingForm">
+          <div id="contents">
+            <h1>申請データ変更</h1>
+            <table border="0" width="700" cellpadding="0" cellspacing="0" class="tb_1">
+              <tr>
+                <td>
+                   <span class="fbold">従業員番号</span>
+                </td>
+                <td width="140">
+                  <span class="fbold"><input name="searchStaffCode" type="text" value="{searchStaffCode}" size="20"></span>
+                </td>
+                <td width="90" ><span class="fbold">申請番号</span></td>
+                <td width="140" ><input name="searchAppliNo" type="text" value="{searchAppliNo}" size="20"></td>
+                 <td width="180" align="center">
+                  <input type="button" value="     検索     " onclick="document.pagingForm.initializePage.value='1'; document.pagingForm.searchFlg.value='1'; document.pagingForm.submit(); return false;">
+                </td>
+              </tr>
+            </table>
+            <!--{if(isSearched)}-->
+            <h3>◆申請一覧</h3>
+            <!--{if(orders)}-->
+            <table width="730" border="0" class="tb_1" cellpadding="0" cellspacing="3">
+              <tr>
+                <th width="60">申請日</th>
+                <th width="90">申請番号</th>
+                <th width="200">事業所名</th>
+                <th width="100">職員名</th>
+                <th width="40">区分</th>
+                <th width="60">出荷日</th>
+                <th width="60">返品日</th>
+                <th width="60" nowrap="nowrap">状態</th>
+                <th width="40">&nbsp;</th>
+              </tr>
+              <!--{iterate(orders)}-->
+              <tr height="20">
+                <td class="line2" align="center">{dateFormat(orders.requestDay, "y/m/d")}</td>
+                <td class="line2" align="center">
+                  <!--{if(!orders.isAppli)}-->
+                  <a href="#" onclick="document.pagingForm.orderId.value='{orders.orderId}'; document.pagingForm.action='./rireki/henpin_meisai.php'; document.pagingForm.submit(); return false;">{orders.requestNo}</a></td>
+                  <!--{/if}-->
+                  <!--{if(orders.isAppli)}-->
+                  <!--{{
+                  <a href="#" onclick="document.pagingForm.orderId.value='{orders.orderId}'; document.pagingForm.action='./rireki/hachu_meisai.php'; document.pagingForm.submit(); return false;">{orders.requestNo}</a></td>
+                  }}-->
+                  <!--{/if}-->
+                </td>
+                  
+                <td class="line2" align="left">{orders.CompName}</td>
+                <td class="line2" align="left">{orders.personName}</td>
+                <td class="line2" align="center">
+                  <!--{if(orders.divisionOrder)}-->
+                  発注
+                  <!--{/if}-->
+                  <!--{if(orders.divisionExchange)}-->
+                  <!--{{
+                  交換
+                  }}-->
+                  <!--{/if}-->
+                  <!--{if(orders.divisionReturn)}-->
+                  <!--{{
+                  返品
+                  }}-->
+                  <!--{/if}-->
+                </td>
+                <td class="line2" align="center">
+                  <!--{if(orders.isEmptyShipDay)}-->
+                  <!--{{
+                  &nbsp;
+                  }}-->
+                  <!--{/if}-->
+                  <!--{if(!orders.isEmptyShipDay)}-->
+                  {dateFormat(orders.ShipDay, "y/m/d")}
+                  <!--{/if}-->
+                </td>
+                <td class="line2" align="center">
+                  <!--{if(orders.isEmptyReturnDay)}-->
+                  <!--{{
+                  &nbsp;
+                  }}-->
+                  <!--{/if}-->
+                  <!--{if(!orders.isEmptyReturnDay)}-->
+                  {dateFormat(orders.ReturnDay, "y/m/d")}
+                  <!--{/if}-->
+                </td>
+                <td class="line2" align="center" >
+                  <!--{if(orders.statusIsBlue)}-->
+                  <!--{{
+                  <span style="color:blue">{orders.status}</span>
+                  }}-->
+                  <!--{/if}-->
+                  <!--{if(orders.statusIsRed)}-->
+                  <!--{{
+                  <span style="color:red">{orders.status}</span>
+                  }}-->
+                  <!--{/if}-->
+                  <!--{if(orders.statusIsTeal)}-->
+                  <!--{{
+                  <span style="color:Teal">{orders.status}</span>
+                  }}-->
+                  <!--{/if}-->
+                  <!--{if(orders.statusIsGreen)}-->
+                  <!--{{
+                  <span style="color:green">{orders.status}</span>
+                  }}-->
+                  <!--{/if}-->
+                  <!--{if(orders.statusIsGray)}-->
+                  <!--{{
+                  <span style="color:gray">{orders.status}</span>
+                  }}-->
+                  <!--{/if}-->
+                  <!--{if(orders.statusIsPink)}-->
+                  <!--{{
+                  <span style="color:fuchsia">{orders.status}</span>
+                  }}-->
+                  <!--{/if}-->
+                  <!--{if(orders.statusIsBlack)}-->
+                  {orders.status}
+                  <!--{/if}-->
+                </td>
+
+                <td class="line2" align="center">
+                  <input type="button" value="詳細" onclick="document.pagingForm.action='./editDataDetail.php'; document.pagingForm.orderId.value='{orders.orderId}'; document.pagingForm.submit(); return false;">
+                </td>
+              </tr>
+              <!--{/iterate}-->
+
+            </table>
+            <!--{// ページング部分は共通テンプレートに置換する}-->
+            
+            <!--{include("./_global/_paging.html#paging")}-->
+            <br>
+            <table border="0" width="660" cellpadding="0" cellspacing="0" class="tb_1">
+              <tr>
+                <td width="120" align="left">
+                  <input name="prev_btn" type="button" value="&lt;&lt;" onclick="document.pagingForm.action='#'; document.pagingForm.nowPage.value='{paging.prev}'; document.pagingForm.submit(); return false;">
+                </td>
+                <td width="420">&nbsp;</td>
+                <td width="120" align="right">
+                  <input name="next_btn" type="button" value="&gt;&gt;" onclick="document.pagingForm.action='#'; document.pagingForm.nowPage.value='{paging.next}'; document.pagingForm.submit(); return false;">
+                </td>
+              </tr>
+            </table>
+            <input type="hidden" name="nowPage" value="{paging.nowPage}">
+            <!--{/include}-->
+            <!--{/if}-->
+            <!--{if(!orders)}-->
+            <table width="730" border="0" class="tb_1" cellpadding="0" cellspacing="3">
+              <tr>
+               <td colspan="9" align="center"><span style="color:red"><b>該当する申請データが登録されていません。</b></span></td>
+              </tr>
+             </table>
+            <!--{/if}-->
+            <!--{/if}-->
+            
+          </div>
+          <input type="hidden" name="encodeHint" value="京">
+          <input type="hidden" name="orderId">
+          <input type="hidden" name="initializePage">
+          <input type="hidden" name="searchFlg" value="{isSearched}">
+        </form>
+        <!--{include("./_global/_global.html#footer")}-->
+        <!--{/include}-->
+        <!--{//end}-->
+      </div>
+    </div>
+  </body>
+</html>

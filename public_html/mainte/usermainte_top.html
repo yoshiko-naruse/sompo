@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--{include("../_global/_global.html#meta")}-->
+    <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="../main.css" rel="stylesheet" type="text/css">
+    <!--{/include}-->
+    <!--{include("../_global/_global.html#title")}-->
+    <title>JTB　ユニフォーム調達システム</title>
+    <!--{/include}-->
+	
+	<script language="JavaScript">
+    <!--
+    function is_submit(url,sid,mode) {
+
+	  document.pagingForm.StaffSeqID.value=sid; 
+	  document.pagingForm.Mode.value=mode; 
+	  document.pagingForm.action=url; 
+	  document.pagingForm.submit();
+      return false;
+
+    }
+    // -->
+    </script>
+  
+  </head>
+  <body>
+    <div id="main">
+      <div align="center">
+        <!--{include("../_global/_global.html#header")}-->
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td colspan="7"><a href="mainte_top.html"><img src="../img/logo.gif" alt="logo" width="163" height="42" border="0"></a><img src="../img/logo_02.gif" width="569" height="42"></td>
+          </tr>
+          <tr>
+            <td><a href="../hachu/hachu_top.html"><img src="../img/bt_01.gif" alt="発注" width="114" height="35" border="0"></a></td>
+            <td><a href="../koukan/koukan_top.html"><img src="../img/bt_02.gif" alt="交換" width="100" height="35" border="0"></a></td>
+            <td><a href="../henpin/henpin_top.html"><img src="../img/bt_03.gif" alt="返却" width="100" height="35" border="0"></a></td>
+            <td><a href="../chakuyou/chakuyou.html"><img src="../img/bt_04.gif" alt="着用状況" width="100" height="35" border="0"></a></td>
+            <td><a href="../rireki/rireki.html"><img src="../img/bt_05.gif" alt="申請履歴" width="100" height="35" border="0"></a></td>
+            <td><a href="../denpyo/denpyo_irai.html"><img src="../img/bt_06.gif" alt="着払い伝票依頼" width="100" height="35" border="0"></a></td>
+            <td><img src="../img/bt_07.gif" alt="管理機能" width="118" height="35" border="0"></td>
+          </tr>
+          <tr>
+            <td colspan="7" class="headimg" height="20px" align="right"><a href="index.html"><img src="../img/logout.gif" alt="ログアウト" width="82" height="21" border="0"></a></td>
+          </tr>	
+        </table>
+        <!--{/include}-->
+        <!--{//satrt}-->
+        <form method="post" action="#" name="pagingForm">
+          <div id="contents">
+            <h1>職員マスタメンテナンス</h1>
+
+            <table border="0" width="700" cellpadding="0" cellspacing="0" class="tb_1">
+              <tr height="60">
+                <td width="700" align="center">
+				  <input type="button" value="  新規追加  " onclick="is_submit('./usermainte.php','','ins');">
+                </td>
+              </tr>
+            </table>
+
+        	<h3>「修正・変更」の場合は下記項目から対象職員を検索して下さい。</h3>
+            <table border="0" width="700" cellpadding="0" cellspacing="0" class="tb_1">
+              <tr height="40">
+                <td width="80" class="line"><span class="fbold">所属施設</span></td>
+
+                <!--{if(!isLevelAdmin)}-->
+                <td colspan="2" class="line">{compCd}：{compName}</td>
+                <td class="line" class="line"></td>
+                <!--{/if}-->
+			    <!--{if(isLevelAdmin)}-->
+                <td colspan="3" class="line">
+                  <input type="text" name="searchCompCd" value="{searchCompCd}" style="width:60px;" readonly="readonly"><input type="text" name="searchCompName" value="{searchCompName}" style="width:310px;" readonly="readonly">
+                  <input type="hidden" name="searchCompId" value="{searchCompId}">
+                  <input name="shop_btn" type="button" value="施設検索" onclick="window.open('../search_comp.php', 'searchComp', 'width=500, height=400, menubar=no, toolbar=no, scrollbars=yes'); return false;">
+                </td>
+				<!--{/if}-->
+
+                <td></td>
+              </tr>
+              <tr height="40">
+                <td width="80" class="line"><span class="fbold">職員コード</span></td>
+                <td width="160"class="line"><input name="searchStaffCode" type="text" value="{searchStaffCode}" style="width:100px;" maxlength="12"></td>
+                <td width="80" align="center" class="line"><span class="fbold">氏名</span></td>
+                <td width="260" class="line"><input name="searchPersonName" type="text" value="{searchPersonName}" style="width:200px;"></td>
+                <td class="line" align="center">
+                  <input type="button" value="     検索     " onclick="document.pagingForm.searchFlg.value='1'; document.pagingForm.submit(); return false;">
+                </td>
+              </tr>
+            </table>
+			<br>
+
+            <!--{if(users)}-->
+            <table border="0" width="550" cellpadding="0" cellspacing="0" class="tb_1" bgcolor="#000000">
+			  <tr>
+				<td>
+				  <table border="0" cellpadding="0" cellspacing="1" class="tb_1">
+					<tr bgcolor="#FFFFFF">
+					  <th width="200">施設名</th>
+					  <th width="120">職員コード</th>
+					  <th width="150">氏名</th>
+					  <th width="100">設定</th>
+					</tr>
+					<!--{iterate(users)}-->
+					<tr height="30" bgcolor="#FFFFFF">
+					  <td align="left">&nbsp;&nbsp;{users.CompName}</td>
+					  <td align="left">&nbsp;&nbsp;{users.StaffCode}</td>
+					  <td align="left">&nbsp;&nbsp;{users.PersonName}</td>
+					  <td align="center">
+						<input type="button" value="設定" onclick="is_submit('./usermainte.php','{users.StaffSeqID}','upd');">
+					  </td>
+					</tr>
+					<!--{/iterate}-->
+				  </table>
+				</td>
+			  </tr>
+			</table>
+            <!--{/if}-->
+          </div>
+		  
+		   <div class="tb_4">
+          <table border="0" width="700" cellpadding="0" cellspacing="0" class="tb_1">
+			<tr><td colspan="3">&nbsp;</td></tr>
+            <tr>
+              <td width="50" align="left">
+			  <!--{if(page.back_view)}-->
+                <input name="prev_btn" type="button" value="&lt;&lt" onclick=" document.pagingForm.nowPage.value = {page.back}; document.pagingForm.submit(); return false;">
+			　<!--{/if}-->
+              </td>
+              <td width="50" align="right">
+			  　<!--{if(page.next_view)}-->
+                <input name="prev_btn" type="button" value="&gt;&gt" onclick=" document.pagingForm.nowPage.value = {page.next}; document.pagingForm.submit(); return false;">
+				<!--{/if}-->
+              </td>
+              <td width="600"></td>
+            </tr>
+          </table>
+        </div>
+		
+		  <input type="hidden" name="StaffSeqID">
+		  <input type="hidden" name="Mode">
+		  <input type="hidden" name="nowPage" value="{page.page}">
+		  
+          <input type="hidden" name="mainteMode">
+          <input type="hidden" name="userId">
+          <input type="hidden" name="searchFlg">
+		  <input type="hidden" name="isSelectedAdmin" value="1">
+          <input type="hidden" name="encodeHint" value="京">
+		  
+        </form>
+        <!--{include("../_global/_global.html#footer")}-->
+        <!--{/include}-->
+        <!--{//end}-->
+      </div>
+    </div>
+  </body>
+</html>

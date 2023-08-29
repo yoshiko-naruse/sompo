@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--{include("../_global/_global.html#meta")}-->
+    <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="../main.css" rel="stylesheet" type="text/css">
+    <!--{/include}-->
+    <!--{include("../_global/_global.html#title")}-->
+    <title>Tiffany&nbsp;&amp;&nbsp;Co.&nbsp;ユニフォーム調達システム</title>
+    <!--{/include}-->
+  </head>
+  <body>
+    <div id="main">
+      <div align="center">
+        <!--{include("../_global/_global.html#header")}-->
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td colspan="7"><a href="../top.html"><img src="../img/logo.gif" alt="logo" width="163" height="42" border="0"></a><img src="../img/logo_02.gif" width="569" height="42"></td>
+          </tr>
+          <tr>
+            <td><a href="../hachu/hachu_top.html"><img src="../img/bt_01.gif" alt="発注" width="114" height="35" border="0"></a></td>
+            <td><a href="../koukan/koukan_top.html"><img src="../img/bt_02.gif" alt="交換" width="100" height="35" border="0"></a></td>
+            <td><a href="../henpin/henpin_top.html"><img src="../img/bt_03.gif" alt="返却" width="100" height="35" border="0"></a></td>
+            <td><a href="./chakuyou.html"><img src="../img/bt_04-2.gif" alt="着用状況" width="100" height="35" border="0"></a></td>
+            <td><a href="../rireki/rireki.html"><img src="../img/bt_05.gif" alt="申請履歴" width="100" height="35" border="0"></a></td>
+            <td><a href="../denpyo/denpyo_irai.html"><img src="../img/bt_06.gif" alt="着払い伝票依頼" width="100" height="35" border="0"></a></td>
+            <td><img src="../img/bt_07.gif" alt="管理機能" width="118" height="35" border="0"></td>
+          </tr>
+          <tr>
+            <td colspan="7" class="headimg" height="20px" align="right"><a href="../index.html"><img src="../img/logout.gif" alt="ログアウト" width="82" height="21" border="0"></a></td>
+          </tr>	
+        </table>
+        <!--{/include}-->
+        <!--{//satrt}-->
+        <form method="post" action="./koukan_shinsei.php" name="selectForm">
+          <div id="contents">
+            <h1>{title}</h1>
+            <table border="0" width="700" cellpadding="0" cellspacing="0" class="tb_1" style="padding-bottom:5px; border-bottom:1px solid #CCC;">
+              <!--{if(!isLevelAdmin)}-->
+              <tr>
+                <td width="100" class="line"><span class="fbold">所属事業所</span></td>
+                <td width="300" class="line">{searchCompCd}&nbsp;&nbsp;{searchCompName}</td>
+              </tr>
+              <!--{/if}-->
+              <!--{if(isLevelAdmin)}-->
+              <tr height="40">
+                <td height="40" width="100"><span class="fbold">所属事業所</span></td>
+                <td><input type="text" name="searchCompCd" value="{searchCompCd}" style="width:120px;" readonly="readonly"></td>
+                <td><input type="text" name="searchCompName" value="{searchCompName}" style="width:240px;" readonly="readonly"></td>
+                <td><input name="comp_btn" type="button" value="事業所検索" onclick="window.open('./search_comp.php?appliReason={appliReason}', 'searchStaff', 'width=500, height=400, menubar=no, toolbar=no, scrollbars=yes'); return false;"></td>
+                <input type="hidden" name="searchCompId" value="{searchCompId}">
+              </tr>
+              <!--{/if}-->
+              
+              <tr height="50">
+                <td width="100"><span class="fbold">対象職員</span></td>
+                <td><label>職員コード</label><br><input type="text" name="searchStaffCd" value="{searchStaffCd}" style="width:120px;"></td>
+                <td>氏　名<br><input type="text" name="searchPersonName" value="{searchPersonName}" style="width:240px;"></td>
+                <td><input name="staff_btn" type="button" value="職員検索" onclick="document.selectForm.searchFlg.value='1'; document.selectForm.action='./select_staff.php'; document.selectForm.submit(); return false;"></td>
+              </tr>
+              <tr>
+              	<td></td>
+                <td align="left" colspan="3"><span style="color:red">※職員コードまたは氏名（部分一致）のどちらかを入力し、検索ボタンを押してください。</span></td>
+              </tr>
+           </table>
+            <!--{if(errFlg)}-->
+            <table border="0" width="700" cellpadding="0" cellspacing="3" class="tb_1">
+              <tr>
+                <td align="center">
+                  <div class="ftbold">
+                    <br><span style="color:red">{errMsg}</span>
+                  </div>
+                </td>
+              </tr>
+            </table>
+            <!--{/if}-->
+            <!--{if(!errFlg)}-->
+            <!--{if(isSearched)}-->
+			<br>
+            <table border="0" width="400" cellpadding="0" cellspacing="3" class="tb_1">
+              <tr>
+                <th width="150">職員コード</th>
+                <th width="250">職員名</th>
+                <th width="200">選択</th>
+              </tr>
+              <!--{iterate(staff)}-->
+              <tr height="30">
+                <td class="line2" align="center">{staff.StaffCode}</td>
+                <td class="line2" align="left">{staff.PersonName}</td>
+                <td class="line2" align="center">
+                  <!--{{
+                  <input type="button" value="返却" onclick="document.selectForm.action='{nextUrl}'; document.selectForm.staffId.value='{staff.StaffID}'; document.selectForm.submit(); return false;">
+                  }}-->
+                </td>
+              </tr>
+              <!--{/iterate}-->
+            </table>
+            <!--{/if}-->
+          <!--{/if}-->
+          </div>
+          <input type="hidden" name="searchFlg">
+          <input type="hidden" name="staffId">
+          <!--<div class="bot"><a href="#" onClick="document.selectForm.submit(); return false;"><img src="../img/tsugihe.gif" alt="次へ" width="112" height="32" border="0"></a></div>-->
+          <input type="hidden" name="encodeHint" value="京">
+        </form>
+        <!--{include("../_global/_global.html#footer")}-->
+        <!--{/include}-->
+        <!--{//end}-->
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--{include("./_global/_global.html#meta")}-->
+    <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="./main.css" rel="stylesheet" type="text/css">
+    <!--{/include}-->
+    <!--{include("./_global/_global.html#title")}-->
+    <title>ユニフォーム調達システム</title>
+    <!--{/include}-->
+  </head>
+  <body>
+    <div id="main">
+      <div align="center">
+        <!--{include("./_global/_global.html#header")}-->
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td colspan="7"><a href="./top.html"><img src="./img/logo.gif" alt="logo" width="163" height="42" border="0"></a><img src="./img/logo_02.gif" width="569" height="42"></td>
+          </tr>
+          <tr>
+            <td><a href="./hachu/hachu_top.html"><img src="./img/bt_01.gif" alt="発注" width="114" height="35" border="0"></a></td>
+            <td><a href="./koukan/koukan_top.html"><img src="./img/bt_02.gif" alt="交換" width="100" height="35" border="0"></a></td>
+            <td><a href="./henpin/henpin_top.html"><img src="./img/bt_03.gif" alt="返却" width="100" height="35" border="0"></a></td>
+            <td><a href="./chakuyou/chakuyou.html"><img src="./img/bt_04.gif" alt="着用状況" width="100" height="35" border="0"></a></td>
+            <td><a href="./rireki/rireki.html"><img src="./img/bt_05.gif" alt="申請履歴" width="100" height="35" border="0"></a></td>
+            <td><a href="./denpyo/denpyo_irai.html"><img src="./img/bt_06.gif" alt="着払い伝票依頼" width="100" height="35" border="0"></a></td>
+            <td><img src="./img/bt_07.gif" alt="管理機能" width="118" height="35" border="0"></td>
+          </tr>
+          <tr>
+            <td colspan="7" class="headimg" height="20px" align="right"><a href="index.html"><img src="./img/logout.gif" alt="ログアウト" width="82" height="21" border="0"></a></td>
+          </tr>	
+        </table>
+        <!--{/include}-->
+        <div id="contents">
+          <h1>エラーメッセージ表示</h1>
+          <table border="0" width="700" cellpadding="0" cellspacing="0" class="tb_1">
+            <tr height="100">
+              <td align="center">
+                <div class="ftbold">
+                  <!--{iterate(errors)}-->
+                  <!--{{
+                  {br(errors.errorMessage)}<br>
+                  }}-->
+                  <!--{/iterate}-->
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <form action="{returnUrl}" name="errorForm" method="post">
+                  <!--{{
+                  <div class="bot" align="center"><a href="#" onclick="document.errorForm.submit(); return false;"><img src="./img/modoru.gif" alt="戻る" width="112" height="32" border="0"></a></div>
+                  }}-->
+                  <!--{}-->
+                  <div class="bot" align="center"><a href="top.html"><img src="./img/modoru.gif" alt="戻る" width="112" height="32" border="0"></a></div>
+                  <!--{/}-->
+                  <!--{include("./_global/_create_hidden.html#hidden")}-->
+                  <!--{/include}-->
+                </form>
+              </td>
+            </tr>
+          </table>
+          <br>
+        </div>
+        <!--{include("./_global/_global.html#footer")}-->
+        <!--{/include}-->
+      </div>
+    </div>
+  </body>
+</html>

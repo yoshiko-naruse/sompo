@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--{include("../_global/_global.html#meta")}-->
+    <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="../main.css" rel="stylesheet" type="text/css">
+    <!--{/include}-->
+    <!--{include("../_global/_global.html#title")}-->
+    <title>Tiffany&nbsp;&amp;&nbsp;Co.&nbsp;ユニフォーム調達システム</title>
+    <!--{/include}-->
+  </head>
+  <body>
+    <div id="main">
+      <div align="center">
+        <!--{include("../_global/_global.html#header")}-->
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td colspan="7"><a href="../top.html"><img src="../img/logo.gif" alt="logo" width="163" height="42" border="0"></a><img src="../img/logo_02.gif" width="569" height="42"></td>
+          </tr>
+          <tr>
+            <td><a href="../hachu/hachu_top.html"><img src="../img/bt_01.gif" alt="発注" width="114" height="35" border="0"></a></td>
+            <td><a href="../koukan/koukan_top.html"><img src="../img/bt_02.gif" alt="交換" width="100" height="35" border="0"></a></td>
+            <td><a href="../henpin/henpin_top.html"><img src="../img/bt_03.gif" alt="返却" width="100" height="35" border="0"></a></td>
+            <td><a href="../chakuyou/chakuyou.html"><img src="../img/bt_04.gif" alt="着用状況" width="100" height="35" border="0"></a></td>
+            <td><a href="./rireki.html"><img src="../img/bt_05-2.gif" alt="申請履歴" width="100" height="35" border="0"></a></td>
+            <td><a href="../denpyo/denpyo_irai.html"><img src="../img/bt_06.gif" alt="着払い伝票依頼" width="100" height="35" border="0"></a></td>
+            <td><img src="../img/bt_07.gif" alt="管理機能" width="118" height="35" border="0"></td>
+          </tr>
+          <tr>
+            <td colspan="7" class="headimg" height="20px" align="right"><a href="../index.html"><img src="../img/logout.gif" alt="ログアウト" width="82" height="21" border="0"></a></td>
+          </tr>	
+        </table>
+        <!--{/include}-->
+        <!--{//satrt}-->
+        <form method="post" action="" name="zaikoForm">
+          <div id="contents">
+            <h1>在庫照会</h1>
+            <table border="0" width="700" cellpadding="0" cellspacing="2" class="tb_1">
+              <tr>
+                <td colspan="13">※ 在庫確認（上段：新品／下段：リユース品）</td>
+              </tr>
+              <tr>
+                <th width="55">No</th>
+                <th width="165">アイテム</th>
+                <th width="40">&nbsp;</th>
+                <th width="40">&nbsp;</th>
+                <th width="40">&nbsp;</th>
+                <th width="40">&nbsp;</th>
+                <th width="40">&nbsp;</th>
+                <th width="40">&nbsp;</th>
+                <th width="40">&nbsp;</th>
+                <th width="40">&nbsp;</th>
+                <th width="40">&nbsp;</th>
+                <th width="40">&nbsp;</th>
+                <th width="40">&nbsp;</th>
+                <th width="40">&nbsp;</th>
+              </tr>
+    <!--{iterate(stocks)}-->
+              <tr>
+                <!--{if(!stocks.multiline)}-->
+	                <td class="line2" align="center" rowspan="3">{stocks.ItemNo}</td>
+	                <td class="line2" align="left" rowspan="3">{stocks.ItemName}</td>
+                <!--{/if}-->
+                <!--{if(stocks.multiline)}-->
+                    <td class="line2" align="center" rowspan="{stocks.rowspan}">{stocks.ItemNo}</td>
+                    <td class="line2" align="left" rowspan="{stocks.rowspan}">{stocks.ItemName}</td>
+                <!--{/if}-->
+        <!--{iterate(stocks.sizeline1)}-->
+                <!--{if(!stocks.sizeline1.isEmptySize)}-->
+                <td class="line2" align="center" style="background-color:#FFE1E1;">{stocks.sizeline1.Size}</td>
+                <!--{/if}-->
+                <!--{if(stocks.sizeline1.isEmptySize)}-->
+                <td class="line2" align="center" style="background-color:#FFE1E1;">&nbsp;</td>
+                <!--{/if}-->
+        <!--{/iterate}-->
+              </tr>
+              <tr>
+        <!--{iterate(stocks.sizeline1)}-->
+                <!--{if(!stocks.sizeline1.isEmptySize)}-->
+                <td class="line2" align="center">{stocks.sizeline1.HikiateQty}</td>
+                <!--{/if}-->
+                <!--{if(stocks.sizeline1.isEmptySize)}-->
+                <td class="line2" align="center">&nbsp;</td>
+                <!--{/if}-->
+        <!--{/iterate}-->
+              </tr>
+              <tr>
+        <!--{iterate(stocks.sizeline1)}-->
+                <!--{if(!stocks.sizeline1.isEmptySize)}-->
+                <td class="line2" align="center">{stocks.sizeline1.OldHikiateQty}</td>
+                <!--{/if}-->
+                <!--{if(stocks.sizeline1.isEmptySize)}-->
+                <td class="line2" align="center">&nbsp;</td>
+                <!--{/if}-->
+        <!--{/iterate}-->
+              </tr>
+      <!--{if(stocks.multiline)}-->
+        <!--{if(stocks.2line)}-->
+	              <tr>
+          <!--{iterate(stocks.sizeline2)}-->
+	                <!--{if(!stocks.sizeline2.isEmptySize)}-->
+	                <td class="line2" align="center" style="background-color:#FFE1E1;">{stocks.sizeline2.Size}</td>
+	                <!--{/if}-->
+	                <!--{if(stocks.sizeline2.isEmptySize)}-->
+	                <td class="line2" align="center" style="background-color:#FFE1E1;">&nbsp;</td>
+	                <!--{/if}-->
+          <!--{/iterate}-->
+	              </tr>
+	              <tr>
+          <!--{iterate(stocks.sizeline2)}-->
+	                <!--{if(!stocks.sizeline2.isEmptySize)}-->
+	                <td class="line2" align="center">{stocks.sizeline2.HikiateQty}</td>
+	                <!--{/if}-->
+	                <!--{if(stocks.sizeline2.isEmptySize)}-->
+	                <td class="line2" align="center">&nbsp;</td>
+	                <!--{/if}-->
+          <!--{/iterate}-->
+	              </tr>
+              <tr>
+        <!--{iterate(stocks.sizeline2)}-->
+                <!--{if(!stocks.sizeline2.isEmptySize)}-->
+                <td class="line2" align="center">{stocks.sizeline2.OldHikiateQty}</td>
+                <!--{/if}-->
+                <!--{if(stocks.sizeline2.isEmptySize)}-->
+                <td class="line2" align="center">&nbsp;</td>
+                <!--{/if}-->
+        <!--{/iterate}-->
+              </tr>
+
+        <!--{/if}-->
+
+        <!--{if(stocks.3line)}-->
+                  <tr>
+          <!--{iterate(stocks.sizeline3)}-->
+                    <!--{if(!stocks.sizeline3.isEmptySize)}-->
+                    <td class="line2" align="center" style="background-color:#FFE1E1;">{stocks.sizeline3.Size}</td>
+                    <!--{/if}-->
+                    <!--{if(stocks.sizeline3.isEmptySize)}-->
+                    <td class="line2" align="center" style="background-color:#FFE1E1;">&nbsp;</td>
+                    <!--{/if}-->
+          <!--{/iterate}-->
+                  </tr>
+                  <tr>
+          <!--{iterate(stocks.sizeline3)}-->
+                    <!--{if(!stocks.sizeline3.isEmptySize)}-->
+                    <td class="line2" align="center">{stocks.sizeline3.HikiateQty}</td>
+                    <!--{/if}-->
+                    <!--{if(stocks.sizeline3.isEmptySize)}-->
+                    <td class="line2" align="center">&nbsp;</td>
+                    <!--{/if}-->
+          <!--{/iterate}-->
+                  </tr>
+              <tr>
+        <!--{iterate(stocks.sizeline3)}-->
+                <!--{if(!stocks.sizeline3.isEmptySize)}-->
+                <td class="line2" align="center">{stocks.sizeline3.OldHikiateQty}</td>
+                <!--{/if}-->
+                <!--{if(stocks.sizeline3.isEmptySize)}-->
+                <td class="line2" align="center">&nbsp;</td>
+                <!--{/if}-->
+        <!--{/iterate}-->
+              </tr>
+        <!--{/if}-->
+
+        <!--{if(stocks.4line)}-->
+                  <tr>
+          <!--{iterate(stocks.sizeline4)}-->
+                    <!--{if(!stocks.sizeline4.isEmptySize)}-->
+                    <td class="line2" align="center" style="background-color:#FFE1E1;">{stocks.sizeline4.Size}</td>
+                    <!--{/if}-->
+                    <!--{if(stocks.sizeline4.isEmptySize)}-->
+                    <td class="line2" align="center" style="background-color:#FFE1E1;">&nbsp;</td>
+                    <!--{/if}-->
+          <!--{/iterate}-->
+                  </tr>
+                  <tr>
+          <!--{iterate(stocks.sizeline4)}-->
+                    <!--{if(!stocks.sizeline4.isEmptySize)}-->
+                    <td class="line2" align="center">{stocks.sizeline4.HikiateQty}</td>
+                    <!--{/if}-->
+                    <!--{if(stocks.sizeline4.isEmptySize)}-->
+                    <td class="line2" align="center">&nbsp;</td>
+                    <!--{/if}-->
+          <!--{/iterate}-->
+                  </tr>
+              <tr>
+        <!--{iterate(stocks.sizeline4)}-->
+                <!--{if(!stocks.sizeline4.isEmptySize)}-->
+                <td class="line2" align="center">{stocks.sizeline4.OldHikiateQty}</td>
+                <!--{/if}-->
+                <!--{if(stocks.sizeline4.isEmptySize)}-->
+                <td class="line2" align="center">&nbsp;</td>
+                <!--{/if}-->
+        <!--{/iterate}-->
+              </tr>
+        <!--{/if}-->
+
+        <!--{if(stocks.5line)}-->
+                  <tr>
+          <!--{iterate(stocks.sizeline5)}-->
+                    <!--{if(!stocks.sizeline5.isEmptySize)}-->
+                    <td class="line2" align="center" style="background-color:#FFE1E1;">{stocks.sizeline5.Size}</td>
+                    <!--{/if}-->
+                    <!--{if(stocks.sizeline5.isEmptySize)}-->
+                    <td class="line2" align="center" style="background-color:#FFE1E1;">&nbsp;</td>
+                    <!--{/if}-->
+          <!--{/iterate}-->
+                  </tr>
+                  <tr>
+          <!--{iterate(stocks.sizeline5)}-->
+                    <!--{if(!stocks.sizeline5.isEmptySize)}-->
+                    <td class="line2" align="center">{stocks.sizeline5.HikiateQty}</td>
+                    <!--{/if}-->
+                    <!--{if(stocks.sizeline5.isEmptySize)}-->
+                    <td class="line2" align="center">&nbsp;</td>
+                    <!--{/if}-->
+          <!--{/iterate}-->
+                  </tr>
+              <tr>
+        <!--{iterate(stocks.sizeline5)}-->
+                <!--{if(!stocks.sizeline5.isEmptySize)}-->
+                <td class="line2" align="center">{stocks.sizeline5.OldHikiateQty}</td>
+                <!--{/if}-->
+                <!--{if(stocks.sizeline5.isEmptySize)}-->
+                <td class="line2" align="center">&nbsp;</td>
+                <!--{/if}-->
+        <!--{/iterate}-->
+              </tr>
+        <!--{/if}-->
+
+        <!--{if(stocks.6line)}-->
+                  <tr>
+          <!--{iterate(stocks.sizeline6)}-->
+                    <!--{if(!stocks.sizeline6.isEmptySize)}-->
+                    <td class="line2" align="center" style="background-color:#FFE1E1;">{stocks.sizeline6.Size}</td>
+                    <!--{/if}-->
+                    <!--{if(stocks.sizeline6.isEmptySize)}-->
+                    <td class="line2" align="center" style="background-color:#FFE1E1;">&nbsp;</td>
+                    <!--{/if}-->
+          <!--{/iterate}-->
+                  </tr>
+                  <tr>
+          <!--{iterate(stocks.sizeline6)}-->
+                    <!--{if(!stocks.sizeline6.isEmptySize)}-->
+                    <td class="line2" align="center">{stocks.sizeline6.HikiateQty}</td>
+                    <!--{/if}-->
+                    <!--{if(stocks.sizeline6.isEmptySize)}-->
+                    <td class="line2" align="center">&nbsp;</td>
+                    <!--{/if}-->
+          <!--{/iterate}-->
+                  </tr>
+              <tr>
+        <!--{iterate(stocks.sizeline6)}-->
+                <!--{if(!stocks.sizeline6.isEmptySize)}-->
+                <td class="line2" align="center">{stocks.sizeline6.OldHikiateQty}</td>
+                <!--{/if}-->
+                <!--{if(stocks.sizeline6.isEmptySize)}-->
+                <td class="line2" align="center">&nbsp;</td>
+                <!--{/if}-->
+        <!--{/iterate}-->
+              </tr>
+        <!--{/if}-->
+
+        <!--{if(stocks.7line)}-->
+                  <tr>
+          <!--{iterate(stocks.sizeline7)}-->
+                    <!--{if(!stocks.sizeline7.isEmptySize)}-->
+                    <td class="line2" align="center" style="background-color:#FFE1E1;">{stocks.sizeline7.Size}</td>
+                    <!--{/if}-->
+                    <!--{if(stocks.sizeline7.isEmptySize)}-->
+                    <td class="line2" align="center" style="background-color:#FFE1E1;">&nbsp;</td>
+                    <!--{/if}-->
+          <!--{/iterate}-->
+                  </tr>
+                  <tr>
+          <!--{iterate(stocks.sizeline7)}-->
+                    <!--{if(!stocks.sizeline7.isEmptySize)}-->
+                    <td class="line2" align="center">{stocks.sizeline7.HikiateQty}</td>
+                    <!--{/if}-->
+                    <!--{if(stocks.sizeline7.isEmptySize)}-->
+                    <td class="line2" align="center">&nbsp;</td>
+                    <!--{/if}-->
+          <!--{/iterate}-->
+                  </tr>
+              <tr>
+        <!--{iterate(stocks.sizeline7)}-->
+                <!--{if(!stocks.sizeline7.isEmptySize)}-->
+                <td class="line2" align="center">{stocks.sizeline7.OldHikiateQty}</td>
+                <!--{/if}-->
+                <!--{if(stocks.sizeline7.isEmptySize)}-->
+                <td class="line2" align="center">&nbsp;</td>
+                <!--{/if}-->
+        <!--{/iterate}-->
+              </tr>
+        <!--{/if}-->
+
+        <!--{if(stocks.8line)}-->
+                  <tr>
+          <!--{iterate(stocks.sizeline8)}-->
+                    <!--{if(!stocks.sizeline8.isEmptySize)}-->
+                    <td class="line2" align="center" style="background-color:#FFE1E1;">{stocks.sizeline8.Size}</td>
+                    <!--{/if}-->
+                    <!--{if(stocks.sizeline8.isEmptySize)}-->
+                    <td class="line2" align="center" style="background-color:#FFE1E1;">&nbsp;</td>
+                    <!--{/if}-->
+          <!--{/iterate}-->
+                  </tr>
+                  <tr>
+          <!--{iterate(stocks.sizeline8)}-->
+                    <!--{if(!stocks.sizeline8.isEmptySize)}-->
+                    <td class="line2" align="center">{stocks.sizeline8.HikiateQty}</td>
+                    <!--{/if}-->
+                    <!--{if(stocks.sizeline8.isEmptySize)}-->
+                    <td class="line2" align="center">&nbsp;</td>
+                    <!--{/if}-->
+          <!--{/iterate}-->
+                  </tr>
+              <tr>
+        <!--{iterate(stocks.sizeline8)}-->
+                <!--{if(!stocks.sizeline8.isEmptySize)}-->
+                <td class="line2" align="center">{stocks.sizeline8.OldHikiateQty}</td>
+                <!--{/if}-->
+                <!--{if(stocks.sizeline8.isEmptySize)}-->
+                <td class="line2" align="center">&nbsp;</td>
+                <!--{/if}-->
+        <!--{/iterate}-->
+              </tr>
+        <!--{/if}-->
+
+      <!--{/if}-->
+    <!--{/iterate}-->
+            </table>
+          </div>
+        </form>
+        <!--{include("../_global/_global.html#footer")}-->
+        <!--{/include}-->
+        <!--{//end}-->
+      </div>
+    </div>
+  </body>
+</html>

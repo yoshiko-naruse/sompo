@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--{include("./_global/_global.html#meta")}-->
+    <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="./main.css" rel="stylesheet" type="text/css">
+    <!--{/include}-->
+    <!--{include("./_global/_global.html#title")}-->
+    <title>Tiffany&nbsp;&amp;&nbsp;Co.&nbsp;ユニフォーム調達システム</title>
+    <!--{/include}-->
+  </head>
+  <body>
+    <div id="main">
+      <div align="center">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td colspan="7"><img src="./img/logo.gif" alt="logo" width="163" height="42" border="0"><img src="./img/logo_02.gif" width="569" height="42"></td>
+          </tr>
+          <tr>
+            <td colspan="7" class="headimg" height="20px" align="right"><a href="login.php"><img src="./img/logout.gif" alt="ログアウト" width="82" height="21" border="0"></a></td>
+          </tr>	
+        </table>
+        <div id="contents">
+          <h1>エラーメッセージ表示</h1>
+          <table border="0" width="700" cellpadding="0" cellspacing="0" class="tb_1">
+            <tr height="100">
+              <td align="center">
+                <div class="ftbold">
+                  <!--{iterate(errors)}-->
+                  <!--{{
+                  {br(errors.errorMessage)}<br>
+                  }}-->
+                  <!--{/iterate}-->
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <form action="{returnUrl}" name="errorForm" method="post">
+                  <!--{{
+                  <div class="bot" align="center"><a href="#" onclick="document.errorForm.submit(); return false;"><img src="./img/modoru.gif" alt="戻る" width="112" height="32" border="0"></a></div>
+                  }}-->
+                  <!--{}-->
+                  <div class="bot" align="center"><a href="top.html"><img src="./img/modoru.gif" alt="戻る" width="112" height="32" border="0"></a></div>
+                  <!--{/}-->
+                  <!--{include("./_global/_create_hidden.html#hidden")}-->
+                  <!--{/include}-->
+                </form>
+              </td>
+            </tr>
+          </table>
+          <br>
+        </div>
+        <!--{include("./_global/_global.html#footer")}-->
+        <!--{/include}-->
+      </div>
+    </div>
+  </body>
+</html>

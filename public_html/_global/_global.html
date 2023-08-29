@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
+    <META EQUIV="expires" CONTENT="-1">
+    <!--{fragment("meta")}-->
+    <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
+    <link href="/main.css" rel="stylesheet" type="text/css">
+    <!--{/fragment}-->
+    <!--{fragment("title")}-->
+    <title>制服管理システム</title>
+    <!--{/fragment}-->
+  </head>
+  <body>
+    <div align="center">
+      <div id="main">
+        <!--{fragment("header")}-->
+        <!--{if(!isLogin)}-->
+        <table border="0" cellpadding="0" cellspacing="0" class="tb_login">
+          <tr>
+            <td colspan="7"><a href="{homeUrl}login.php"><img src="/img/logo.gif" alt="logo" width="163" height="42" border="0"></a><img src="/img/logo_02.gif" width="569" height="42"></td>
+          </tr>
+        <!--{/if}-->
+        <!--{if(isLogin)}-->
+       <form method="post" name="grobalMenuForm">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr>
+         <!--{if(isLevelAdmin)}-->
+            <td colspan="8">
+        <!--{/if}-->
+        <!--{if(isLevelNormal)}-->
+            <td colspan="8">
+        <!--{/if}-->
+              <a href="{homeUrl}top.php"><img src="/img/logo.gif" alt="logo" width="163" height="42" border="0"></a><img src="/img/logo_02.gif" width="569" height="42">
+            </td>
+          </tr>
+        <!--{/if}-->
+          <!--{if(isLogin)}-->
+          <tr>
+    </script>
+
+    <input type="hidden" name="appliReason">
+
+            <!--{//現在選択されている機能のメニューボタンを変更するための分岐(管理者権限)}-->
+        <!--{if(isLevelAdmin)}-->
+        <!--{if(!isLevelHonbu)}-->
+        <!--{if(!isLevelSyonin)}-->
+            <!--{if(isMenuOrder)}-->
+            <td><a href="/hachu/hachu_top.php"><img src="/img/bt_06-2.gif" alt="代理発注"  border="0"></a></td>
+            <!--{/if}-->
+            <!--{if(!isMenuOrder)}-->
+            <td><a href="/hachu/hachu_top.php"><img src="/img/bt_06.gif" alt="代理発注"  border="0"></a></td>
+            <!--{/if}-->
+            <!--{if(isMenuExchange)}-->
+            <td><a href="/koukan/koukan_top.php"><img src="/img/bt_07-2.gif" alt="代理交換"  border="0"></a></td>
+            <!--{/if}-->
+            <!--{if(!isMenuExchange)}-->
+            <td><a href="/koukan/koukan_top.php"><img src="/img/bt_07.gif" alt="代理交換"  border="0"></a></td>
+            <!--{/if}-->
+            <!--{if(isMenuReturn)}-->
+            <td><a href="/henpin/henpin_top.php"><img src="/img/bt_08-2.gif" alt="代理返却"  border="0"></a></td>
+            <!--{/if}-->
+            <!--{if(!isMenuReturn)}-->
+            <td><a href="/henpin/henpin_top.php"><img src="/img/bt_08.gif" alt="代理返却"  border="0"></a></td>
+            <!--{/if}-->
+            <!--{if(isMenuCondition)}-->
+            <td><a href="/chakuyou/chakuyou.php"><img src="/img/bt_03-2.gif" alt="貸与内容"  border="0"></a></td>
+            <!--{/if}-->
+            <!--{if(!isMenuCondition)}-->
+            <td><a href="/chakuyou/chakuyou.php"><img src="/img/bt_03.gif" alt="貸与内容"  border="0"></a></td>
+            <!--{/if}-->
+            <!--{if(isMenuHistory)}-->
+            <td><a href="/rireki/rireki.php"><img src="/img/bt_04-2.gif" alt="申請履歴"  border="0"></a></td>
+            <!--{/if}-->
+            <!--{if(!isMenuHistory)}-->
+            <td><a href="/rireki/rireki.php"><img src="/img/bt_04.gif" alt="申請履歴"  border="0"></a></td>
+            <!--{/if}-->
+            <!--{if(isMenuAcceptation)}-->
+            <td><a href="/syounin/syounin.php"><img src="/img/bt_09-2.gif" alt="承認" border="0"></td>
+            <!--{/if}-->
+            <!--{if(!isMenuAcceptation)}-->
+            <td><a href="/syounin/syounin.php"><img src="/img/bt_09.gif" alt="承認" border="0"></td>
+            <!--{/if}-->
+            <!--{if(isMenuAdmin)}-->
+            <td><a href="/admin/admin_select.php"><img src="/img/bt_10-2.gif" alt="管理機能"  border="0"></td>
+            <!--{/if}-->
+            <!--{if(!isMenuAdmin)}-->
+            <td><a href="/admin/admin_select.php"><img src="/img/bt_10.gif" alt="管理機能"  border="0"></td>
+            <!--{/if}-->
+            <!--{if(isMenuManual)}-->
+            <td><a href="{manualUrl}"><img src="/img/bt_05-2.gif" alt="マニュアル" border="0"></td>
+            <!--{/if}-->
+            <!--{if(!isMenuManual)}-->
+            <td><a href="{manualUrl}"><img src="/img/bt_05.gif" alt="マニュアル" border="0"></td>
+            <!--{/if}-->
+        <!--{/if}-->
+
+        <!--{if(isLevelSyonin)}-->
+            <!--{if(isMenuOrder)}-->
+            <td><a href="/hachu/hachu_top.php"><img src="/img/bt_06-2.gif" alt="代理発注"  border="0"></a></td>
+            <!--{/if}-->
+            <!--{if(!isMenuOrder)}-->
+            <td><a href="/hachu/hachu_top.php"><img src="/img/bt_06.gif" alt="代理発注"  border="0"></a></td>
+            <!--{/if}-->
+            <!--{if(isMenuExchange)}-->
+            <td><a href="/koukan/koukan_top.php"><img src="/img/bt_07-2.gif" alt="代理交換"  border="0"></a></td>
+            <!--{/if}-->
+            <!--{if(!isMenuExchange)}-->
+            <td><a href="/koukan/koukan_top.php"><img src="/img/bt_07.gif" alt="代理交換"  border="0"></a></td>
+            <!--{/if}-->
+            <!--{if(isMenuReturn)}-->
+            <td><a href="/henpin/henpin_top.php"><img src="/img/bt_08-2.gif" alt="代理返却"  border="0"></a></td>
+            <!--{/if}-->
+            <!--{if(!isMenuReturn)}-->
+            <td><a href="/henpin/henpin_top.php"><img src="/img/bt_08.gif" alt="代理返却"  border="0"></a></td>
+            <!--{/if}-->
+            <!--{if(isMenuCondition)}-->
+            <td><a href="/chakuyou/chakuyou.php"><img src="/img/bt_03-2.gif" alt="貸与内容"  border="0"></a></td>
+            <!--{/if}-->
+            <!--{if(!isMenuCondition)}-->
+            <td><a href="/chakuyou/chakuyou.php"><img src="/img/bt_03.gif" alt="貸与内容"  border="0"></a></td>
+            <!--{/if}-->
+            <!--{if(isMenuHistory)}-->
+            <td><a href="/rireki/rireki.php"><img src="/img/bt_04-2.gif" alt="申請履歴"  border="0"></a></td>
+            <!--{/if}-->
+            <!--{if(!isMenuHistory)}-->
+            <td><a href="/rireki/rireki.php"><img src="/img/bt_04.gif" alt="申請履歴"  border="0"></a></td>
+            <!--{/if}-->
+            <td><img src="/img/bt_00.gif" border="0"></td>
+            <!--{if(isMenuAdmin)}-->
+            <td><a href="/admin/admin_select.php"><img src="/img/bt_10-2.gif" alt="管理機能"  border="0"></td>
+            <!--{/if}-->
+            <!--{if(!isMenuAdmin)}-->
+            <td><a href="/admin/admin_select.php"><img src="/img/bt_10.gif" alt="管理機能"  border="0"></td>
+            <!--{/if}-->
+            <!--{if(isMenuManual)}-->
+            <td><a href="{manualUrl}"><img src="/img/bt_05-2.gif" alt="マニュアル" border="0"></td>
+            <!--{/if}-->
+            <!--{if(!isMenuManual)}-->
+            <td><a href="{manualUrl}"><img src="/img/bt_05.gif" alt="マニュアル" border="0"></td>
+            <!--{/if}-->
+        <!--{/if}-->
+        <!--{/if}-->
+        <!--{if(isLevelHonbu)}-->
+            <!--{if(isMenuCondition)}-->
+            <td><a href="/chakuyou/chakuyou.php"><img src="/img/bt_03-2.gif" alt="貸与内容"  border="0"></a></td>
+            <!--{/if}-->
+            <!--{if(!isMenuCondition)}-->
+            <td><a href="/chakuyou/chakuyou.php"><img src="/img/bt_03.gif" alt="貸与内容"  border="0"></a></td>
+            <!--{/if}-->
+            <!--{if(isMenuHistory)}-->
+            <td><a href="/rireki/rireki.php"><img src="/img/bt_04-2.gif" alt="申請履歴"  border="0"></a></td>
+            <!--{/if}-->
+            <!--{if(!isMenuHistory)}-->
+            <td><a href="/rireki/rireki.php"><img src="/img/bt_04.gif" alt="申請履歴"  border="0"></a></td>
+            <!--{/if}-->
+            <td><img src="/img/bt_00.gif" border="0"></td>
+            <td><img src="/img/bt_00.gif" border="0"></td>
+            <td><img src="/img/bt_00.gif" border="0"></td>
+            <td><img src="/img/bt_00.gif" border="0"></td>
+            <!--{if(isMenuAdmin)}-->
+            <td><a href="/admin/admin_select.php"><img src="/img/bt_10-2.gif" alt="管理機能"  border="0"></td>
+            <!--{/if}-->
+            <!--{if(!isMenuAdmin)}-->
+            <td><a href="/admin/admin_select.php"><img src="/img/bt_10.gif" alt="管理機能"  border="0"></td>
+            <!--{/if}-->
+            <!--{if(isMenuManual)}-->
+            <td><a href="{manualUrl}"><img src="/img/bt_05-2.gif" alt="マニュアル" border="0"></td>
+            <!--{/if}-->
+            <!--{if(!isMenuManual)}-->
+            <td><a href="{manualUrl}"><img src="/img/bt_05.gif" alt="マニュアル" border="0"></td>
+            <!--{/if}-->
+        <!--{/if}-->
+ 
+        <!--{/if}-->
+            <!--{//現在選択されている機能のメニューボタンを変更するための分岐(通常権限)}-->
+        <!--{if(isLevelNormal)}-->
+            <!--{if(isMenuOrder)}-->
+            <td><a href="/hachu/hachu_top.php"><img src="/img/bt_01-2.gif" alt="発注"  border="0"></a></td>
+            <!--{/if}-->
+            <!--{if(!isMenuOrder)}-->
+            <td><a href="/hachu/hachu_top.php"><img src="/img/bt_01.gif" alt="発注"  border="0"></a></td>
+            <!--{/if}-->
+            <!--{if(isMenuExchange)}-->
+            <td><a href="/koukan/koukan_top.php"><img src="/img/bt_12-2.gif" alt="交換"  border="0"></a></td>
+            <!--{/if}-->
+            <!--{if(!isMenuExchange)}-->
+            <td><a href="/koukan/koukan_top.php"><img src="/img/bt_12.gif" alt="交換"  border="0"></a></td>
+            <!--{/if}-->
+            <!--{if(isMenuReturn)}-->
+            <td><a href="/henpin/henpin_top.php"><img src="/img/bt_02-2.gif" alt="返却"  border="0"></a></td>
+            <!--{/if}-->
+            <!--{if(!isMenuReturn)}-->
+            <td><a href="/henpin/henpin_top.php"><img src="/img/bt_02.gif" alt="返却"  border="0"></a></td>
+            <!--{/if}-->
+            <!--{if(isMenuCondition)}-->
+            <td><a href="/chakuyou/chakuyou.php"><img src="/img/bt_03-2.gif" alt="貸与内容"  border="0"></a></td>
+            <!--{/if}-->
+            <!--{if(!isMenuCondition)}-->
+            <td><a href="/chakuyou/chakuyou.php"><img src="/img/bt_03.gif" alt="貸与内容"  border="0"></a></td>
+            <!--{/if}-->
+            <!--{if(isMenuHistory)}-->
+            <td><a href="/rireki/rireki.php"><img src="/img/bt_04-2.gif" alt="申請履歴"  border="0"></a></td>
+            <!--{/if}-->
+            <!--{if(!isMenuHistory)}-->
+            <td><a href="/rireki/rireki.php"><img src="/img/bt_04.gif" alt="申請履歴"  border="0"></a></td>
+            <!--{/if}-->
+            <td><img src="/img/bt_00.gif" border="0"></td>
+            <!--{if(isMenuAdmin)}-->
+            <td><a href="/admin/admin_select.php"><img src="/img/bt_10-2.gif" alt="管理機能"  border="0"></td>
+            <!--{/if}-->
+            <!--{if(!isMenuAdmin)}-->
+            <td><a href="/admin/admin_select.php"><img src="/img/bt_10.gif" alt="管理機能"  border="0"></td>
+            <!--{/if}-->
+
+            <!--{if(isMenuManual)}-->
+            <td><a href="{manualUrl}"><img src="/img/bt_05-2.gif" alt="マニュアル" border="0"></a></td>
+            <!--{/if}-->
+            <!--{if(!isMenuManual)}-->
+            <td><a href="{manualUrl}"><img src="/img/bt_05.gif" alt="マニュアル" border="0"></a></td>
+            <!--{/if}-->
+    <input type="hidden" name="appliReason">
+
+    <script language="JavaScript">
+    <!--
+    function MoveNext(source, appliReason) {
+      document.grobalMenuForm.appliReason.value = '1';
+      document.grobalMenuForm.action = source; 
+      document.grobalMenuForm.submit();
+     
+      return false;
+
+    }
+    // -->
+    </script>
+
+        <!--{/if}-->
+          </tr>
+          <tr>
+        <!--{if(isLevelAdmin)}-->
+            <td colspan="8" class="headimg" height="20px" align="right">
+        <!--{/if}-->
+        <!--{if(isLevelNormal)}-->
+            <td colspan="8" class="headimg" height="20px" align="right">
+        <!--{/if}-->
+             <font size="2">{userCd}:{userNm}</font>&nbsp;&nbsp;<a href="{homeUrl}login.php"><img src="/img/logout.gif" alt="ログアウト" width="82" height="21" border="0"></a>
+            </td>
+          </tr>
+          <!--{/if}-->
+        </table>
+       </form>
+        <!--{/fragment}-->
+
+        <div id="contents">
+          <br><br>
+          <br>
+          <br>
+          <br>
+          <br>
+        </div>
+        <!--{fragment("footer")}-->
+        <br><br><br>
+        <!--{/fragment}-->
+      </div>
+    </div>
+  </body>
+</html>

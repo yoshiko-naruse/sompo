@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--{include("../_global/_global.html#meta")}-->
+    <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="../main.css" rel="stylesheet" type="text/css">
+    <!--{/include}-->
+    <!--{include("../_global/_global.html#title")}-->
+    <title>Tiffany&nbsp;&amp;&nbsp;Co.&nbsp;ユニフォーム調達システム</title>
+    <!--{/include}-->
+  </head>
+  <body>
+    <div id="main">
+      <div align="center">
+        <!--{include("../_global/_global.html#header")}-->
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td colspan="7"><a href="../top.html"><img src="../img/logo.gif" alt="logo" width="163" height="42" border="0"></a><img src="../img/logo_02.gif" width="569" height="42"></td>
+          </tr>
+          <tr>
+            <td><a href="../hachu/hachu_top.html"><img src="../img/bt_01.gif" alt="発注" width="114" height="35" border="0"></a></td>
+            <td><a href="./koukan_top.html"><img src="../img/bt_02-2.gif" alt="交換" width="100" height="35" border="0"></a></td>
+            <td><a href="../henpin/henpin_top.html"><img src="../img/bt_03.gif" alt="返却" width="100" height="35" border="0"></a></td>
+            <td><a href="../chakuyou/chakuyou.html"><img src="../img/bt_04.gif" alt="着用状況" width="100" height="35" border="0"></a></td>
+            <td><a href="../rireki/rireki.html"><img src="../img/bt_05.gif" alt="申請履歴" width="100" height="35" border="0"></a></td>
+            <td><a href="../denpyo/denpyo_irai.html"><img src="../img/bt_06.gif" alt="着払い伝票依頼" width="100" height="35" border="0"></a></td>
+            <td><img src="../img/bt_07.gif" alt="管理機能" width="118" height="35" border="0"></td>
+          </tr>
+          <tr>
+            <td colspan="7" class="headimg" height="20px" align="right"><a href="../index.html"><img src="../img/logout.gif" alt="ログアウト" width="82" height="21" border="0"></a></td>
+          </tr>	
+        </table>
+        <!--{/include}-->
+        <!--{//satrt}-->
+        <form method="post" action="../select_staff.php" name="selectForm">
+          <div id="contents">
+            <h1>ユニフォーム交換方法選択</h1>
+            <table border="0" width="550" cellpadding="0" cellspacing="0" class="tb_1">
+              <tr height="60">
+                <!--{{
+                <td class="line" width="200"><a href="#" onclick="document.selectForm.appliReason.value='{APPLI_REASON_EXCHANGE_FIRST}'; document.selectForm.submit(); return false;">[初回サイズ交換]</a></td>
+                }}-->
+                <!--{}-->
+                <td class="line" width="200"><a href="koukan_sentaku.html">[初回サイズ交換]</a></td>
+                <!--{/}-->
+                <!--{}-->
+                <td class="line" width="350">最初の発注分で商品のサイズが合わない場合に限り、<font color="red">出荷日から10日以内</font>であれば交換できます。<br></td>
+                <!--{/}-->
+                <td class="line" width="350">最初の発注分で商品のサイズが合わない場合はこちらを選択して下さい。<br></td>
+              </tr>
+              <tr height="60">
+                <!--{{
+                <td class="line" width="200"><a href="#" onclick="document.selectForm.appliReason.value='{APPLI_REASON_EXCHANGE_SIZE}'; document.selectForm.submit(); return false;">[サイズ交換]</a></td>
+                }}-->
+                <!--{}-->
+                <td class="line" width="200"><a href="koukan_sentaku.html">[サイズ交換]</a></td>
+                <!--{/}-->
+                <td class="line" width="350">着用中の商品のサイズが合わない場合、選択して下さい。<br></td>
+              </tr>
+              <tr height="60">
+                <!--{{
+                <td class="line" width="200"><a href="#" onclick="document.selectForm.appliReason.value='{APPLI_REASON_EXCHANGE_BREAK}'; document.selectForm.submit(); return false;">[汚損・破損交換]</a></td>
+                }}-->
+                <!--{}-->
+                <td class="line" width="200"><a href="koukan_sentaku.html">[汚損・破損交換]</a></td>
+                <!--{/}-->
+                <td class="line" width="350">着用中の商品に洗濯で落ちない汚れが付着したり、破れたりした場合の商品交換時に選択して下さい。</td>
+              </tr>
+              <tr height="60">
+                <!--{{
+                <td class="line" width="200"><a href="#" onclick="document.selectForm.appliReason.value='{APPLI_REASON_EXCHANGE_LOSS}'; document.selectForm.submit(); return false;">[紛失交換]</a></td>
+                }}-->
+                <!--{}-->
+                <td class="line" width="200"><a href="koukan_sentaku.html">[紛失交換]</a></td>
+                <!--{/}-->
+                <td class="line" width="350">着用中の商品を紛失した場合の代替商品発注時に選択して下さい。</td>
+              </tr>
+              <tr height="100">
+                <td colspan="2">
+                  <font color="red">
+                    ※サイズ交換には経費がかかります。<br>
+                    ※不良品は株式会社ユニコ　SOMPOケアフーズ様担当係へ直接ご連絡下さい。<br>　（ご連絡先はマニュアルを参照下さい）
+                  </font>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <input type="hidden" name="appliReason">
+          <input type="hidden" name="encodeHint" value="京">
+          <!--{if(isLevelAdmin)}-->
+          <input type="hidden" name="searchCompCd" value="{searchCompCd}">
+          <input type="hidden" name="searchCompName" value="{searchCompName}">
+          <input type="hidden" name="searchCompId" value="{searchCompId}">
+          <!--{/if}-->
+        </form>
+        <!--{include("../_global/_global.html#footer")}-->
+        <!--{/include}-->
+        <!--{//end}-->
+      </div>
+    </div>
+  </body>
+</html>

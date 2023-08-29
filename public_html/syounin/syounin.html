@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--{include("../_global/_global.html#meta")}-->
+    <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="../main.css" rel="stylesheet" type="text/css">
+    <!--{/include}-->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+    <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script language="JavaScript">
+    <!--
+    function yes_chkbox(i) {
+      if (document.pagingForm.elements['acceptationY[' + i + ']'].checked) {
+        document.pagingForm.elements['acceptationN[' + i + ']'].checked = false;
+      }
+    }
+    function no_chkbox(i) {
+      if (document.pagingForm.elements['acceptationN[' + i + ']'].checked) {
+        document.pagingForm.elements['acceptationY[' + i + ']'].checked = false;
+      }
+    }
+    function confirmAcceptation() {
+
+      if (confirm('承認処理を行いますがよろしいですか')) {
+        document.pagingForm.action = './syounin_kanryo.php';
+        document.pagingForm.submit();
+      }
+
+      return false;
+
+    }
+	// 申請のチェックボックスをONOFFにする
+	function chkAll_form() {
+		var flg;
+
+		flg = false;	// 全てOFF
+		for (var i = 0; i < document.pagingForm.length; i++) {
+			if (document.pagingForm.elements[i].type == 'checkbox') {
+				if (document.pagingForm.elements[i].name.substring(0,12) == 'acceptationY') {
+					if (!document.pagingForm.elements[i].checked) {
+						// １件でも未承認あれば全件ON
+						flg = true;		// 全てON
+						break;
+					}
+				}
+			}
+		}
+
+		for (var i = 0; i < document.pagingForm.length; i++) {
+			if (document.pagingForm.elements[i].type == 'checkbox') {
+				if (document.pagingForm.elements[i].name.substring(0,12) == 'acceptationY') {
+					if (flg) {
+						document.pagingForm.elements[i].checked = true;
+					} else {
+						document.pagingForm.elements[i].checked = false;
+					}
+				}
+				if (document.pagingForm.elements[i].name.substring(0,12) == 'acceptationN') {
+					document.pagingForm.elements[i].checked = false;
+				}
+			}
+		}
+	}
+    // -->
+    </script>
+    <script type="text/javascript">
+      $(function() {
+        $("#datepicker1").datepicker();
+        $('#datepicker1').datepicker("option", "dateFormat", 'yy/mm/dd' );
+        $("#datepicker1").datepicker("setDate", "{searchAppliDayFrom}");
+        $("#datepicker2").datepicker();
+        $('#datepicker2').datepicker("option", "dateFormat", 'yy/mm/dd' );
+        $("#datepicker2").datepicker("setDate", "{searchAppliDayTo}");
+      });
+    </script>
+    <!--{include("../_global/_global.html#title")}-->
+    <title>JTB　ユニフォーム調達システム</title>
+    <!--{/include}-->
+  </head>
+  <body>
+    <div id="main">
+      <div align="center">
+        <!--{include("../_global/_global.html#header")}-->
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td colspan="7"><a href="../top.html"><img src="../img/logo.gif" alt="logo" width="163" height="42" border="0"></a><img src="../img/logo_02.gif" width="569" height="42"></td>
+          </tr>
+          <tr>
+            <td><a href="./syounin.html"><img src="../img/bt_08-2.gif" alt="承認" width="114" height="35" border="0"></a></td>
+            <td><img src="../img/bt_02-3.gif" alt="" width="100" height="35" border="0"></td>
+            <td><img src="../img/bt_03-3.gif" alt="" width="100" height="35" border="0"></td>
+            <td><img src="../img/bt_04-3.gif" alt="" width="100" height="35" border="0"></td>
+            <td><img src="../img/bt_05-3.gif" alt="" width="100" height="35" border="0"></td>
+            <td><img src="../img/bt_06-3.gif" alt="" width="100" height="35" border="0"></td>
+            <td><img src="../img/bt_07-3.gif" alt="" width="118" height="35" border="0"></td>
+          </tr>
+          <tr>
+            <td colspan="7" class="headimg" height="20px" align="right"><a href="../index.html"><img src="../img/logout.gif" alt="ログアウト" width="82" height="21" border="0"></a></td>
+          </tr>	
+        </table>
+        <!--{/include}-->
+        <!--{//satrt}-->
+        <form method="post" action="./syounin.php" name="pagingForm">
+        <div id="contents">
+        <h1>ユニフォーム承認処理</h1>
+            <table border="0" width="700" cellpadding="0" cellspacing="0" class="tb_1">
+              <tr height="40">
+                <td width="80" class="line"><span class="fbold">所属施設</span></td>
+                <td colspan="3" class="line">
+                  <input type="text" name="searchCompCd" value="{searchCompCd}" style="width:60px;" readonly="readonly"><input type="text" name="searchCompName" value="{searchCompName}" style="width:310px;" readonly="readonly">
+                  <input type="hidden" name="searchCompId" value="{searchCompId}">
+                  <input type="hidden" name="searchCorpCd" value="">
+                <input name="shop_btn" type="button" value="施設検索" onclick="window.open('../search_comp.php', 'searchComp', 'width=500, height=400, menubar=no, toolbar=no, scrollbars=yes'); return false;"></td>
+                <td></td>
+              </tr>
+              <tr height="40">
+                <td width="80" class="line"><span class="fbold">職員コード</span></td>
+                <td width="160" class="line"><input name="searchStaffCode" type="text" value="{searchStaffCode}" style="width:100px;" maxlength="12"></td>
+                <td width="80" class="line" align="center"><span class="fbold">氏名</span></td>
+                <td width="260" class="line"><input name="searchPersonName" type="text" value="{searchPersonName}" style="width:200px;" maxlength="10"></td>
+                <td></td>
+              </tr>
+              <tr height="40">
+                <td width="80" class="line"><span class="fbold">申請日</span></td>
+                <td class="line" colspan="3">
+                  <input name="searchAppliDayFrom" type="text" value="{searchAppliDayFrom}" style="width:100px;" maxlength="10" id="datepicker1">～&nbsp;<input name="searchAppliDayTo" type="text" value="{searchAppliDayTo}" style="width:100px;" maxlength="10" id="datepicker2">
+                </td>
+                <td></td>
+              </tr>
+              <tr height="40">
+                <td width="80" class="line"><span class="fbold">状態</span></td>
+                <td class="line" colspan="3">
+                        <!--{if(isSelectedStatus1)}-->
+                        <input type="checkbox" name="searchStatus[]" value="1" id="status1" checked="checked">
+                        <!--{/if}-->
+                        <!--{if(!isSelectedStatus1)}-->
+                        <!--{{
+                        <input type="checkbox" name="searchStatus[]" value="1" id="status1">
+                        }}-->
+                        <!--{/if}-->
+                      <!--{{<label for="status1">{DISPLAY_STATUS_APPLI}</label>
+                      }}-->
+                      <!--{}-->
+                      <label for="status1">承認待
+                      <!--{/}-->
+                        <!--{if(isSelectedStatus2)}-->
+                        <input type="checkbox" name="searchStatus[]" value="2" id="status2" checked="checked">
+                        <!--{/if}-->
+                        <!--{if(!isSelectedStatus2)}-->
+                        <!--{{
+                        <input type="checkbox" name="searchStatus[]" value="2" id="status2">
+                        }}-->
+                        <!--{/if}-->
+                      <!--{{
+                      <label for="status2">{DISPLAY_STATUS_APPLI_ADMIT}</label>
+                      }}-->
+                      <!--{}-->
+                      <label for="status2">承認済</label>
+                      <!--{/}-->
+                        <!--{if(isSelectedStatus3)}-->
+                        <input type="checkbox" name="searchStatus[]" value="3" id="status3" checked="checked">
+                        <!--{/if}-->
+                        <!--{if(!isSelectedStatus3)}-->
+                        <!--{{
+                        <input type="checkbox" name="searchStatus[]" value="3" id="status3">
+                        }}-->
+                        <!--{/if}-->
+                      <!--{{
+                      <label for="status3">{DISPLAY_STATUS_APPLI_DENY}</label>
+                      }}-->
+                      <!--{}-->
+                      <label for="status3">否認</label>
+                      <!--{/}-->
+                      <!--{}-->
+                        <!--{if(isSelectedStatus4)}-->
+                        <input type="checkbox" name="searchStatus[]" value="4" id="status4" checked="checked">
+                        <!--{/if}-->
+                        <!--{if(!isSelectedStatus4)}-->
+                        <!--{{
+                        <input type="checkbox" name="searchStatus[]" value="4" id="status4">
+                        }}-->
+                        <!--{/if}-->
+                      <!--{{
+                      <label for="status4">{DISPLAY_STATUS_NOT_RETURN}</label>
+                      }}-->
+                      <!--{}-->
+                      <label for="status4">返却承認待</label>
+                      <!--{/}-->
+                        <!--{if(isSelectedStatus5)}-->
+                        <input type="checkbox" name="searchStatus[]" value="5" id="status5" checked="checked">
+                        <!--{/if}-->
+                        <!--{if(!isSelectedStatus5)}-->
+                        <!--{{
+                        <input type="checkbox" name="searchStatus[]" value="5" id="status5">
+                        }}-->
+                        <!--{/if}-->
+                      <!--{{
+                      <label for="status5">{DISPLAY_STATUS_NOT_RETURN_ADMIT}</label>
+                      }}-->
+                      <!--{}-->
+                      <label for="status5">返却承認済</label>
+                      <!--{/}-->
+                        <!--{if(isSelectedStatus6)}-->
+                        <input type="checkbox" name="searchStatus[]" value="6" id="status6" checked="checked">
+                        <!--{/if}-->
+                        <!--{if(!isSelectedStatus6)}-->
+                        <!--{{
+                        <input type="checkbox" name="searchStatus[]" value="6" id="status6">
+                        }}-->
+                        <!--{/if}-->
+                      <!--{{
+                      <label for="status6">{DISPLAY_STATUS_NOT_RETURN_DENY}</label>
+                      }}-->
+                      <!--{}-->
+                      <label for="status6">返却否認</label>
+                      <!--{/}-->
+                      <!--{/}-->
+                      </td>
+                      <td class="line" align="center">
+                      <input type="button" value="     検索     " onclick="document.pagingForm.searchFlg.value='1'; document.pagingForm.submit(); return false;">
+                      </td>
+              </tr>
+            </table>
+            <!--{if(isSearched)}-->
+            <h3>◆承認／否認を選択して下さい。</h3>
+            <table width="740" border="0" class="tb_1" cellpadding="0" cellspacing="3">
+              <tr>
+                <td align="right">
+                  <input type="button" name="all_syonin" value="全件承認する" onclick="chkAll_form()">
+                </td>
+              </tr>
+            </table>
+            <table width="740" border="0" class="tb_1" cellpadding="0" cellspacing="3">
+              <tr>
+                <th width="60">申請日</th>
+                <th width="90">申請番号</th>
+                <th width="70">施設CD</th>
+                <th width="120">施設名</th>
+                <th width="80">職員</th>
+                <th width="40">区分</th>
+                <th width="60">承認日</th>
+                <th width="60">状態</th>
+                <th width="70">承認確認<br>承認/否認</th>
+                <th width="90">理由</th>
+              </tr>
+              <!--{iterate(orders)}-->
+              <tr height="20">
+                <td width="60" class="line2" align="center">{dateFormat(orders.requestDay, "y/m/d")}</td>
+                <td width="90" class="line2" align="center">
+                  <!--{if(!orders.divisionExchange)}-->
+                  <!--{if(!orders.isAppli)}-->
+                  <a href="#" onclick="document.pagingForm.orderId.value='{orders.orderId}'; document.pagingForm.action='../rireki/henpin_meisai.php'; document.pagingForm.submit(); return false;">{orders.requestNo}</a></td>
+                  <!--{/if}-->
+                  <!--{if(orders.isAppli)}-->
+                  <!--{{
+                  <a href="#" onclick="document.pagingForm.orderId.value='{orders.orderId}'; document.pagingForm.action='../rireki/hachu_meisai.php'; document.pagingForm.submit(); return false;">{orders.requestNo}</a></td>
+                  }}-->
+                  <!--{/if}-->
+                  <!--{/if}-->
+                  <!--{if(orders.divisionExchange)}-->
+                  <a href="#" onclick="document.pagingForm.orderId.value='{orders.orderId}'; document.pagingForm.action='../rireki/hachu_meisai.php'; document.pagingForm.submit(); return false;">{orders.requestNo}</a><br>
+                  <a href="#" onclick="document.pagingForm.orderId.value='{orders.returnOrderId}'; document.pagingForm.action='../rireki/henpin_meisai.php'; document.pagingForm.submit(); return false;">{orders.returnRequestNo}</a></td>
+                  <!--{/if}-->
+
+                <td width="70" class="line2" align="center">{orders.CompCd}</td>
+                <td width="120" class="line2" align="left">{orders.CompName}</td>
+                <td width="80" class="line2" align="center">{orders.PersonName}</td>
+                <td width="40" class="line2" align="center">
+                  <!--{if(orders.divisionOrder)}-->
+                  発注
+                  <!--{/if}-->
+                  <!--{if(orders.divisionExchange)}-->
+                  <!--{{
+                  交換
+                  }}-->
+                  <!--{/if}-->
+                  <!--{if(orders.divisionReturn)}-->
+                  <!--{{
+                  返却
+                  }}-->
+                  <!--{/if}-->
+                </td>
+                <td width="60" class="line2" align="center">
+                  <!--{if(orders.isEmptyAgreeDay)}-->
+                  <!--{{
+                  &nbsp;
+                  }}-->
+                  <!--{/if}-->
+                  <!--{if(!orders.isEmptyAgreeDay)}-->
+                  {dateFormat(orders.AgreeDay, "y/m/d")}
+                  <!--{/if}-->
+                </td>
+                <td width="60" class="line2" align="center" nowrap="nowrap">
+                  <!--{if(orders.statusIsRed)}-->
+                  <!--{{
+                  <!--{if(!orders.isAgree)}-->
+                  <span style="color:red">{orders.status}</span>
+                  <!--{/if}-->
+                  <!--{if(orders.isAgree)}-->
+                  <!--{if(!orders.divisionExchange)}-->
+                  <a href="#" onclick="document.pagingForm.orderId.value='{orders.orderId}'; document.pagingForm.action='./syounin_cancel_kakunin.php'; document.pagingForm.submit(); return false;"><span style="color:red">{orders.status}</span></a>
+                  <!--{/if}-->
+                  <!--{if(orders.divisionExchange)}-->
+                  <a href="#" onclick="document.pagingForm.orderId.value='{orders.orderId}'; document.pagingForm.returnOrderId.value='{orders.returnOrderId}'; document.pagingForm.action='./syounin_cancel_kakunin.php'; document.pagingForm.submit(); return false;"><span style="color:red">{orders.status}</span></a>
+                  <!--{/if}-->
+                  <!--{/if}-->
+                  }}-->
+                  <!--{/if}-->
+                  <!--{if(orders.statusIsGreen)}-->
+                  <!--{{
+                  <!--{if(!orders.isAgree)}-->
+                  <span style="color:green">{orders.status}</span>
+                  <!--{/if}-->
+                  <!--{if(orders.isAgree)}-->
+                  <!--{if(!orders.divisionExchange)}-->
+                  <a href="#" onclick="document.pagingForm.orderId.value='{orders.orderId}'; document.pagingForm.action='./syounin_cancel_kakunin.php'; document.pagingForm.submit(); return false;"><span style="color:green">{orders.status}</span></a>
+                  <!--{/if}-->
+                  <!--{if(orders.divisionExchange)}-->
+                  <a href="#" onclick="document.pagingForm.orderId.value='{orders.orderId}'; document.pagingForm.returnOrderId.value='{orders.returnOrderId}'; document.pagingForm.action='./syounin_cancel_kakunin.php'; document.pagingForm.submit(); return false;"><span style="color:green">{orders.status}</span></a>
+                  <!--{/if}-->
+                  <!--{/if}-->
+                  }}-->
+                  <!--{/if}-->
+                  <!--{if(orders.statusIsGray)}-->
+                  <!--{{
+                  <span style="color:gray">{orders.status}</span>
+                  }}-->
+                  <!--{/if}-->
+                  <!--{if(orders.statusIsTeal)}-->
+                  <!--{{
+                  <!--{if(!orders.isAgree)}-->
+                  <span style="color:Teal">{orders.status}</span>
+                  <!--{/if}-->
+                  <!--{if(orders.isAgree)}-->
+                  <!--{if(!orders.divisionExchange)}-->
+                  <a href="#" onclick="document.pagingForm.orderId.value='{orders.orderId}'; document.pagingForm.action='./syounin_cancel_kakunin.php'; document.pagingForm.submit(); return false;"><span style="color:Teal">{orders.status}</span></a>
+                  <!--{/if}-->
+                  <!--{if(orders.divisionExchange)}-->
+                  <a href="#" onclick="document.pagingForm.orderId.value='{orders.orderId}'; document.pagingForm.returnOrderId.value='{orders.returnOrderId}'; document.pagingForm.action='./syounin_cancel_kakunin.php'; document.pagingForm.submit(); return false;"><span style="color:Teal">{orders.status}</span></a>
+                  <!--{/if}-->
+                  <!--{/if}-->
+                  }}-->
+                  <!--{/if}-->
+                  <!--{if(orders.statusIsPink)}-->
+                  <!--{{
+                  <!--{if(!orders.isAgree)}-->
+                  <span style="color:fuchsia">{orders.status}</span>
+                  <!--{/if}-->
+                  <!--{if(orders.isAgree)}-->
+                  <!--{if(!orders.divisionExchange)}-->
+                  <a href="#" onclick="document.pagingForm.orderId.value='{orders.orderId}'; document.pagingForm.action='./syounin_cancel_kakunin.php'; document.pagingForm.submit(); return false;"><span style="color:fuchsia">{orders.status}</span></a>
+                  <!--{/if}-->
+                  <!--{if(orders.divisionExchange)}-->
+                  <span style="color:fuchsia">{orders.status}</span>
+                  <!--{/if}-->
+                  <!--{/if}-->
+                  }}-->
+                  <!--{/if}-->
+                  <!--{if(orders.statusIsBlack)}-->
+                  {orders.status}
+                  <!--{/if}-->
+                </td>
+                <td width="70" class="line2" align="center">
+                  <!--{if(!orders.isAgree)}-->
+                  <!--{if(orders.acceptationIsYes)}-->
+                  <input type="checkbox" id="checkbox[]" name="acceptationY[{orders.orderId}]" value="{orders.StatusYes}" onClick="yes_chkbox({orders.orderId})" checked="checked">
+                  <!--{/if}-->
+                  <!--{if(!orders.acceptationIsYes)}-->
+                  <!--{{
+                  <input type="checkbox" id="checkbox[]" name="acceptationY[{orders.orderId}]" value="{orders.StatusYes}" onClick="yes_chkbox({orders.orderId})">
+                  }}-->
+                  <!--{/if}-->
+                  <!--{/if}-->
+                  <!--{if(orders.isAgree)}-->
+                  <!--{if(orders.acceptationIsYes)}-->
+                  <!--{{
+                  <img src="/img/chkon.jpg" alt="on" border="0">
+                  }}-->
+                  <!--{/if}-->
+                  <!--{if(!orders.acceptationIsYes)}-->
+                  <!--{{
+                  <img src="/img/chkoff.jpg" alt="onf" border="0">
+                  }}-->
+                  <!--{/if}-->
+                  <!--{/if}-->
+                  <!--{if(!orders.isAgree)}-->
+                  <!--{if(orders.acceptationIsNo)}-->
+                  <!--{{
+                  <input type="checkbox" id="checkbox[]" name="acceptationN[{orders.orderId}]" value="{orders.StatusNo}" onClick="no_chkbox({orders.orderId})" checked="checked">
+                  }}-->
+                  <!--{/if}-->
+                  <!--{if(!orders.acceptationIsNo)}-->
+                  <input type="checkbox" id="checkbox[]" name="acceptationN[{orders.orderId}]" value="{orders.StatusNo}" onClick="no_chkbox({orders.orderId})">
+                  <!--{/if}-->
+                  <input type="hidden" name="orderIds[]" value="{orders.orderId}">
+                  <!--{if(orders.divisionExchange)}-->
+                  <input type="hidden" name="returnOrderIds[{orders.orderId}]" value="{orders.returnOrderId}">
+                  <!--{/if}-->
+                  <!--{/if}-->
+                  <!--{if(orders.isAgree)}-->
+                  <!--{if(orders.acceptationIsNo)}-->
+                  <!--{{
+                  <img src="/img/chkon.jpg" alt="on" border="0">
+                  }}-->
+                  <!--{/if}-->
+                  <!--{if(!orders.acceptationIsNo)}-->
+                  <!--{{
+                  <img src="/img/chkoff.jpg" alt="off" border="0">
+                  }}-->
+                  <!--{/if}-->
+                  <!--{/if}-->
+                </td>
+                <!--{if(!orders.isAgree)}-->
+                <td width="90" class="line2" align="center"><input name="reason[{orders.orderId}]" type="text" value="{orders.reason}" size="14" maxlength="60"></td>
+                <!--{/if}-->
+                <!--{if(orders.isAgree)}-->
+                <!--{{
+                <td width="90" class="line2" align="center"><input name="reason[{orders.orderId}]" type="text" value="{orders.reason}" size="14" readonly="readonly"></td>
+                }}-->
+                <!--{/if}-->
+              </tr>
+              <!--{/iterate}-->
+            </table>
+            <div class="bot"><a href="#" onClick="confirmAcceptation(); return false;"><img src="/img/toroku.gif" alt="登録" width="112" height="32" border="0"></a></div>
+            <!--{/if}-->
+          </div>
+          <input type="hidden" name="encodeHint" value="京">
+          <input type="hidden" name="orderId">
+          <input type="hidden" name="returnOrderId">
+          <input type="hidden" name="searchFlg">
+          <input type="hidden" name="syouninFlg" value="1">
+        </form>
+        <!--{include("../_global/_global.html#footer")}-->
+        <!--{/include}-->
+        <!--{//end}-->
+      </div>
+    </div>
+  </body>
+</html>

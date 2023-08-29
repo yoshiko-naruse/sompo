@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--{include("./_global/_global.html#meta")}-->
+    <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="./main.css" rel="stylesheet" type="text/css">
+    <!--{/include}-->
+    <script language="JavaScript">
+    <!--
+    function setComp(compCd, compName, compId) {
+
+      if(!window.opener || window.opener.closed){
+        window.close(); 
+      } 
+
+      window.opener.document.pagingForm.searchCompId.value = compId;
+      window.opener.document.pagingForm.searchCompCd.value = compCd;
+      window.opener.document.pagingForm.searchCompName.value = compName;
+      window.close();
+      return false;
+
+    }
+
+    function funcformonkeydown() {
+
+      var src = window.event.srcElement;
+
+      if(event.keyCode == 13) {
+        if (src.type == '' ) {
+          src.click();
+        }
+        else if (src.type != 'submit'
+          && src.type != 'button'
+          && src.type != 'textarea' ) {
+
+          return false;
+        }
+      }
+    }
+    // -->
+    </script>
+    <!--{include("./_global/_global.html#title")}-->
+    <title>Tiffany&nbsp;&amp;&nbsp;Co.&nbsp;ユニフォーム調達システム</title>
+    <!--{/include}-->
+  </head>
+  <body>
+    <div id="main3">
+      <!--{//satrt}-->
+      <form method="post" action="./search_comp.php" name="pagingForm" onkeydown="javascript:return funcformonkeydown();">
+        <div id="contents">
+          <p class="fbold tb_1" style="margin-top:0px; font-size:120%">施設検索</p>
+          <table border="0" width="400" cellpadding="0" cellspacing="0" class="tb_1">
+            <tr>
+              <td colspan="2" height="20">※ 検索したい施設名を入力してください。（部分一致）</td>
+            </tr>
+            <tr>
+              <td width="120" class="line">施設CD<input type="text" name="searchCompCode" value="{searchCompCode}" style="width:80px;"></td>
+              <td width="250" class="line">施設名<input type="text" name="searchComp" value="{searchComp}" style="width:200px;"></td>
+              <td width="100" class="line"><input name="shop_btn" type="button" value="　検索　" onclick="document.pagingForm.searchFlg.value='1'; document.pagingForm.submit(); return false;"></td>
+            </tr>
+          </table>
+          <!--{if(isSearched)}-->
+          <p class="fbold tb_1" style="font-size:120%">◆該当施設</p>
+          <table border="0" width="400" cellpadding="0" cellspacing="2" class="tb_1">
+            <tr>
+              <th width="120">施設コード</th>
+              <th width="280">施設名</th>
+            </tr>
+            <!--{iterate(comps)}-->
+            <tr height="20">
+              <td class="line2" align="center"><a href="#" onclick="setComp('{comps.CompCd}', '{comps.CompName}', '{comps.CompID}');">{comps.CompCd}</a></td>
+              <td class="line2" align="left">{comps.CompName}</td>
+            </tr>
+            <!--{/iterate}-->
+          </table>
+          <!--{include("./_global/_paging.html#paging")}-->
+          <table border="0" width="400" cellpadding="0" cellspacing="0" class="tb_1">
+            <tr>
+              <td width="120" align="left"><input name="prev_btn" type="button" value="<<"></td>
+              <td width="200">&nbsp;</td>
+              <td width="120" align="right"><input name="prev_btn" type="button" value=">>"></td>
+            </tr>
+          </table>
+          <!--{/include}-->
+          <!--{/if}-->
+          <br>
+          <div align="center">
+          <table border="0" cellpadding="0" cellspacing="0">
+            <tr>
+              <td>
+              <td align="center" colspan="5">
+                <a href="javascript:window.close()"><img src="./img/close.gif" width="112" height="32" border="0"></a></div>
+              </td>
+            </tr>
+          </table>
+          </div>
+        </div>
+        <input type="hidden" name="encodeHint" value="京">
+        <input type="hidden" name="searchFlg">
+        <input type="hidden" name="isSearched" value="{isSearched}">
+      </form>
+      <!--{include("./_global/_global.html#footer")}-->
+      <!--{/include}-->
+      <!--{//end}-->
+    </div>
+  </body>
+</html>

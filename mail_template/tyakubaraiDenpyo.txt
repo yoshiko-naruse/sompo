@@ -1,0 +1,14 @@
+関係者各位
+
+###HEAD###
+###DATE###
+下記のとおり着払い伝票の発注をお受け致しました。
+
+　申請日     ： ###APPLIDAY###
+　基地名 ： ###COMPCODE### ： ###COMPNAME### 
+　出荷先名   ： ###SHIPNAME###  ###STAFFNAME###
+　住所       ： ###ZIP1###-###ZIP2### ###ADDRESS### ###TEL###
+　メモ       ： ###NOTE###
+
+    伝票種別   ： ###DENPYOSYUBETSU###
+    発注枚数   ： ###VOUCHERNUM###

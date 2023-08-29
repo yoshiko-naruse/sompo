@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--{include("../_global/_global.html#meta")}-->
+    <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="../main.css" rel="stylesheet" type="text/css">
+    <!--{/include}-->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+    <!--{include("../_global/_global.html#title")}-->
+    <title>Tiffany&nbsp;&amp;&nbsp;Co.&nbsp;ユニフォーム調達システム</title>
+    <!--{/include}-->
+    <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script type="text/javascript">
+      $(function() {
+        $("#datepicker1").datepicker();
+        $('#datepicker1').datepicker("option", "dateFormat", 'yy/mm/dd' );
+        $("#datepicker1").datepicker("setDate", "{searchAppliDayFrom}");
+        $("#datepicker2").datepicker();
+        $('#datepicker2').datepicker("option", "dateFormat", 'yy/mm/dd' );
+        $("#datepicker2").datepicker("setDate", "{searchAppliDayTo}");
+        $("#datepicker3").datepicker();
+        $('#datepicker3').datepicker("option", "dateFormat", 'yy/mm/dd' );
+        $("#datepicker3").datepicker("setDate", "{searchShipDayFrom}");
+        $("#datepicker4").datepicker();
+        $('#datepicker4').datepicker("option", "dateFormat", 'yy/mm/dd' );
+        $("#datepicker4").datepicker("setDate", "{searchShipDayTo}");
+      });
+    </script>
+  </head>
+  <body>
+    <div id="main">
+      <div align="center">
+        <!--{include("../_global/_global.html#header")}-->
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td colspan="7"><a href="../top.html"><img src="../img/logo.gif" alt="logo" width="163" height="42" border="0"></a><img src="../img/logo_02.gif" width="569" height="42"></td>
+          </tr>
+          <tr>
+            <td><a href="../hachu/hachu_top.html"><img src="../img/bt_01.gif" alt="発注" width="114" height="35" border="0"></a></td>
+            <td><a href="../koukan/koukan_top.html"><img src="../img/bt_02.gif" alt="交換" width="100" height="35" border="0"></a></td>
+            <td><a href="../henpin/henpin_top.html"><img src="../img/bt_03.gif" alt="返却" width="100" height="35" border="0"></a></td>
+            <td><a href="../chakuyou/chakuyou.html"><img src="../img/bt_04.gif" alt="着用状況" width="100" height="35" border="0"></a></td>
+            <td><a href="./rireki.html"><img src="../img/bt_05-2.gif" alt="申請履歴" width="100" height="35" border="0"></a></td>
+            <td><a href="../denpyo/denpyo_irai.html"><img src="../img/bt_06.gif" alt="着払い伝票依頼" width="100" height="35" border="0"></a></td>
+            <td><img src="../img/bt_07.gif" alt="管理機能" width="118" height="35" border="0"></td>
+          </tr>
+          <tr>
+            <td colspan="7" class="headimg" height="20px" align="right"><a href="../index.html"><img src="../img/logout.gif" alt="ログアウト" width="82" height="21" border="0"></a></td>
+          </tr>	
+        </table>
+        <!--{/include}-->
+        <!--{//satrt}-->
+        <form method="post" action="./rireki.php" name="pagingForm">
+          <div id="contents">
+            <h1>ユニフォーム申請履歴</h1>
+            <table border="0" width="700" cellpadding="0" cellspacing="0" class="tb_1">
+              <tr height="40">
+                <td width="80" class="line"><span class="fbold">所属施設</span></td>
+                <!--{if(!isLevelAdmin)}-->
+                <td colspan="3" class="line">{compCd}：{compName}</td>
+                <!--{/if}-->
+                <!--{if(isLevelAdmin)}-->
+                <td colspan="3" class="line">
+                  <input type="text" name="searchCompCd" value="{searchCompCd}" style="width:60px" readonly="readonly"><input type="text" name="searchCompName" value="{searchCompName}" style="width:310px" readonly="readonly">
+                  <input type="hidden" name="searchCompId" value="{searchCompId}">
+                <input name="shop_btn" type="button" value="施設検索" onclick="window.open('../search_comp.php', 'searchComp', 'width=500, height=400, menubar=no, toolbar=no, scrollbars=yes'); return false;">
+                </td>
+                <!--{/if}-->
+                <td></td>
+              </tr>
+              <!--{if(isLevelAdmin)}-->
+              <!--{{
+              <tr height="40">
+                <td width="80" class="line"><span class="fbold">申請番号</span></td>
+                <td colspan="3" class="line"><input name="searchAppliNo" type="text" value="{searchAppliNo}" style="width:200px;" maxlength="13"></td>
+              </tr>
+              <tr height="40">
+                <td width="80" class="line"><span class="fbold">申請日</span></td>
+                <td colspan="3" width="150" class="line"><input name="searchAppliDayFrom" type="text" value="{searchAppliDayFrom}" style="width:100px;" maxlength="10" id="datepicker1">～ <input name="searchAppliDayTo" type="text" value="{searchAppliDayTo}" style="width:100px;" maxlength="10" id="datepicker2"></td>
+              </tr>
+              <tr height="40">
+                <td width="80" class="line"><span class="fbold">出荷日</span></td>
+                <td colspan="3" width="150" class="line"><input name="searchShipDayFrom" type="text" value="{searchShipDayFrom}" style="width:100px;" maxlength="10" id="datepicker3">～ <input name="searchShipDayTo" type="text" value="{searchShipDayTo}" style="width:100px;" maxlength="10" id="datepicker4"></td>
+              </tr>
+              }}-->
+              <!--{/if}-->
+              <tr height="40">
+                <td width="80" class="line"><span class="fbold">職員コード</span></td>
+                <td width="210" class="line"><input name="searchStaffCode" type="text" value="{searchStaffCode}" style="width:140px;" maxlength="12"></td>
+                <td width="80" class="line" align="center"><span class="fbold">単品番号</span></td>
+                <td width="210" class="line"><input name="searchBarCode" type="text" value="{searchBarCode}" style="width:140px;"></td>
+              </tr>
+              <tr height="30">
+                <td width="80"><span class="fbold">状態</span></td>
+                <td colspan="3">
+                        <!--{if(isSelectedStatus1)}-->
+                        <input type="checkbox" name="searchStatus[]" value="1" id="status1" checked="checked">
+                        <!--{/if}-->
+                        <!--{if(!isSelectedStatus1)}-->
+                        <input type="checkbox" name="searchStatus[]" value="1" id="status1">
+                        <!--{/if}-->
+                        <label for="status1">{DISPLAY_STATUS_APPLI}</label>
+                        <!--{if(isSelectedStatus2)}-->
+                        <input type="checkbox" name="searchStatus[]" value="2" id="status2" checked="checked">
+                        <!--{/if}-->
+                        <!--{if(!isSelectedStatus2)}-->
+                        <input type="checkbox" name="searchStatus[]" value="2" id="status2">
+                        <!--{/if}-->
+                        <label for="status2">{DISPLAY_STATUS_APPLI_ADMIT}</label>
+                        <!--{if(isSelectedStatus3)}-->
+                        <input type="checkbox" name="searchStatus[]" value="3" id="status3" checked="checked">
+                        <!--{/if}-->
+                        <!--{if(!isSelectedStatus3)}-->
+                        <input type="checkbox" name="searchStatus[]" value="3" id="status3">
+                        <!--{/if}-->
+                        <label for="status3">{DISPLAY_STATUS_ORDER}</label>
+                        <!--{if(isSelectedStatus4)}-->
+                        <input type="checkbox" name="searchStatus[]" value="4" id="status4" checked="checked">
+                        <!--{/if}-->
+                        <!--{if(!isSelectedStatus4)}-->
+                        <input type="checkbox" name="searchStatus[]" value="4" id="status4">
+                        <!--{/if}-->
+                        <label for="status4">{DISPLAY_STATUS_SHIP}</label>
+                        <!--{if(isSelectedStatus5)}-->
+                        <input type="checkbox" name="searchStatus[]" value="5" id="status5" checked="checked">
+                        <!--{/if}-->
+                        <!--{if(!isSelectedStatus5)}-->
+                        <input type="checkbox" name="searchStatus[]" value="5" id="status5">
+                        <!--{/if}-->
+                        <label for="status5">{DISPLAY_STATUS_DELIVERY}</label>
+                </td>
+                <td align="center">
+                	<input type="button" value="     検索     " onclick="document.pagingForm.searchFlg.value='1'; document.pagingForm.submit(); return false;">
+                </td>
+              </tr>
+              <tr height="30">
+              	<td width="80" class="line"></td>
+                <td class="line" colspan="3">
+                        <!--{if(isSelectedStatus6)}-->
+                        <input type="checkbox" name="searchStatus[]" value="6" id="status6" checked="checked">
+                        <!--{/if}-->
+                        <!--{if(!isSelectedStatus6)}-->
+                        <input type="checkbox" name="searchStatus[]" value="6" id="status6">
+                        <!--{/if}-->
+                        <label for="status6">{DISPLAY_STATUS_STOCKOUT}</label>
+                        <!--{if(isSelectedStatus7)}-->
+                        <input type="checkbox" name="searchStatus[]" value="7" id="status7" checked="checked">
+                        <!--{/if}-->
+                        <!--{if(!isSelectedStatus7)}-->
+                        <input type="checkbox" name="searchStatus[]" value="7" id="status7">
+                        <!--{/if}-->
+                        <label for="status7">{DISPLAY_STATUS_NOT_RETURN}</label>
+                        <!--{if(isSelectedStatus8)}-->
+                        <input type="checkbox" name="searchStatus[]" value="8" id="status8" checked="checked">
+                        <!--{/if}-->
+                        <!--{if(!isSelectedStatus8)}-->
+                        <input type="checkbox" name="searchStatus[]" value="8" id="status8">
+                        <!--{/if}-->
+                        <label for="status8">{DISPLAY_STATUS_RETURN}</label>
+                        <!--{if(isSelectedStatus9)}-->
+                        <input type="checkbox" name="searchStatus[]" value="9" id="status9" checked="checked">
+                        <!--{/if}-->
+                        <!--{if(!isSelectedStatus9)}-->
+                        <input type="checkbox" name="searchStatus[]" value="9" id="status9">
+                        <!--{/if}-->
+                        <label for="status9">{DISPLAY_STATUS_LOSS}</label>
+                </td>
+                <td class="line" align="center">
+                		<!--{if(isLevelAdmin)}-->
+                		<!--{if(!isSelectedAdmin)}-->
+                		<input type="button" value=" ダウンロード " disabled="disabled">
+                		<!--{/if}-->
+                		<!--{if(isSelectedAdmin)}-->
+                		<input type="button" value=" ダウンロード " onclick="document.pagingForm.action='./rireki_csv_dl.php'; document.pagingForm.submit(); document.pagingForm.action='./rireki.php'; return false;">
+                		<!--{/if}-->
+                		<!--{/if}-->
+                		<!--{if(!isLevelAdmin)}-->
+                		<!--{/if}-->
+                </td>
+              </tr>
+            </table>
+            <!--{if(isSelectedAdmin)}-->
+            <h3>◆着用状況</h3>
+            <table width="720" border="0" class="tb_1" cellpadding="0" cellspacing="3">
+              <tr>
+                <th width="60">申請日</th>
+                <th width="90">申請番号</th>
+                <th width="150">施設名</th>
+                <th width="120">職員名</th>
+                <th width="40">区分</th>
+                <th width="60">出荷日</th>
+                <th width="60">返却日</th>
+                <th width="60" nowrap="nowrap">状態</th>
+                <!--{if(!isLevelAgency)}-->
+                <th width="60">訂正</th>
+                <!--{/if}-->
+              </tr>
+              <!--{iterate(orders)}-->
+              <tr height="20">
+                <td class="line2" align="center">{dateFormat(orders.requestDay, "y/m/d")}</td>
+                <td class="line2" align="center">
+                  <!--{if(!orders.isAppli)}-->
+                  <a href="#" onclick="document.pagingForm.orderId.value='{orders.orderId}'; document.pagingForm.action='./henpin_meisai.php'; document.pagingForm.submit(); return false;">{orders.requestNo}</a></td>
+                  <!--{/if}-->
+                  <!--{if(orders.isAppli)}-->
+                  <!--{{
+                  <a href="#" onclick="document.pagingForm.orderId.value='{orders.orderId}'; document.pagingForm.action='./hachu_meisai.php'; document.pagingForm.submit(); return false;">{orders.requestNo}</a></td>
+                  }}-->
+                  <!--{/if}-->
+                <td class="line2" align="left">{orders.CompName}</td>
+                <td class="line2" align="left">{orders.personName}</td>
+                <td class="line2" align="center">
+                  <!--{if(orders.divisionOrder)}-->
+                  発注
+                  <!--{/if}-->
+                  <!--{if(orders.divisionExchange)}-->
+                  <!--{{
+                  交換
+                  }}-->
+                  <!--{/if}-->
+                  <!--{if(orders.divisionReturn)}-->
+                  <!--{{
+                  返却
+                  }}-->
+                  <!--{/if}-->
+                </td>
+                <td class="line2" align="center">
+                  <!--{if(orders.isEmptyShipDay)}-->
+                  <!--{{
+                  &nbsp;
+                  }}-->
+                  <!--{/if}-->
+                  <!--{if(!orders.isEmptyShipDay)}-->
+                  {dateFormat(orders.ShipDay, "y/m/d")}
+                  <!--{/if}-->
+                </td>
+                <td class="line2" align="center">
+                  <!--{if(orders.isEmptyReturnDay)}-->
+                  <!--{{
+                  &nbsp;
+                  }}-->
+                  <!--{/if}-->
+                  <!--{if(!orders.isEmptyReturnDay)}-->
+                  {dateFormat(orders.ReturnDay, "y/m/d")}
+                  <!--{/if}-->
+                </td>
+                <td class="line2" align="center" nowrap="nowrap">
+                  <!--{if(orders.statusIsBlue)}-->
+                  <!--{{
+                  <span style="color:blue">{orders.statusName}</span>
+                  }}-->
+                  <!--{/if}-->
+                  <!--{if(orders.statusIsRed)}-->
+                  <!--{{
+                  <span style="color:red">{orders.statusName}</span>
+                  }}-->
+                  <!--{/if}-->
+                  <!--{if(orders.statusIsTeal)}-->
+                  <!--{{
+                  <span style="color:Teal">{orders.statusName}</span>
+                  }}-->
+                  <!--{/if}-->
+                  <!--{if(orders.statusIsGreen)}-->
+                  <!--{{
+                  <span style="color:green">{orders.statusName}</span>
+                  }}-->
+                  <!--{/if}-->
+                  <!--{if(orders.statusIsGray)}-->
+                  <!--{{
+                  <span style="color:gray">{orders.statusName}</span>
+                  }}-->
+                  <!--{/if}-->
+                  <!--{if(orders.statusIsPink)}-->
+                  <!--{{
+                  <span style="color:fuchsia">{orders.statusName}</span>
+                  }}-->
+                  <!--{/if}-->
+                  <!--{if(orders.statusIsBlack)}-->
+                  {orders.statusName}
+                  <!--{/if}-->
+                </td>
+                <td class="line2" align="center">
+                  <!--{{
+                  <!--{if(orders.reasonIsPersonal)}-->
+                   <!--{if(orders.divisionOrder)}-->
+                    <a href="#" onclick="document.pagingForm.orderId.value='{orders.orderId}'; document.pagingForm.action='../hachu/hachu_shinsei.php'; document.pagingForm.submit(); return false;">変更</a>
+                   <!--{/if}-->
+                   <!--{if(orders.divisionReturn)}-->
+                    <a href="#" onclick="document.pagingForm.orderId.value='{orders.orderId}'; document.pagingForm.action='../koukan/koukan_shinsei.php'; document.pagingForm.submit(); return false;">変更</a>
+                   <!--{/if}-->
+                   <!--{if(orders.divisionExchange)}-->
+                    <a href="#" onclick="document.pagingForm.orderId.value='{orders.orderId}'; document.pagingForm.action='../henpin/henpin_shinsei.php'; document.pagingForm.submit(); return false;">変更</a>
+                   <!--{/if}-->
+                  <!--{/if}-->
+                  <!--{if(orders.reviseIsCancel)}-->
+                   <!--{{
+                   <a href="#" onclick="document.pagingForm.orderId.value='{orders.orderId}'; document.pagingForm.action='./cancel_kakunin.php'; document.pagingForm.submit(); return false;">ｷｬﾝｾﾙ</a>
+                   }}-->
+                  <!--{/if}-->
+                  <!--{if(orders.reviseIsEmpty)}-->
+                   &nbsp;
+                  <!--{/if}-->
+                </td>
+              </tr>
+              <!--{/iterate}-->
+            </table>
+            <!--{// ページング部分は共通テンプレートに置換する}-->
+            <!--{include("../_global/_paging.html#paging")}-->
+            <br>
+            <table border="0" width="660" cellpadding="0" cellspacing="0" class="tb_1">
+              <tr>
+                <td width="120" align="left">
+                  <input name="prev_btn" type="button" value="<<" onclick="document.pagingForm.action='#'; document.pagingForm.nowPage.value='{paging.prev}'; document.pagingForm.submit(); return false;">
+                </td>
+                <td width="420">&nbsp;</td>
+                <td width="120" align="right">
+                  <input name="next_btn" type="button" value=">>" onclick="document.pagingForm.action='#'; document.pagingForm.nowPage.value='{paging.next}'; document.pagingForm.submit(); return false;">
+                </td>
+              </tr>
+            </table>
+            <input type="hidden" name="nowPage" value="{paging.nowPage}">
+            <!--{/include}-->
+            <!--{/if}-->
+          </div>
+          <input type="hidden" name="encodeHint" value="京">
+          <input type="hidden" name="orderId">
+          <input type="hidden" name="searchFlg">
+          <input type="hidden" name="rirekiFlg" value="1">
+          <input type="hidden" name="isSelectedAdmin" value="{isSelectedAdmin}">
+        </form>
+        <!--{include("../_global/_global.html#footer")}-->
+        <!--{/include}-->
+        <!--{//end}-->
+      </div>
+    </div>
+  </body>
+</html>

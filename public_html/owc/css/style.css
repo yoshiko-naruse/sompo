@@ -1,0 +1,157 @@
+﻿@charset "UTF-8";
+
+/**
+ * OPTIMA Web Compiler
+ * 
+ * @author	George Mitsumoto
+ * @version	2.0.0 (2006-05-14)
+ */
+
+/* 要素 */
+body {
+	margin: 0;
+	background-color: #eee;
+	padding: 0;
+	font-size: 75%;
+	font-family: "MS UI Gothic","Osaka",sans-serif;
+}
+
+form {
+	margin: 0;
+	padding: 0;
+}
+
+textarea {
+	font-size: 100%;
+}
+
+/* IEでフォームコントロールのフォントを固定する */
+* html input,
+* html select {
+	font-family: "MS UI Gothic",sans-serif;
+}
+
+* html textarea {
+	font-family: "ＭＳ ゴシック",monospace;
+}
+
+/* アンカー擬似クラス */
+a {
+	color: #00f;
+}
+
+a:visited {
+	color: #00f;
+}
+
+a:active,
+a:hover {
+	color: #06f;
+}
+
+/* JavaScript無効時の警告 */
+noscript p {
+	color: #c00;
+}
+
+/* ファイル検索 */
+#find {
+	background-color: #eee;
+}
+
+#find h1 {
+	margin: 0;
+	background-color: #333;
+	padding: 3px;
+	font-size: 100%;
+	font-family: "Verdana","Arial","Helvetica",sans-serif;
+	color: #fff;
+}
+
+#find #controls {
+	padding: 10px 0px 0px 10px;
+}
+
+#find #keyword {
+	width: 200px;
+}
+
+/* ディレクトリツリー */
+#dir {
+	margin: 10px 0px 10px 10px;
+}
+
+#dir ul {
+	margin: 0;
+	background-image: url("../img/tree.gif");
+	background-position: 9px 5px;
+	background-repeat: repeat-y;
+	padding: 0;
+	list-style-type: none;
+}
+
+#dir li {
+	margin: 0;
+	padding: 0;
+}
+
+/*
+#dir ul.childDir {
+}
+*/
+
+#dir li.dir div {
+	background-color: #eee;
+}
+
+#dir li.dir span {
+	margin-left: 0.25em;
+	color: #999;
+}
+
+#dir li ul li {
+	margin-left: 1.25em;
+}
+
+#dir li input {
+	vertical-align: middle;
+}
+
+/* ツール */
+#tool #controls {
+	padding: 10px 0px 0px 10px;
+}
+
+/* トレース */
+#trace p {
+	margin: 0;
+	padding: 3px;
+	border-bottom: 1px solid #fff;
+}
+
+#trace p.start {
+	background-color: #999;
+	color: #fff;
+}
+
+#trace p.info {
+}
+
+#trace p.success {
+	background-color: #cfc;
+	color: #060;
+}
+
+#trace p.warning {
+	background-color: #ff9;
+	color: #960;
+}
+
+#trace p.error {
+	background-color: #fcc;
+	color: #c00;
+}
+
+#trace #copyright {
+	border-bottom: none;
+}

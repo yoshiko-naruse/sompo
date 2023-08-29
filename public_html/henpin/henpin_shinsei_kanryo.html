@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--{include("../_global/_global.html#meta")}-->
+    <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="../main.css" rel="stylesheet" type="text/css">
+    <!--{/include}-->
+    <script language="JavaScript">
+    <!--
+    function MM_openBrWindow(theURL,winName,features) {
+      window.open(theURL,winName,features);
+      document.finForm.target = winName;
+      document.finForm.action = theURL;
+      document.finForm.submit();
+      document.finForm.target = '_self';
+      document.finForm.action = '../rireki/henpin_meisai.php';
+    }
+    // -->
+    </script>
+    <!--{include("../_global/_global.html#title")}-->
+    <title>Tiffany&nbsp;&amp;&nbsp;Co.&nbsp;ユニフォーム調達システム</title>
+    <!--{/include}-->
+  </head>
+  <body>
+    <div id="main">
+      <div align="center">
+        <!--{include("../_global/_global.html#header")}-->
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td colspan="7"><a href="../top.html"><img src="../img/logo.gif" alt="logo" width="163" height="42" border="0"></a><img src="../img/logo_02.gif" width="569" height="42"></td>
+          </tr>
+          <tr>
+            <td><a href="../hachu/hachu_top.html"><img src="../img/bt_01.gif" alt="発注" width="114" height="35" border="0"></a></td>
+            <td><a href="../koukan/koukan_top.html"><img src="../img/bt_02.gif" alt="交換" width="100" height="35" border="0"></a></td>
+            <td><a href="./henpin_top.html"><img src="../img/bt_03-2.gif" alt="返却" width="100" height="35" border="0"></a></td>
+            <td><a href="../chakuyou/chakuyou.html"><img src="../img/bt_04.gif" alt="着用状況" width="100" height="35" border="0"></a></td>
+            <td><a href="../rireki/rireki.html"><img src="../img/bt_05.gif" alt="申請履歴" width="100" height="35" border="0"></a></td>
+            <td><a href="../denpyo/denpyo_irai.html"><img src="../img/bt_06.gif" alt="着払い伝票依頼" width="100" height="35" border="0"></a></td>
+            <td><img src="../img/bt_07.gif" alt="管理機能" width="118" height="35" border="0"></td>
+          </tr>
+          <tr>
+            <td colspan="7" class="headimg" height="20px" align="right"><a href="../index.html"><img src="../img/logout.gif" alt="ログアウト" width="82" height="21" border="0"></a></td>
+          </tr>	
+        </table>
+        <!--{/include}-->
+        <!--{//satrt}-->
+        <div id="contents">
+          <!--{if(selectedReason1)}-->
+          <h1>ユニフォーム返却結果　（退職・異動返却）</h1>
+          <!--{/if}-->
+          <!--{if(selectedReason2)}-->
+          <!--{{
+          <h1>ユニフォーム返却結果　（その他返却）</h1>
+          }}-->
+          <!--{/if}-->
+          <table border="0" width="700" cellpadding="0" cellspacing="0" class="tb_1">
+            <tr height="30">
+              <td width="100" class="line"><span class="fbold">申請番号</span></td>
+              <td colspan="3" class="line">{requestNo}</td>
+            </tr>
+            <tr height="30">
+              <td width="100" class="line"><span class="fbold">施設名</span></td>
+              <td colspan="3" class="line">{compCd}：{compName}</td>
+            </tr>
+            <tr height="30">
+              <td width="100" class="line"><span class="fbold">職員コード</span></td>
+              <td width="100" class="line">{staffCode}</td>
+              <td width="100" class="line"><span class="fbold">職員名</span></td>
+              <td width="400" class="line">{personName}</td>
+            </tr>
+            <tr height="30">
+              <td class="line"><span class="fbold">返却理由</span></td>
+              <td colspan="3" class="line">
+                <!--{if(selectedReason1)}-->
+                退職・異動返却
+                <!--{/if}-->
+                <!--{if(selectedReason2)}-->
+                <!--{{
+                その他返却
+                }}-->
+                <!--{/if}-->
+              </td>
+            </tr>
+            <tr height="30">
+              <td class="line"><span class="fbold">メモ</span></td>
+              <td colspan="3" class="line">
+                <!--{if(isEmptyMemo)}-->
+                &nbsp;
+                <!--{/if}-->
+                <!--{if(!isEmptyMemo)}-->
+                {memo}
+                <!--{/if}-->
+              </td>
+            </tr>
+          </table>
+          <!--{if(!isAllLoss)}-->
+          <h3>◆下記の内容で<span style="color:red">返却申請</span>を受付ました。</h3>
+          <!--{/if}-->
+          <!--{if(isAllLoss)}-->
+          <!--{{
+          <h3>◆下記の内容で<span style="color:red">紛失申請</span>を受付ました。</h3>
+          }}-->
+          <!--{/if}-->
+          <table width="640" border="0" class="tb_1" cellpadding="0" cellspacing="3">
+            <tr>
+              <th align="center" width="70">選択</th>
+              <th align="center" width="250">アイテム名</th>
+              <th align="center" width="100">サイズ</th>
+              <th align="center" width="120">単品番号</th>
+              <th align="center" width="100">汚損・破損</th>
+            </tr>
+            <!--{iterate(returns)}-->
+            <!--{if(returns.isCheckedReturn)}-->
+            <!--{if(returns.isCheckedBroken)}-->
+            <!--{{
+            <tr height="20" class="chakuyo_2">
+            }}-->
+            <!--{/if}-->
+            <!--{if(!returns.isCheckedBroken)}-->
+            <tr height="20">
+            <!--{/if}-->
+              <td class="line2" align="center">返却</td>
+            <!--{/if}-->
+            <!--{if(!returns.isCheckedReturn)}-->
+            <!--{{
+            <tr height="20" class="chakuyo_1">
+              <td class="line2" align="center"><span style="color:Teal">紛失</span></td>
+            }}-->
+            <!--{/if}-->
+              <td class="line2" align="left">{returns.ItemName}</td>
+              <td class="line2" align="center">{returns.Size}</td>
+              <td class="line2" align="center">
+                <!--{if(returns.isEmptyBarCd)}-->
+                &nbsp;
+                <!--{/if}-->
+                <!--{if(!returns.isEmptyBarCd)}-->
+                {returns.BarCd}
+                <!--{/if}-->
+              </td>
+              <td class="line2" align="center">
+                <!--{if(returns.isCheckedBroken)}-->
+                <!--{{
+                有り
+                }}-->
+                <!--{/if}-->
+                <!--{if(!returns.isCheckedBroken)}-->
+                &nbsp;
+                <!--{/if}-->
+              </td>
+            </tr>
+            <!--{/iterate}-->
+          </table>
+          <br><br>
+		  <!--{if(hasReturn)}-->
+          <form action="../rireki/henpin_meisai.php" name="finForm" method="post">
+            <table border="0" cellspacing="0" cellpadding="0" bordercolor="#FF0000" width="640">
+              <tr>
+                <td align="left"><img src="../img/attention.gif" alt="ATTENTION" border="0"></td>
+              </tr>
+            </table>
+            <table border="2" cellspacing="0" cellpadding="3" bordercolor="#FF0000" width="640">
+              <tr>
+                <td align="center">
+                  <table border="0" cellspacing="0" cellpadding="0" width="600">
+
+                    <tr>
+                      <td colspan="3">&nbsp;</td>
+                    </tr>
+                    <tr>
+                      <td width="400" align="left" style="border-bottom: 1px solid gray;">
+                        商品の返却時には、必ず「返却申請明細」をプリントアウトし、<br>
+                        返却商品に添付してご返送下さい。<br>
+                      </td>
+                      <td align="center" width="10"  style="border-bottom: 1px solid gray;">&nbsp</td>
+                      <td align="center" width="190">
+                        <a href="#" onclick="document.finForm.submit(); return false;"><img src="../img/hyouji.gif" alt="返却申請明細の表示" border="0"></a>
+                      </td>
+                    </tr>
+
+                    <!--{if(hasBroken)}-->
+<!--{
+                    <tr>
+                      <td colspan="3">&nbsp;</td>
+                    </tr>
+                    <tr>
+                      <td align="left" style="border-bottom: 1px solid gray;">
+                        「汚損・破損届」をプリントアウトし、提出して下さい。
+                      </td>
+                      <td align="center" style="border-bottom: 1px solid gray;">&nbsp</td>
+                      <td align="center">
+                        <a href="javascript:MM_openBrWindow('../broken_dsp_frame.php?orderId={orderId}','brokenDsp','resizable=yes,scrollbars=yes,width=720,height=950')"><img src="../img/oson_print.gif" alt="破損・汚損届の印刷" border="0"></a>
+                      </td>
+                    </tr>
+}-->
+                    <!--{/if}-->
+                    <!--{if(hasLoss)}-->
+<!--{
+                    <tr>
+                      <td colspan="3">&nbsp;</td>
+                    </tr>
+                    <tr>
+                      <td align="left" style="border-bottom: 1px solid gray;">
+                        「紛失届」をプリントアウトし、提出して下さい。
+                      </td>
+                      <td align="center" style="border-bottom: 1px solid gray;">&nbsp</td>
+                      <td align="center">
+                        <a href="javascript:MM_openBrWindow('../lost_dsp_frame.php?orderId={orderId}','lostDsp','resizable=yes,scrollbars=yes,width=720,height=950')"><img src="../img/lost_print.gif" alt="紛失届の印刷" border="0"></a><br>
+                      </td>
+                    </tr>
+}-->
+                    <!--{/if}-->
+                    <tr>
+                      <td colspan="3">&nbsp;</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+            <br>
+            <input type="hidden" name="orderId" value="{orderId}">
+            <!--{//ここでhidden値を生成する}-->
+            <!--{include("../_global/_create_hidden.html#hidden")}-->
+            <!--{/include}-->
+          </form>
+          <!--{/if}-->
+          <!--{//end}-->
+        </div>
+        <!--{include("../_global/_global.html#footer")}-->
+        <!--{/include}-->
+      </div>
+    </div>
+  </body>
+</html>

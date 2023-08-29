@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--{include("../_global/_global.html#meta")}-->
+    <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
+    <link href="../main.css" rel="stylesheet" type="text/css">
+    <!--{/include}-->
+    <!--{include("../_global/_global.html#title")}-->
+    <title>NTT DOCOMO 北陸　ユニフォーム調達システム</title>
+    <!--{/include}-->
+  </head>
+  <body>
+    <div id="main">
+      <div align="center">
+        <!--{include("../_global/_global.html#header")}-->
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td colspan="7"><a href="../top.html"><img src="../img/logo.gif" alt="logo" width="163" height="42" border="0"></a><img src="../img/logo_02.gif" width="569" height="42"></td>
+          </tr>
+          <tr>
+            <td><a href="../hachu/hachu_top.html"><img src="../img/bt_01.gif" alt="発注" width="114" height="35" border="0"></a></td>
+            <td><a href="./koukan_top.html"><img src="../img/bt_02-2.gif" alt="交換" width="100" height="35" border="0"></a></td>
+            <td><a href="../henpin/henpin_top.html"><img src="../img/bt_03.gif" alt="返却" width="100" height="35" border="0"></a></td>
+            <td><a href="../chakuyou/chakuyou.html"><img src="../img/bt_04.gif" alt="着用状況" width="100" height="35" border="0"></a></td>
+            <td><a href="../rireki/rireki.html"><img src="../img/bt_05.gif" alt="申請履歴" width="100" height="35" border="0"></a></td>
+            <td><a href="../denpyo/denpyo_irai.html"><img src="../img/bt_06.gif" alt="着払い伝票依頼" width="100" height="35" border="0"></a></td>
+            <td><img src="../img/bt_07.gif" alt="管理機能" width="118" height="35" border="0"></td>
+          </tr>
+          <tr>
+            <td colspan="7" class="headimg" height="20px" align="right"><a href="../index.html"><img src="../img/logout.gif" alt="ログアウト" width="82" height="21" border="0"></a></td>
+          </tr>	
+        </table>
+        <!--{/include}-->
+        <!--{//satrt}-->
+        <form method="post" action="koukan_shinsei_kakunin.php" name="registForm">
+          <div id="contents">
+            <h1>
+              <!--{if(selectedSeason1)}-->
+              秋冬用
+              <!--{/if}-->
+              <!--{if(selectedSeason2)}-->
+              <!--{{
+              春夏用
+              }}-->
+              <!--{/if}-->
+              &nbsp;ユニフォーム交換申請　
+              <!--{if(selectedReason1)}-->
+              （サイズ交換）
+              <!--{/if}-->
+              <!--{if(selectedReason2)}-->
+              <!--{{
+              （汚損・破損交換）
+              }}-->
+              <!--{/if}-->
+              <!--{if(selectedReason3)}-->
+              <!--{{
+              （紛失交換）
+              }}-->
+              <!--{/if}-->
+              <!--{if(selectedReason4)}-->
+              <!--{{
+              （不良品交換）
+              }}-->
+              <!--{/if}-->
+              <!--{if(selectedReason5)}-->
+              <!--{{
+              （初回サイズ交換）
+              }}-->
+              <!--{/if}-->
+            </h1>
+            <table border="0" width="700" cellpadding="0" cellspacing="0" class="tb_1" style="border-bottom:1px solid #CCC; padding-bottom:10px;">
+              <tr height="30">
+                <td width="100" class="line"><span class="fbold">申請番号</span></td>
+                <td colspan="3" class="line">{displayRequestNo}</td>
+              </tr>
+              <tr height="30">
+                <td class="line"><span class="fbold">施設名</span></td>
+                <td colspan="3" class="line">{compCd}：{compName}</td>
+              </tr>
+              <tr height="30">
+                <td class="line"><span class="fbold">職員コード</span></td>
+                <td class="line">{staffCode}</td>
+                <td width="80" class="line"><span class="fbold">職員名</span></td>
+                <td width="400" class="line">{personName}&nbsp;</td>
+              </tr>
+              <tr height="30">
+                <td><span class="fbold">出荷先</span></td>
+                <td colspan="3"">〒
+                  <input name="zip1" type="text" style="width:40px;" value="{zip1}" maxlength="3"/> － <input name="zip2" type="text" value="{zip2}" style="width:40px;" maxlength="4">
+                </td>
+              </tr>
+              <tr height="30">
+                <td width="100"></td>
+                <td width="100"><span class="fbold">住所</span></td>
+                <td width="482" colspan="2"><input name="address" type="text" value="{address}" style="width:400px;"></td>
+              </tr>
+              <tr height="30">
+                <td width="100"></td>
+                <td width="100"><span class="fbold">出荷先名</span></td>
+                <td width="482" colspan="2"><input name="shipName" type="text" value="{shipName}" style="width:400px;"></td>
+              </tr>
+              <tr height="30">
+                <td width="100"></td>
+                <td width="100"><span class="fbold">ご担当者</span></td>
+                <td width="482" colspan="2"><input name="staffName" type="text" value="{staffName}" style="width:200px;"></td>
+              </tr>
+              <tr height="30">
+                <td width="100" class="line"></td>
+                <td width="100" class="line"><span class="fbold">電話番号</span></td>
+                <td width="482" colspan="2" class="line"><input name="tel" type="text" value="{tel}" style="width:200px;"></td>
+              </tr>
+              <tr height="30">
+                <td width="100" class="line"><span class="fbold">交換理由</span></td>
+                <td colspan="3" class="line">
+                  <!--{if(selectedReason1)}-->
+                  サイズ交換
+                  <!--{/if}-->
+                  <!--{if(selectedReason2)}-->
+                  <!--{{
+                  汚損・破損交換
+                  }}-->
+                  <!--{/if}-->
+                  <!--{if(selectedReason3)}-->
+                  <!--{{
+                  紛失交換
+                  }}-->
+                  <!--{/if}-->
+                  <!--{if(selectedReason4)}-->
+                  <!--{{
+                  不良品交換
+                  }}-->
+                  <!--{/if}-->
+                  <!--{if(selectedReason5)}-->
+                  <!--{{
+                  初回サイズ交換
+                  }}-->
+                  <!--{/if}-->
+                </td>
+              </tr>
+              <tr height="30">
+                <td width="100"><span class="fbold">メモ</span></td>
+                <td colspan="3">
+                  <input name="memo" type="text" value="{memo}" style="width:500px;">
+                </td>
+              </tr>
+              <tr>
+                <td width="100" class="line">&nbsp;</td>
+                <td colspan="3" class="line">
+                  <!--{if(!selectedReason2)}-->
+                  <span style="color:red">
+                    ※メモ欄に交換理由の詳細をご入力願います。
+                  </span>
+                  <!--{/if}-->
+                  <!--{if(selectedReason2)}-->
+                  <span style="color:red">
+                    ※交換理由を下記から選びメモ欄へご記入願います。<br>
+                    　・作業・洗濯中に汚した・破れた<br>
+                    　・経年劣化（シミ・くすみが取れない）<br>
+                    　・経年劣化（ほつれ）<br>
+                    　・その他（理由を記載）
+                  </span>
+                  <!--{/if}-->
+                </td>
+              </tr>
+              <tr height="30">
+                <td colspan="7" align="right" valign="bottom"><a href="{sizeUrl}" target="_blank"><img src="../img/size_pattern.gif" alt="サイズ表" border="0"></a></td>
+              </tr>
+            </table>
+            <h3>◆交換するユニフォームをチェックし、交換後のサイズを選択してください。</h3>
+            <!--{if(selectedReason5)}-->
+            <table width="630" border="0" class="tb_1" id="content-table" cellpadding="0" cellspacing="3">
+            <!--{/if}-->
+            <!--{if(!selectedReason5)}-->
+            <table width="570" border="0" class="tb_1" id="content-table" cellpadding="0" cellspacing="3">
+            <!--{/if}-->
+            <thead>
+              <tr>
+                <th align="center" width="50">選択</th>
+                <th align="center" width="200">アイテム名</th>
+                <th align="center" width="80">現在のサイズ</th>
+                <th align="center" width="100">単品番号</th>
+                <th align="center" width="140">交換後のサイズ</th>
+                <!--{if(selectedReason5)}-->
+                <th align="center" width="60">未着用</th>
+                <!--{/if}-->
+              </tr>
+            </thead>
+            <tbody>
+              <!--{iterate(items)}-->
+              <tr height="25" id="{items.OrderDetID}">
+                <td class="line2" align="center">
+                  <!--{if(items.checked)}-->
+                  <input name="orderDetIds[]" type="checkbox" id="checkbox[]" value="{items.OrderDetID}" checked="checked">
+                  <!--{/if}-->
+                  <!--{if(!items.checked)}-->
+                  <!--{{
+                  <input name="orderDetIds[]" type="checkbox" id="checkbox[]" value="{items.OrderDetID}">
+                  }}-->
+                  <!--{/if}-->
+                </td>
+                <td class="line2" align="left">{items.ItemName}</td>
+                <td class="line2" align="center">{items.Size}</td>
+                <td class="line2" align="center">
+                  <!--{if(items.isEmptyBarCd)}-->
+                  <!--{{
+                  &nbsp;
+                  }}-->
+                  <!--{/if}-->
+                  <!--{if(!items.isEmptyBarCd)}-->
+                  {items.BarCd}
+                  <!--{/if}-->
+                </td>
+                <td class="line2" align="center">
+                  <!--{if(items.isSelect)}-->
+                  <select name="size[{items.OrderDetID}]" id="select">
+                    <option value="">--サイズ選択--</option>
+                    <!--{iterate(items.sizes)}-->
+                    <!--{if(items.sizes.selected)}-->
+                    <option value="{items.sizes.value}" selected="selected">{items.sizes.display}</option>
+                    <!--{/if}-->
+                    <!--{if(!items.sizes.selected)}-->
+                    <!--{{
+                    <option value="{items.sizes.value}">{items.sizes.display}</option>
+                    }}-->
+                    <!--{/if}-->
+                    <!--{/iterate}-->
+                  </select>
+                  <!--{/if}-->
+                  <input type="hidden" name="sizeType[{items.OrderDetID}]" value="{items.SizeID}">
+                  <!--{if(!items.isSelect)}-->
+                  <!--{{
+                  {items.sizes}
+                  }}-->
+                  <!--{/if}-->
+                </td>
+
+                <!--{if(selectedReason5)}-->
+                <td class="line2" align="center">
+                  <!--{if(items.isUnused)}-->
+                  <input name="itemUnused[{items.OrderDetID}]" type="checkbox" id="checkbox[]" value="1" checked="checked">
+                  <!--{/if}-->
+                  <!--{if(!items.isUnused)}-->
+                  <!--{{
+                  <input name="itemUnused[{items.OrderDetID}]" type="checkbox" id="checkbox[]" value="1">
+                  }}-->
+                  <!--{/if}-->
+                </td>
+                <!--{/if}-->
+              </tr>
+              <!--{/iterate}-->
+              <!--{if(selectedReason5)}-->
+              <tr><td colspan="6" align="left"><font color="red">{exchangeGuideMessage}</font></td></tr>
+              <tr><td colspan="6" align="left"><font color="red">※未着用のアイテムの場合は、未着用欄にチェックを付けて下さい。</font></td></tr>
+              <!--{/if}-->
+            <tbody>
+            </table>
+            <!--{{
+            <div class="bot">
+             <a href="#" onclick="document.registForm.action='../select_staff.php'; document.registForm.submit(); return false;"><img src="../img/modoru.gif" alt="戻る" width="112" height="32" border="0"></a> &nbsp;&nbsp;&nbsp;&nbsp; 
+             <a href="#" onclick="document.registForm.submit(); return false;"><img src="../img/tsugihe.gif" alt="次へ" width="112" height="32" border="0"></a>
+            </div>
+            }}-->
+            <!--{}-->
+            <div class="bot"><a href="koukan_sentaku.html"><img src="../img/modoru.gif" alt="戻る" width="112" height="32" border="0"></a> &nbsp;&nbsp;&nbsp;&nbsp; <a href="koukan_shinsei_kakunin.html"><img src="../img/tsugihe.gif" alt="次へ" width="112" height="32" border="0"></a></div>
+            <!--{/}-->
+          </div>
+          <input type="hidden" name="appliReason" value="{appliReason}">
+          <input type="hidden" name="requestNo" value="{requestNo}">
+          <input type="hidden" name="staffCode" value="{staffCode}">
+          <input type="hidden" name="staffId" value="{staffId}">
+          <input type="hidden" name="searchStaffCode" value="{searchStaffCode}">
+          <input type="hidden" name="searchFlg" value="1">
+          <!--{if(isLevelAdmin)}-->
+          <input type="hidden" name="searchCompCd" value="{searchCompCd}">
+          <input type="hidden" name="searchCompName" value="{searchCompName}">
+          <input type="hidden" name="searchCompId" value="{searchCompId}">
+
+          <input type="hidden" name="searchFlg" value="{searchFlg}">
+          <input type="hidden" name="nowPage" value="{nowPage}">
+          <input type="hidden" name="searchStaffCode" value="{searchStaffCode}">
+          <input type="hidden" name="searchPersonName" value="{searchPersonName}">
+          <input type="hidden" name="searchHonbuId" value="{searchHonbuId}">
+          <input type="hidden" name="searchShitenId" value="{searchShitenId}">
+          <input type="hidden" name="searchEigyousyoId" value="{searchEigyousyoId}">
+
+          <!--{/if}-->
+          <input type="hidden" name="searchStaffCd" value="{searchStaffCd}">
+          <input type="hidden" name="searchPersonName" value="{searchPersonName}">
+        </form>
+        <!--{include("../_global/_global.html#footer")}-->
+        <!--{/include}-->
+        <!--{//end}-->
+      </div>
+    </div>
+<!--{if(selectedReason1)}-->
+<script type="text/javascript">
+/*---------------------------------------------------
+	$('input[type=checkbox]').change(function()
+	{
+		var checkjudge = true;
+		var sizevalJudge = true;
+		if(!($(this).is(":checked")))
+		{
+			checkjudge = false;
+		}
+		SizeChange(this,checkjudge,sizevalJudge);
+	})
+
+	$('select').change(function()
+	{
+		var checkjudge = true;
+		var sizevalJudge = true;
+		if($(this).val() ==="")
+		{
+			sizevalJudge = false;
+		}
+		SizeChange(this,checkjudge,sizevalJudge);
+	})
+	
+	function SizeChange(child,checkresult,sizeresult)
+	{
+		var parentID = $(child).parent().parent().attr("id");
+		var selectItemName = $(':nth-child(2)', '#' +parentID).html();
+		var selectSizeVal = $('#' + parentID).find('option:selected').val();
+
+		var tr = $("#content-table tbody tr");
+		var tr_itemName ="";
+		var i = 0;
+		for (i = 0; i < tr.length; i++) 
+		{
+			tr_itemName = $(':nth-child(2)',tr[i]).html();
+			if(tr_itemName === selectItemName)
+			{
+				var trId = $(tr[i]).attr("id");
+				if(checkresult === false || sizeresult === false)
+				{
+					$('#' + trId).find('input[type=checkbox]').prop("checked",false);
+					$('#' + trId).find('select').val("");
+				}
+				else
+				{
+					$('#' + trId).find('input[type=checkbox]').prop("checked",true);
+					$('#' + trId).find('select').val(selectSizeVal);
+				}
+			}
+		}
+	}
+---------------------------------------------------*/
+</script>
+<!--{/if}-->
+  </body>
+</html>

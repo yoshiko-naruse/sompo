@@ -1,0 +1,43 @@
+            <!--{fragment("paging")}-->
+            <!--{if(paging.isPaging)}-->
+            <br>
+            <div class="tb_1">
+              <table border="0" width="120" cellpadding="0" cellspacing="0" class="tb_1">
+                <tr>
+                  <td width="60" align="left">
+                    <!--{if(paging.isPrev)}-->
+                    <input name="prev_btn" type="button" value="&lt;&lt;" onclick="document.pagingForm.action='#'; document.pagingForm.nowPage.value='{paging.prev}'; document.pagingForm.submit(); return false;">
+                    <!--{/if}-->
+                  </td>
+                  <td width="60" align="right">
+                    <!--{if(paging.isNext)}-->
+                    <input name="next_btn" type="button" value="&gt;&gt;" onclick="document.pagingForm.action='#'; document.pagingForm.nowPage.value='{paging.next}'; document.pagingForm.submit(); return false;">
+                    <!--{/if}-->
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <input type="hidden" name="nowPage" value="{paging.nowPage}">
+            <!--{/if}-->
+            <!--{/fragment}-->
+            <!--{fragment("pagingStaff")}-->
+            <!--{if(pagingStaff.isPaging)}-->
+            <br>
+            <table border="0" width="640" cellpadding="0" cellspacing="0" class="tb_1">
+              <tr>
+                <td width="120" align="left">
+                  <!--{if(pagingStaff.isPrev)}-->
+                  <input name="prev_btn" type="button" value="&lt;&lt;前の職員" onclick="document.pagingForm.action='#'; document.pagingForm.nowPage.value='{pagingStaff.prev}'; document.pagingForm.submit(); return false;">
+                  <!--{/if}-->
+                </td>
+                <td width="400">&nbsp;</td>
+                <td width="120" align="right">
+                  <!--{if(pagingStaff.isNext)}-->
+                  <input name="next_btn" type="button" value="次の職員&gt;&gt;" onclick="document.pagingForm.action='#'; document.pagingForm.nowPage.value='{pagingStaff.next}'; document.pagingForm.submit(); return false;">
+                  <!--{/if}-->
+                </td>
+              </tr>
+            </table>
+            <input type="hidden" name="nowPage" value="{pagingStaff.nowPage}">
+            <!--{/if}-->
+            <!--{/fragment}-->

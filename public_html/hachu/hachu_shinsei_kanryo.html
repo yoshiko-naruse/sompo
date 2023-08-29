@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--{include("../_global/_global.html#meta")}-->
+    <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="../main.css" rel="stylesheet" type="text/css">
+    <!--{/include}-->
+    <!--{include("../_global/_global.html#title")}-->
+    <title>NTT DOCOMO 北陸　ユニフォーム調達システム</title>
+    <!--{/include}-->
+  </head>
+  <body>
+    <div id="main">
+      <div align="center">
+        <!--{include("../_global/_global.html#header")}-->
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td colspan="7"><a href="../top.html"><img src="../img/logo.gif" alt="logo" width="163" height="42" border="0"></a><img src="../img/logo_02.gif" width="569" height="42"></td>
+          </tr>
+          <tr>
+            <td><a href="./hachu_top.html"><img src="../img/bt_01-2.gif" alt="発注" width="114" height="35" border="0"></a></td>
+            <td><a href="../koukan/koukan_top.html"><img src="../img/bt_02.gif" alt="交換" width="100" height="35" border="0"></a></td>
+            <td><a href="../henpin/henpin_top.html"><img src="../img/bt_03.gif" alt="返却" width="100" height="35" border="0"></a></td>
+            <td><a href="../chakuyou/chakuyou.html"><img src="../img/bt_04.gif" alt="着用状況" width="100" height="35" border="0"></a></td>
+            <td><a href="../rireki/rireki.html"><img src="../img/bt_05.gif" alt="申請履歴" width="100" height="35" border="0"></a></td>
+            <td><a href="../denpyo/denpyo_irai.html"><img src="../img/bt_06.gif" alt="着払い伝票依頼" width="100" height="35" border="0"></a></td>
+            <td><img src="../img/bt_07.gif" alt="管理機能" width="118" height="35" border="0"></td>
+          </tr>
+          <tr>
+            <td colspan="7" class="headimg" height="20px" align="right"><a href="../index.html"><img src="../img/logout.gif" alt="ログアウト" width="82" height="21" border="0"></a></td>
+          </tr>	
+        </table>
+        <!--{/include}-->
+        <!--{//satrt}-->
+        <div id="contents">
+          <!--{if(!haveRirekiFlg)}-->
+          <h1>ユニフォーム発注結果</h1>
+          <!--{/if}-->
+          <!--{if(haveRirekiFlg)}-->
+          <h1>ユニフォーム発注結果　（<span style="color:red">訂正</span>）</h1>
+          <!--{/if}-->
+          <table border="0" width="700" cellpadding="0" cellspacing="0" class="tb_1">
+            <tr height="30">
+              <td width="100" class="line"><span class="fbold">申請番号</span></td>
+              <td colspan="3" class="line">{requestNo}</td>
+            </tr>
+            <tr height="30">
+              <td class="line"><span class="fbold">施設名</span></td>
+              <td colspan="3" class="line">{compCd}：{compName}</td>
+            </tr>
+            <tr height="30">
+              <td class="line"><span class="fbold">職員コード</span></td>
+              <td  class="line">{staffCode}</td>
+              <td width="80" class="line">
+                <span class="fbold">職員名</span>
+              </td>
+              <td width="400" class="line">
+                {personName}
+              </td>
+            </tr>
+            <tr height="30">
+              <td width="100" class="line"><span class="fbold">貸与パターン</span></td>
+              <td colspan="3" class="line">{searchPatternName}</td>
+            </tr>
+            <tr height="30">
+              <td><span class="fbold">出荷先</span></td>
+              <td colspan="3">〒{zip1}-{zip2}</td>
+            </tr>
+            <tr height="25">
+              <td width="100"></td>
+              <td width="100"><span class="fbold">住所</span></td>
+              <td width="482" colspan="2">{address}</td>
+            </tr>
+            <tr height="25">
+              <td width="100"></td>
+              <td width="100"><span class="fbold">出荷先名</span></td>
+              <td width="482" colspan="2">{shipName}</td>
+            </tr>
+            <tr height="25">
+              <td width="100"></td>
+              <td width="100"><span class="fbold">ご担当者</span></td>
+              <td width="482" colspan="2">{staffName}</td>
+            </tr>
+            <tr height="25">
+              <td width="100" class="line"></td>
+              <td width="100" class="line"><span class="fbold">電話番号</span></td>
+              <td width="482" colspan="5" class="line">{tel}</td>
+            </tr>
+            <tr height="30">
+              <td class="line"><span class="fbold">出荷指定日</span></td>
+              <td colspan="3" class="line">{yoteiDay}</td>
+            </tr>
+            <tr height="30">
+              <td width="100" class="line"><span class="fbold">メモ</span></td>
+              <td colspan="3" class="line">
+                <!--{if(isEmptyMemo)}-->
+                &nbsp;
+                <!--{/if}-->
+                <!--{if(!isEmptyMemo)}-->
+                {memo}
+                <!--{/if}-->
+              </td>
+            </tr>
+          </table>
+          <!--{if(!haveRirekiFlg)}-->
+          <h3>◆下記の内容で<span style="color:blue">発注申請</span>を受付ました。</h3>
+          <!--{/if}-->
+          <!--{if(haveRirekiFlg)}-->
+          <h3>◆下記の内容で<span style="color:blue">発注申請</span>を訂正しました。</h3>
+          <!--{/if}-->
+          <table width="600" border="0" class="tb_1" cellpadding="0" cellspacing="3">
+            <tr>
+              <th align="center" width="50">No</th>
+              <th align="center" width="300">アイテム名</th>
+              <th align="center" width="150">サイズ</th>
+              <th align="center" width="100">数量</th>
+            </tr>
+          <!--{iterate(displayData)}-->
+            <tr height="20">
+              <td class="line2" align="center">{displayData.count}</td>
+              <td class="line2">{displayData.dispName}</td>
+              <td class="line2" align="center">{displayData.sizeData}</td>
+              <td class="line2" align="center">{displayData.dispNum}着</td>
+            </tr>
+           <!--{/iterate}-->
+          </table>
+          <!--{if(haveTok)}-->
+          <!--{{
+          <br>
+          <table width="520" border="0" class="tb_2" cellpadding="0" cellspacing="1">
+            <tr>
+              <th align="center" width="40" rowspan="5">特注<br>入力</th>
+              <th align="center" width="60">身長</th>
+              <th align="center" width="60">体重</th>
+              <th align="center" width="60">バスト</th>
+              <th align="center" width="60">ウエスト</th>
+              <th align="center" width="60">ヒップ</th>
+              <th align="center" width="60">肩幅</th>
+              <th align="center" width="60">袖丈</th>
+              <th align="center" width="60">着丈</th>
+            </tr>
+            <tr>
+              <td align="center">{high}cm</td>
+              <td align="center">{weight}kg</td>
+              <td align="center">{bust}cm</td>
+              <td align="center">{waist}cm</td>
+              <td align="center">{hips}cm</td>
+              <td align="center">{shoulder}cm</td>
+              <td align="center">{sleeve}cm</td>
+              <td align="center">{kitake}cm</td>
+            </tr>
+            <tr>
+              <th align="center" width="60">裄丈</th>
+              <th align="center" width="60">股下</th>
+              <th align="center" width="60">首周り</th>
+              <th align="center" width="60" colspan="5">&nbsp;</th>
+            </tr>
+            <tr>
+              <td align="center">{yukitake}kg</td>
+              <td align="center">{inseam}cm</td>
+              <td align="center">{length}cm</td>
+              <td align="center" colspan="5">&nbsp;</td>
+            </tr>
+            <tr>
+              <th align="center">特注備考</th>
+              <td align="left" colspan="7">{tokMemo}</td>
+            </tr>
+          </table>
+          }}-->
+          <!--{/if}-->
+        </div>
+        <!--{//end}-->
+        <div><p><BR></p></div>
+        <!--{include("../_global/_global.html#footer")}-->
+        <!--{/include}-->
+      </div>
+    </div>
+  </body>
+</html>

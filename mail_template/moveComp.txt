@@ -1,0 +1,19 @@
+関係者各位
+
+###HEAD###
+###DATE###
+
+ユーザーの所属施設移動が発生しました。
+
+変更前ユーザー情報
+　職員コード　　： ###OLDSTAFFCODE###
+　氏名         : ###OLDPERSONNAME###
+　施設コード  : ###OLDCOMPCD###   
+　施設名      : ###OLDCOMPNAME###   
+
+
+変更後ユーザー情報
+　職員コード　　： ###NEWSTAFFCODE###
+　氏名         : ###NEWPERSONNAME###
+　施設コード  : ###NEWCOMPCD###   
+　施設名      : ###NEWCOMPNAME###   

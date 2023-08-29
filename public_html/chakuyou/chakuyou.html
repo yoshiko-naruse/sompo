@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--{include("../_global/_global.html#meta")}-->
+    <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="../main.css" rel="stylesheet" type="text/css">
+    <!--{/include}-->
+    <!--{include("../_global/_global.html#title")}-->
+    <title>Tiffany&nbsp;&amp;&nbsp;Co.&nbsp;ユニフォーム調達システム</title>
+    <!--{/include}-->
+  </head>
+  <body>
+    <div id="main">
+      <div align="center">
+        <!--{include("../_global/_global.html#header")}-->
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td colspan="7"><a href="../top.html"><img src="../img/logo.gif" alt="logo" width="163" height="42" border="0"></a><img src="../img/logo_02.gif" width="569" height="42"></td>
+          </tr>
+          <tr>
+            <td><a href="../hachu/hachu_top.html"><img src="../img/bt_01.gif" alt="発注" width="114" height="35" border="0"></a></td>
+            <td><a href="../koukan/koukan_top.html"><img src="../img/bt_02.gif" alt="交換" width="100" height="35" border="0"></a></td>
+            <td><a href="../henpin/henpin_top.html"><img src="../img/bt_03.gif" alt="返却" width="100" height="35" border="0"></a></td>
+            <td><a href="./chakuyou.html"><img src="../img/bt_04-2.gif" alt="着用状況" width="100" height="35" border="0"></a></td>
+            <td><a href="../rireki/rireki.html"><img src="../img/bt_05.gif" alt="申請履歴" width="100" height="35" border="0"></a></td>
+            <td><a href="../denpyo/denpyo_irai.html"><img src="../img/bt_06.gif" alt="着払い伝票依頼" width="100" height="35" border="0"></a></td>
+            <td><img src="../img/bt_07.gif" alt="管理機能" width="118" height="35" border="0"></td>
+          </tr>
+          <tr>
+            <td colspan="7" class="headimg" height="20px" align="right"><a href="../index.html"><img src="../img/logout.gif" alt="ログアウト" width="82" height="21" border="0"></a></td>
+          </tr>	
+        </table>
+        <!--{/include}-->
+        <!--{//satrt}-->
+        <form method="post" action="./chakuyou.php" name="pagingForm">
+          <div id="contents">
+            <h1>ユニフォーム貸与内容</h1>
+            <table border="0" width="700" cellpadding="0" cellspacing="0" class="tb_1">
+              <tr height="40">
+                <td width="80" class="line"><span class="fbold">所属施設</span></td>
+                <!--{if(!isLevelAdmin)}-->
+                <td colspan="3" class="line">{compCd}：{compName}</td>
+                <!--{/if}-->
+                <!--{if(isLevelAdmin)}-->
+                <td colspan="3" class="line">
+                  <input type="text" name="searchCompCd" value="{searchCompCd}" style="width:60px;" readonly="readonly"><input type="text" name="searchCompName" value="{searchCompName}" style="width:310px;" readonly="readonly">
+                  <input type="hidden" name="searchCompId" value="{searchCompId}">
+                <input name="shop_btn" type="button" value="施設検索" onclick="window.open('../search_comp.php', 'searchCOmp', 'width=500, height=400, menubar=no, toolbar=no, scrollbars=yes'); return false;">
+                </td>
+                <!--{/if}-->
+                <td></td>
+              </tr>
+              <tr height="40">
+                <td width="80" class="line"><span class="fbold">職員コード</span></td>
+                <td width="210" class="line"><input name="searchStaffCode" type="text" value="{searchStaffCode}" style="width:140px;" maxlength="12"></td>
+                <td width="80" class="line" align="center"><span class="fbold">単品番号</span></td>
+                <td width="210" class="line"><input name="searchBarCode" type="text" value="{searchBarCode}" style="width:140px;"></td>
+              </tr>
+              <tr height="30">
+                <td width="80"><span class="fbold">状態</span></td>
+                <td colspan="3">
+                        <!--{if(isSelectedStatus2)}-->
+                        <input type="checkbox" name="searchStatus[]" value="2" id="status2" checked="checked">
+                        <!--{/if}-->
+                        <!--{if(!isSelectedStatus2)}-->
+                        <input type="checkbox" name="searchStatus[]" value="2" id="status2">
+                        <!--{/if}-->
+                        <label for="status2">{DISPLAY_STATUS_APPLI_ADMIT}</label>
+                        <!--{if(isSelectedStatus3)}-->
+                        <input type="checkbox" name="searchStatus[]" value="3" id="status3" checked="checked">
+                        <!--{/if}-->
+                        <!--{if(!isSelectedStatus3)}-->
+                        <input type="checkbox" name="searchStatus[]" value="3" id="status3">
+                        <!--{/if}-->
+                        <label for="status3">{DISPLAY_STATUS_ORDER}</label>
+                        <!--{if(isSelectedStatus4)}-->
+                        <input type="checkbox" name="searchStatus[]" value="4" id="status4" checked="checked">
+                        <!--{/if}-->
+                        <!--{if(!isSelectedStatus4)}-->
+                        <input type="checkbox" name="searchStatus[]" value="4" id="status4">
+                        <!--{/if}-->
+                        <label for="status4">{DISPLAY_STATUS_SHIP}</label>
+                        <!--{if(isSelectedStatus5)}-->
+                        <input type="checkbox" name="searchStatus[]" value="5" id="status5" checked="checked">
+                        <!--{/if}-->
+                        <!--{if(!isSelectedStatus5)}-->
+                        <input type="checkbox" name="searchStatus[]" value="5" id="status5">
+                        <!--{/if}-->
+                        <label for="status5">{DISPLAY_STATUS_DELIVERY}</label>
+                </td>
+                <td align="center"><input type="button" value="     検索     " onclick="document.pagingForm.searchFlg.value='1'; document.pagingForm.submit(); return false;"></td>
+              </tr>
+              <tr height="30">
+                <td width="80" class="line"></td>
+                <td colspan="3" class="line">
+                        <!--{if(isSelectedStatus6)}-->
+                        <input type="checkbox" name="searchStatus[]" value="6" id="status6" checked="checked">
+                        <!--{/if}-->
+                        <!--{if(!isSelectedStatus6)}-->
+                        <input type="checkbox" name="searchStatus[]" value="6" id="status6">
+                        <!--{/if}-->
+                        <label for="status6">{DISPLAY_STATUS_STOCKOUT}</label>
+                        <!--{if(isSelectedStatus7)}-->
+                        <input type="checkbox" name="searchStatus[]" value="7" id="status7" checked="checked">
+                        <!--{/if}-->
+                        <!--{if(!isSelectedStatus7)}-->
+                        <input type="checkbox" name="searchStatus[]" value="7" id="status7">
+                        <!--{/if}-->
+                        <label for="status7">{DISPLAY_STATUS_NOT_RETURN}</label>
+                </td>
+                <td align="center" class="line">
+                  <!--{if(isLevelAdmin)}-->
+                  <!--{if(!isSelectedAdmin)}-->
+                  <input type="button" value=" ダウンロード " disabled="disabled">
+                  <!--{/if}-->
+                  <!--{if(isSelectedAdmin)}-->
+                  <input type="button" value=" ダウンロード " onclick="document.pagingForm.action='./chakuyou_csv_dl.php'; document.pagingForm.submit(); document.pagingForm.action='./chakuyou.php'; return false;">
+                  <!--{/if}-->
+                  <!--{/if}-->
+                  <!--{if(!isLevelAdmin)}-->
+                  &nbsp;
+                  <!--{/if}-->
+                </td>
+              </tr>
+            </table>
+            <!--{if(isSelectedAdmin)}-->
+            <h3>◆職員</h3>
+             <table border="0" width="600" cellpadding="0" cellspacing="0" class="tb_1" style="border-bottom:1px solid #CCC; padding-bottom:10px;">
+              <tr height="20">
+                <td width="100"><span class="fbold">施設名</span></td>
+                <td width="500">{headerData.CompCd}&nbsp;：&nbsp;{headerData.CompName}</td>
+              </tr>
+              <tr height="20">
+                <td width="100"><span class="fbold">職員名</span></td>
+                <td width="500">{headerData.StaffCode}&nbsp;：&nbsp;{headerData.PersonName}</td>
+              </tr>
+            </table>
+            <br>
+
+            <h3>◆貸与内容</h3>
+            <table border="0" width="600" cellpadding="0" cellspacing="2" class="tb_1">
+              <tr>
+                <!--<th width="100">職員</th>-->
+                <th width="200">アイテム名</th>
+                <th width="100">サイズ</th>
+                <th width="100">単品番号</th>
+                <th width="100">申請日</th>
+                <th width="100">状態</th>
+              </tr>
+              <!--{iterate(items)}-->
+              <!--{if(items.bgcolorIsNone)}-->
+              <tr height="20">
+              <!--{/if}-->
+              <!--{if(items.bgcolorIsRed)}-->
+              <tr height="20" class="chakuyo_2">
+              <!--{/if}-->
+              <!--{if(items.bgcolorIsYellow)}-->
+              <tr height="20" class="chakuyo_1">
+              <!--{/if}-->
+                <!--<td class="line2" align="center">{items.StaffCode}</td>-->
+                <td class="line2" align="left">&nbsp;&nbsp;{items.ItemName}</td>
+                <td class="line2" align="center">{items.Size}</td>
+                <td class="line2" align="center">
+                  <!--{if(items.isEmptyBarCd)}-->
+                  <!--{{
+                  &nbsp;
+                  }}-->
+                  <!--{/if}-->
+                  <!--{if(!items.isEmptyBarCd)}-->
+                  {items.BarCd}
+                  <!--{/if}-->
+                </td>
+                <td class="line2" align="center">{dateFormat(items.requestDay, "y/m/d")}</td>
+                <td class="line2" align="center">
+                  <!--{if(items.statusIsBlue)}-->
+                  <!--{{
+                  <span style="color:blue">{items.status}</span>
+                  }}-->
+                  <!--{/if}-->
+                  <!--{if(items.statusIsRed)}-->
+                  <!--{{
+                  <span style="color:red">{items.status}</span>
+                  }}-->
+                  <!--{/if}-->
+                  <!--{if(items.statusIsTeal)}-->
+                  <!--{{
+                  <span style="color:Teal">{items.status}</span>
+                  }}-->
+                  <!--{/if}-->
+                  <!--{if(items.statusIsGreen)}-->
+                  <!--{{
+                  <span style="color:green">{items.status}</span>
+                  }}-->
+                  <!--{/if}-->
+                  <!--{if(items.statusIsGray)}-->
+                  <!--{{
+                  <span style="color:gray">{items.status}</span>
+                  }}-->
+                  <!--{/if}-->
+                  <!--{if(items.statusIsPink)}-->
+                  <!--{{
+                  <span style="color:fuchsia">{items.status}</span>
+                  }}-->
+                  <!--{/if}-->
+                  <!--{if(items.statusIsBlack)}-->
+                  {items.status}
+                  <!--{/if}-->
+                </td>
+              </tr>
+              <!--{/iterate}-->
+            </table>
+            <br>
+            <!--{include("../_global/_paging.html#pagingStaff")}-->
+            <table border="0" width="660" cellpadding="0" cellspacing="0" class="tb_1">
+              <tr>
+                <td width="120" align="left"><input name="prev_btn" type="button" value="<<前の職員"></td>
+                <td width="400">&nbsp;</td>
+                <td width="120" align="right"><input name="prev_btn" type="button" value="次の職員>>"></td>
+              </tr>
+            </table>
+            <!--{/include}-->
+            <!--{/if}-->
+          </div>
+          <input type="hidden" name="encodeHint" value="京">
+          <input type="hidden" name="searchFlg">
+          <input type="hidden" name="isSelectedAdmin" value="{isSelectedAdmin}">
+        </form>
+        <!--{include("../_global/_global.html#footer")}-->
+        <!--{/include}-->
+        <!--{//end}-->
+      </div>
+    </div>
+  </body>
+</html>

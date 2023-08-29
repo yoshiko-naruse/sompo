@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--{include("../_global/_global.html#meta")}-->
+    <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="../main.css" rel="stylesheet" type="text/css">
+    <!--{/include}-->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+    <!--{include("../_global/_global.html#title")}-->
+    <title>Tiffany&nbsp;&amp;&nbsp;Co.&nbsp;ユニフォーム調達システム</title>
+    <!--{/include}-->
+    <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script src="//rawgit.com/jquery/jquery-ui/master/ui/i18n/datepicker-ja.js"></script>
+    <script language="JavaScript">
+    <!--
+    function confirmCancel() {
+
+      if (confirm('キャンセルしてもよろしいですか')) {
+        document.registForm.action='../rireki/cancel_kanryo.php';
+        document.registForm.submit();
+      }
+
+      return false;
+
+    }
+    // -->
+    </script>
+    <script type="text/javascript">
+      $(function() {
+        $("#datepicker").datepicker();
+        $('#datepicker').datepicker("option", "dateFormat", 'yy/mm/dd' );
+        $("#datepicker").datepicker("setDate", "{yoteiDay}");
+      });
+    </script>
+
+  </head>
+  <body>
+    <div id="main">
+      <div align="center">
+        <!--{include("../_global/_global.html#header")}-->
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td colspan="7"><a href="../top.html"><img src="../img/logo.gif" alt="logo" width="163" height="42" border="0"></a><img src="../img/logo_02.gif" width="569" height="42"></td>
+          </tr>
+          <tr>
+            <td><a href="./hachu_top.html"><img src="../img/bt_01-2.gif" alt="発注" width="114" height="35" border="0"></a></td>
+            <td><a href="../koukan/koukan_top.html"><img src="../img/bt_02.gif" alt="交換" width="100" height="35" border="0"></a></td>
+            <td><a href="../henpin/henpin_top.html"><img src="../img/bt_03.gif" alt="返却" width="100" height="35" border="0"></a></td>
+            <td><a href="../chakuyou/chakuyou.html"><img src="../img/bt_04.gif" alt="着用状況" width="100" height="35" border="0"></a></td>
+            <td><a href="../rireki/rireki.html"><img src="../img/bt_05.gif" alt="申請履歴" width="100" height="35" border="0"></a></td>
+            <td><a href="../denpyo/denpyo_irai.html"><img src="../img/bt_06.gif" alt="着払い伝票依頼" width="100" height="35" border="0"></a></td>
+            <td><img src="../img/bt_07.gif" alt="管理機能" width="118" height="35" border="0"></td>
+          </tr>
+          <tr>
+            <td colspan="7" class="headimg" height="20px" align="right"><a href="../index.html"><img src="../img/logout.gif" alt="ログアウト" width="82" height="21" border="0"></a></td>
+          </tr>	
+        </table>
+        <!--{/include}-->
+        <div id="contents">
+          <!--{//satrt}-->
+          <!--{if(!haveRirekiFlg)}-->
+          <h1>ユニフォーム発注申請</h1>
+          <!--{/if}-->
+          <!--{if(haveRirekiFlg)}-->
+          <!--{{
+          <h1>ユニフォーム発注申請　（<span style="color:red">訂正</span>）</h1>
+          }}-->
+          <!--{/if}-->
+          <table border="0" cellpadding="0" cellspacing="0">
+            <tr>
+              <td>
+                <form name="registForm" method="post" action="hachu_shinsei_kakunin.php">
+                  <table border="0" width="700" cellpadding="0" cellspacing="0" class="tb_1">
+                    <tr height="30">
+                      <td width="100" class="line"><span class="fbold">申請番号</span></td>
+                      <td colspan="3" class="line">{requestNo}</td>
+                    </tr>
+                    <tr height="30">
+                      <td class="line"><span class="fbold">施設名</span></td>
+                      <td colspan="3" class="line">{compCd}：{compName}</td>
+                    </tr>
+                    <tr height="30">
+                      <td class="line"><span class="fbold">職員コード</span></td>
+                      <td class="line">{staffCode}&nbsp;</td>
+                      <td width="80" class="line">
+                        <span class="fbold">職員名</span>
+                        &nbsp;
+                      </td>
+                      <td width="400" class="line">
+                        {personName}
+                        &nbsp;
+                      </td>
+                    </tr>
+                    <tr height="30">
+                      <td width="100" class="line"><span class="fbold">貸与パターン</span></td>
+                      <td colspan="3" class="line">{searchPatternName}</td>
+                    </tr>
+                    <tr height="30">
+                      <td><span class="fbold">出荷先</span></td>
+                      <td colspan="2">〒
+                        <input name="zip1" type="text" value="{zip1}" style="width:40px;" maxlength="3"/>
+                        -
+                        <input name="zip2" type="text" value="{zip2}" style="width:40px;" maxlength="4">
+                      </td>
+                      <td>
+                        <input name="shop_btn" type="button" value="出荷先選択" onclick="window.open('search_comp.php', 'searchComp', 'width=500, height=400, menubar=no, toolbar=no, scrollbars=yes'); return false;">
+                        <span style="color:red">出荷先住所は手入力での入力も可能です。</span>
+                      </td>
+                    </tr>
+                    <tr height="30">
+                      <td width="100"></td>
+                      <td width="100"><span class="fbold">住所</span></td>
+                      <td width="482" colspan="2"><input name="address" type="text" value="{address}" style="width:400px;"></td>
+                    </tr>
+                    <tr height="30">
+                      <td width="100"></td>
+                      <td width="100"><span class="fbold">出荷先名</span></td>
+                      <td width="482" colspan="2"><input name="shipName" type="text" value="{shipName}" style="width:400px;"></td>
+                    </tr>
+                    <tr height="30">
+                      <td width="100"></td>
+                      <td width="100"><span class="fbold">ご担当者</span></td>
+                      <td width="482" colspan="2"><input name="staffName" type="text" value="{staffName}" style="width:200px;"></td>
+                    </tr>
+                    <tr height="30">
+                      <td width="100" class="line"></td>
+                      <td width="100" class="line"><span class="fbold">電話番号</span></td>
+                      <td width="482" colspan="2" class="line"><input name="tel" type="text" value="{tel}" style="width:200px;"></td>
+                    </tr>
+                    <tr height="30">
+                      <td class="line"><span class="fbold">出荷指定日</span></td>
+                      <td class="line"><input name="yoteiDay" type="text" value="{yoteiDay}" class="input_date" maxlength="10" id="datepicker" style="width:80px;"></td>
+                      <td colspan="2" class="line"><font size="1" color="red">※出荷指定日に対し、倉庫の休業日等によりご希望に添えない場合が有ります。<br>　発注入力当日・土日はご指定いただけません。</font></td>
+                    </tr>
+                    <tr height="30">
+                      <td width="100" class="line"><span class="fbold">メモ</span></td>
+                      <td colspan="3" class="line"><input name="memo" type="text" value="{memo}" style="width:500px;"></td>
+                    </tr>
+                    <tr height="30">
+                      <td colspan="4" align="right" valign="bottom"><span style="color:red">サイズ選びの際、こちらを参照して下さい。</span>&nbsp;<a href="{sizeUrl}" target="_blank"><img src="../img/size_pattern.gif" alt="サイズ表" border="0"></a></td>
+                    </tr>
+                  </table>
+                  <!--{if(!haveRirekiFlg)}-->
+                  <h3>◆発注したいユニフォームのサイズを入力してください。</h3>
+                  <!--{/if}-->
+                  <!--{if(haveRirekiFlg)}-->
+                  <!--{{
+                  <h3>◆申請済のユニフォームのサイズを訂正してください。</h3>
+                  }}-->
+                  <!--{/if}-->
+                  <div align="center">
+                  <table width="600" border="0" class="tb_1" cellpadding="0" cellspacing="3">
+                    <tr>
+                  <!--{if(haveRirekiFlg)}-->
+                      <th align="center" width="50">No</th>
+                  <!--{/if}-->
+                  <!--{if(!haveRirekiFlg)}-->
+                   <!--{if(isSyokai)}-->
+                      <th align="center" width="50">No</th>
+                   <!--{/if}-->
+                   <!--{if(!isSyokai)}-->
+                      <th align="center" width="50">選択</th>
+                   <!--{/if}-->
+                  <!--{/if}-->
+                      <th align="center" width="300">アイテム名</th>
+                      <th align="center" width="150">サイズ</th>
+                      <th align="center" width="100">数量</th>
+                    </tr>
+
+                  <!--{iterate(displayData)}-->
+                     <tr valign="middle" height="20">
+                   <!--{if(haveRirekiFlg)}-->
+                       <td class="line2" align="center">
+                        {displayData.count}
+                       <input name="itemIds[]" type="hidden" value="{displayData.itemId}">
+                       </td>
+                   <!--{/if}-->
+                   <!--{if(!haveRirekiFlg)}-->
+                    <!--{if(isSyokai)}-->
+                       <td class="line2" align="center">
+                       {displayData.count}
+                       <input name="itemIds[]" type="hidden" value="{displayData.itemId}">
+                       </td>
+                    <!--{/if}-->
+                    <!--{if(!isSyokai)}-->
+                       <!--{if(displayData.checked)}-->
+                       <td class="line2" align="center"><input name="itemIds[]" type="checkbox" id="checkbox[]" value="{displayData.itemId}" checked="checked"></td>
+                       <!--{/if}-->
+                       <!--{if(!displayData.checked)}-->
+                       <!--{{
+                       <td class="line2" align="center"><input name="itemIds[]" type="checkbox" id="checkbox[]" value="{displayData.itemId}"></td>
+                       }}-->
+                       <!--{/if}-->
+                    <!--{/if}-->
+                   <!--{/if}-->
+                      <td class="line2">{displayData.dispName}</td>
+                      <td class="line2" align="center">
+                   <!--{if(!displayData.isFree)}-->
+                        <select name="{displayData.sizeName}">
+                          <option value="">--サイズ選択--</option>
+                          <!--{iterate(displayData.sizeData)}-->
+                          <!--{if(displayData.sizeData.selected)}-->
+                          <!--{{
+                          <option value="{displayData.sizeData.value}" selected="selected">{displayData.sizeData.display}</option>
+                          }}-->
+                          <!--{/if}-->
+                          <!--{if(!displayData.sizeData.selected)}-->
+                          <option value="{displayData.sizeData.value}">{displayData.sizeData.display}</option>
+                          <!--{/if}-->
+                          <!--{/iterate}-->
+                        </select>
+                   <!--{/if}-->
+                   <!--{if(displayData.isFree)}-->
+                    F(ﾌﾘｰ)
+                    <input type="hidden" name="{displayData.sizeName}" value="Size1">
+                   <!--{/if}-->
+                      </td>
+
+                   <!--{if(isSyokai)}-->
+                    <!--{if(!displayData.isGroup)}-->
+                      <td class="line2" align="center">
+                       {displayData.dispNum}着
+                       <input type="hidden" name="itemNumber[{displayData.itemId}]" value="{displayData.dispNum}">
+                       <input type="hidden" name="groupId[{displayData.itemId}]" value="{displayData.groupId}">
+                      </td>
+                    <!--{/if}-->
+                    <!--{if(displayData.isGroup)}-->
+                      <td class="line2" align="center">
+                       <input name="itemNumber[{displayData.itemId}]" type="text" size="3" style="text-align: right" value="{displayData.dispNum}" maxlength="1">着
+                       <input type="hidden" name="groupId[{displayData.itemId}]" value="{displayData.groupId}">
+                       <input type="hidden" name="limitNum[{displayData.itemId}]" value="{displayData.limitNum}">
+                      </td>
+                    <!--{/if}-->
+                   <!--{/if}-->
+                   <!--{if(!isSyokai)}-->
+                      <td class="line2" align="center">
+                       <input name="itemNumber[{displayData.itemId}]" type="text" size="3" style="text-align: right" value="{displayData.dispNum}" maxlength="1">着
+                       <input type="hidden" name="groupId[{displayData.itemId}]" value="0">
+                      </td>
+                   <!--{/if}-->
+
+                    </tr>
+                   <!--{/iterate}-->
+                    <tr height="50">
+                      <td colspan="4" align="left" valign="bottom">
+                        <span style="color:red">
+                        5Lより大きいサイズをご要望の方は「特寸」サイズを選択し<br>
+                        次の画面でヌード寸法を入力して下さい。
+                        </span>
+                      </td>
+                    </tr>
+                  </table>
+                  </div>
+                  <!--{if(!haveRirekiFlg)}-->
+                  <!--{{
+                  <div class="bot" align="center"><a href="#" onclick="document.registForm.action='../select_staff.php'; document.registForm.submit(); return false;"><img src="../img/modoru.gif" alt="戻る" width="112" height="32" border="0"></a> &nbsp;&nbsp;&nbsp;&nbsp; <a href="#" onclick="document.registForm.submit(); return false;"><img src="../img/tsugihe.gif" alt="次へ" width="112" height="32" border="0"></a></div>
+                  }}-->
+                  <!--{}-->
+                  <div class="bot" align="center"><a href="../select_staff.html"><img src="../img/modoru.gif" alt="戻る" width="112" height="32" border="0"></a> &nbsp;&nbsp;&nbsp;&nbsp; <a href="hachu_shinsei_kakunin.html"><img src="../img/tsugihe.gif" alt="次へ" width="112" height="32" border="0"></a></div>
+                  <!--{/}-->
+                  <!--{/if}-->
+                  <!--{if(haveRirekiFlg)}-->
+                  <!--{{
+                  <table width="700" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td width="500">
+                        <div class="bot" align="center"><a href="#" onclick="document.registForm.action='../rireki/rireki.php'; document.registForm.submit(); return false;"><img src="../img/modoru.gif" alt="戻る" width="112" height="32" border="0"></a> &nbsp;&nbsp;&nbsp;&nbsp; <a href="#" onclick="document.registForm.submit(); return false;"><img src="../img/tsugihe.gif" alt="次へ" width="112" height="32" border="0"></a></div>
+                      </td>
+                      <td width="200">
+                        <div class="bot" align="center">
+                          <span style="color:red">発注をキャンセルする場合は<br>キャンセルボタンを押して下さい</span><br>
+                          <a href="#" onclick="confirmCancel();"><img src="../img/cancel.gif" alt="キャンセル" width="112" height="32" border="4" style="border-color:red"></a>
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                  <!--{//ここでhidden値を生成する}-->
+                  <input type="hidden" name="rirekiFlg" value="1">
+                  <input type="hidden" name="cancelMode" value="1">
+                  <input type="hidden" name="isSelectedAdmin" value="1">
+                  <input type="hidden" name="orderId" value="{orderId}">
+                  <!--{if(isMotoTok)}-->
+                  <input type="hidden" name="motoTokFlg" value="1">
+                  <!--{/if}-->
+                  <!--{/if}-->
+                  <input type="hidden" name="encodeHint" value="京">
+                  <input type="hidden" name="requestNo" value="{requestNo}">
+                  <input type="hidden" name="staffId" value="{staffId}">
+                  <input type="hidden" name="appliReason" value="{appliReason}">
+                  <input type="hidden" name="searchPatternId" value="{searchPatternId}">
+                  <input type="hidden" name="searchFlg" value="1">
+                  <!--{include("../_global/_create_hidden.html#hidden")}-->
+                  <!--{/include}-->
+                </form>
+              </td>
+            </tr>
+          </table>
+          <!--{//end}-->
+        </div>
+        <!--{include("../_global/_global.html#footer")}-->
+        <!--{/include}-->
+      </div>
+    </div>
+  </body>
+</html>

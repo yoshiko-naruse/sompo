@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--{include("../_global/_global.html#meta")}-->
+    <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="../main.css" rel="stylesheet" type="text/css">
+    <!--{/include}-->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+    <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <!--{include("../_global/_global.html#title")}-->
+    <title>Tiffany & Co. ユニフォーム調達システム</title>
+    <!--{/include}-->
+	<script language="JavaScript">
+    <!--
+    // HttpRequestオブジェクト取得
+	function newXMLHttpRequest () {
+	    if ( typeof ActiveXObject!="undefined" ) {
+	        return new ActiveXObject("Microsoft.XMLHTTP");
+	    } else if ( typeof XMLHttpRequest!="undefined" ) {
+	        return new XMLHttpRequest();
+	    } else{
+	        return null;
+	    }
+	}
+
+    // 一括で変更すべき注文情報があるかどうかを検索し、Submit
+    function checkOrderSubmit(staffId) {
+    
+        var xmlHttp = newXMLHttpRequest();
+        if ( ! xmlHttp ) return false;
+
+        var url = 'checkUpdateOrder.php' + '?id=' + escape(staffId);
+
+        xmlHttp.onreadystatechange = function() {
+            if ((xmlHttp.readyState == 4) && (xmlHttp.status == 200)) {
+                if (xmlHttp.status == 200) {
+                    var xmlData = xmlHttp.responseText;
+                    if (xmlData) {
+//                        if (confirm('職員情報を登録します。申請済発注情報の発送先も変更されますが、よろしいですか？')) {
+//                            submitData('./usermainte.php','{ope}');
+//                        }
+                        if (confirm('職員情報を登録します。よろしいですか？')) {
+                            submitData('./usermainte.php','{ope}');
+                        }
+                    } else {
+                        if (confirm('職員情報を登録します。よろしいですか？')) {
+                            submitData('./usermainte.php','{ope}');
+                        }
+                    }
+                } else if (xmlHttp.status == 404) {
+                }
+            } else if (xmlHttp.readyState == 3){
+            } else if (xmlHttp.readyState == 2){
+            } else if (xmlHttp.readyState == 1){
+            }
+        };
+
+        xmlHttp.open('GET', url);
+        xmlHttp.send(null);
+    
+    }
+
+    function submitData(url,mode) {
+
+	  document.pagingForm.Mode.value=mode; 
+	  document.pagingForm.action=url; 
+	  document.pagingForm.submit();
+      return false;
+
+    }
+	// 再貸与計算
+	function fn_RetireScheduleDay(){
+		// 初回取得
+ 		staffFirstDay = document.pagingForm.staffFirstDay.value;
+		// 誕生日が日付の場合処理
+ 		if(fn_dateCheck(staffFirstDay)){
+ 			var Nextdate;
+ 		 	// 再貸与日作成
+ 			Nextdate = fn_rtn_Nextdate(staffFirstDay);
+ 			//再貸与日セット
+ 			document.pagingForm.staffNextDay.value = Nextdate;
+ 
+		}else{
+// 			// 日付で無い時の処理
+// 			// alert("誕生日に日付ではない値が入力されています。");
+ 		}
+		
+	}
+	
+	// 次回作成
+	function fn_rtn_Nextdate(birth){
+	
+		var Nextdate;
+ 		
+ 		days = birth.split('/');
+ 		var vYear = days[0] - 1; 
+ 		var vMonth = days[1];
+ 		var vDay = days[2]; 
+		// defineに設定されている年数を加算する。
+ 		vYear = vYear + {next_taiyoNum};
+		Nextdate = vYear + '/' + vMonth + '/' + vDay ;
+
+		return Nextdate;
+	}
+	
+	// 日付チェック
+	function fn_dateCheck(day){
+		// 文字列分割
+		days = day.split('/');
+		
+		var vYear = days[0] - 0; 
+		var vMonth = days[1] - 1; // Javascriptは、0-11で表現 
+		var vDay = days[2] - 0; 
+
+		if(days[0].length != 4){
+			return false;
+		}
+		if(days[1].length > 2){
+			return false;
+		}
+		if(days[2].length > 2){
+			return false;
+		}
+		
+		// 月,日の妥当性チェック 
+		if(vMonth >= 0 && vMonth <= 11 && vDay >= 1 && vDay <= 31){ 
+			var vDt = new Date(vYear, vMonth, vDay); 
+			if(isNaN(vDt)){ 
+				return false; 
+			}else if(vDt.getFullYear() == vYear && vDt.getMonth() == vMonth && vDt.getDate() == vDay){ 
+				return true; 
+			}else{ 
+				return false; 
+			} 
+		}else{ 
+			return false; 
+		} 
+		
+	}
+    // -->
+    </script>
+    <script type="text/javascript">
+      $(function() {
+        $("#datepicker").datepicker();
+        $('#datepicker').datepicker("option", "dateFormat", 'yy/mm/dd' );
+        $("#datepicker").datepicker("setDate", "{hatureibi}");
+      });
+    </script>
+  </head>
+  <body>
+    <div id="main">
+      <div align="center">
+        <!--{include("../_global/_global.html#header")}-->
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td colspan="7"><a href="mainte_top.html"><img src="../img/logo.gif" alt="logo" width="163" height="42" border="0"></a><img src="../img/logo_02.gif" width="569" height="42"></td>
+          </tr>
+          <tr>
+            <td><a href="../hachu/hachu_top.html"><img src="../img/bt_01.gif" alt="発注" width="114" height="35" border="0"></a></td>
+            <td><a href="../koukan/koukan_top.html"><img src="../img/bt_02.gif" alt="交換" width="100" height="35" border="0"></a></td>
+            <td><a href="../henpin/henpin_top.html"><img src="../img/bt_03.gif" alt="返却" width="100" height="35" border="0"></a></td>
+            <td><a href="../chakuyou/chakuyou.html"><img src="../img/bt_04.gif" alt="着用状況" width="100" height="35" border="0"></a></td>
+            <td><a href="../rireki/rireki.html"><img src="../img/bt_05.gif" alt="申請履歴" width="100" height="35" border="0"></a></td>
+            <td><a href="../denpyo/denpyo_irai.html"><img src="../img/bt_06.gif" alt="着払い伝票依頼" width="100" height="35" border="0"></a></td>
+            <td><img src="../img/bt_07.gif" alt="管理機能" width="118" height="35" border="0"></td>
+          </tr>
+          <tr>
+            <td colspan="7" class="headimg" height="20px" align="right"><a href="index.html"><img src="../img/logout.gif" alt="ログアウト" width="82" height="21" border="0"></a></td>
+          </tr>	
+        </table>
+        <!--{/include}-->
+        <!--{//satrt}-->
+        <form method="post" action="#" name="pagingForm">
+          <div id="contents">
+            <h1>職員マスタメンテナンス</h1>
+
+            <table width="700" border="0" cellpadding="0" cellspacing="0" class="tb_1">
+              <tr height="30">
+                <td class="line" width="140" align="left">職員コード</td>
+                <td class="line" width="560" align="left">
+                  <input type="text" name="staffCode" value="{staffCode}" size="20" maxlength="12"><font color="red">(半角12桁)</font>
+                </td>
+              </tr>
+              <tr height="30">
+                <td class="line" align="left">氏名</td>
+                <td class="line" align="left"><input type="text" name="personName" value="{personName}" size="20"><font color="red">(苗字と名前の間に全角スペースを入れて下さい)</font></td>
+              </tr>
+              <tr height="30">
+                <td class="line" align="left">施設</td>
+                <td class="line" align="left">
+                  <input type="text" name="selectCompName" value="{selectCompName}" style="width:320px;" readonly="readonly">
+                  <input type="hidden" name="selectCompCd" value="{selectCompCd}">
+                  <input type="hidden" name="selectCompId" value="{selectCompId}">
+                  <input name="shop_btn" type="button" value="施設選択" onclick="window.open('./select_comp.php', 'selectComp', 'width=500, height=400, menubar=no, toolbar=no, scrollbars=yes'); return false;">
+                </td>
+              </tr>
+              <!--------------------
+              <tr height="30">
+                <td class="line" align="left">施設</td>
+                <td class="line" align="left">
+                  <select name="compSelect" id="select">
+                    <option value="">-- 施設選択 --</option>
+                    <!--{iterate(compSelect)}-->
+                    <!--{if(!compSelect.selected)}-->
+                    <option value="{compSelect.CompID}">{compSelect.CompName}</option>
+                    <!--{/if}-->
+                    <!--{if(compSelect.selected)}-->
+                    <option value="{compSelect.CompID}" selected="selected">{compSelect.CompName}</option>
+                    <!--{/if}-->
+                    <!--{/iterate}-->
+                  </select>
+                </td>
+              </tr>
+              --------------------->
+              <!--{if(isUpdateFlag)}-->
+              <tr height="30">
+                <td class="line" align="left">削除</td>
+                <td class="line" align="left">
+                  <input type="checkbox" name="chkDelete" value="1" size="20">職員マスタからの削除　<span style="color:red">（貸与中の商品がある場合は削除できません）</span>
+                </td>
+              </tr>
+              <!--{/if}-->
+            </table>
+
+            <!--{if(isUpdateFlag)}-->
+            <h3>人事異動先情報</h3>
+
+            <table width="700" border="0" cellpadding="0" cellspacing="0" class="tb_1">
+              <tr height="30">
+                <td class="line" width="140" align="left">更新実施日</td>
+                <td class="line" width="560" align="left">
+                  <input type="text" name="hatureibi" value="{hatureibi}" size="20" maxlength="10" id="datepicker"><font color="red">(YYYY/MM/DD)</font>
+                </td>
+              </tr>
+              <tr height="30">
+                <td class="line" align="left">施設</td>
+                <td class="line" align="left">
+                  <input type="text" name="selectNextCompName" value="{selectNextCompName}" style="width:320px;" readonly="readonly">
+                  <input type="hidden" name="selectNextCompCd" value="{selectNextCompCd}">
+                  <input type="hidden" name="selectNextCompId" value="{selectNextCompId}">
+                  <input name="shop_btn" type="button" value="施設選択" onclick="window.open('./select_nextcomp.php', 'selectNextComp', 'width=500, height=400, menubar=no, toolbar=no, scrollbars=yes'); return false;">
+                </td>
+              </tr>
+              <!--------------------
+              <tr height="30">
+                <td class="line" align="left">施設</td>
+                <td class="line" align="left">
+                  <select name="compNextSelect" id="select">
+                    <option value="">-- 施設選択 --</option>
+                    <!--{iterate(compSelect2)}-->
+                    <!--{if(!compSelect2.selected)}-->
+                    <option value="{compSelect2.CompID}">{compSelect2.CompName}</option>
+                    <!--{/if}-->
+                    <!--{if(compSelect2.selected)}-->
+                    <option value="{compSelect2.CompID}" selected="selected">{compSelect2.CompName}</option>
+                    <!--{/if}-->
+                    <!--{/iterate}-->
+                  </select>
+                </td>
+              </tr>
+              --------------------->
+            </table>
+            <!--{/if}-->
+
+          </div>
+          <!--{include("../_global/_paging.html#paging")}-->
+
+          <!--{/include}-->
+          <div class="bot" align="center">
+            <a href="#" onclick="submitData('./usermainte_top.php','');"><img src="../img/modoru.gif" alt="戻る" border="0"></a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="#"><img src="../img/toroku.gif" alt="登録" border="0" onclick="checkOrderSubmit('{StaffSeqID}');"></a>
+          </div>
+
+          <input type="hidden" name="isUpdateFlag" value={isUpdateFlag}>
+          <input type="hidden" name="Mode">
+
+          <input type="hidden" name="motoStaffCode"    value="{motoStaffCode}">
+          <input type="hidden" name="nowPage"          value="{nowPage}">
+          <input type="hidden" name="StaffSeqID"       value="{StaffSeqID}">
+          <input type="hidden" name="searchCompCd"     value="{searchCompCd}">
+          <input type="hidden" name="searchCompName"   value="{searchCompName}">
+          <input type="hidden" name="searchCompId"     value="{searchCompId}">
+          <input type="hidden" name="searchStaffCode"  value="{searchStaffCode}">
+          <input type="hidden" name="searchPersonName" value="{searchPersonName}">
+          <input type="hidden" name="isSelectedAdmin"  value="{isSelectedAdmin}">
+
+        </form>
+        <!--{include("../_global/_global.html#footer")}-->
+        <!--{/include}-->
+        <!--{//end}-->
+      </div>
+    </div>
+  </body>
+</html>

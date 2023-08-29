@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--{include("../_global/_global.html#meta")}-->
+    <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="../main.css" rel="stylesheet" type="text/css">
+    <!--{/include}-->
+    <script language="JavaScript">
+    <!--
+    function MM_openBrWindow(theURL,winName,features) {
+      window.open(theURL,winName,features);
+      document.meisaiForm.target = winName;
+      document.meisaiForm.action = theURL;
+      document.meisaiForm.submit();
+    }
+    // -->
+    </script>
+    <!--{include("../_global/_global.html#title")}-->
+    <title>Tiffany&nbsp;&amp;&nbsp;Co.&nbsp;ユニフォーム調達システム</title>
+    <!--{/include}-->
+  </head>
+  <body>
+    <div id="main">
+      <div align="center">
+        <!--{include("../_global/_global.html#header")}-->
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td colspan="7"><a href="../top.html"><img src="../img/logo.gif" alt="logo" width="163" height="42" border="0"></a><img src="../img/logo_02.gif" width="569" height="42"></td>
+          </tr>
+          <tr>
+            <td><a href="../hachu/hachu_top.html"><img src="../img/bt_01.gif" alt="発注" width="114" height="35" border="0"></a></td>
+            <td><a href="../koukan/koukan_top.html"><img src="../img/bt_02.gif" alt="交換" width="100" height="35" border="0"></a></td>
+            <td><a href="../henpin/henpin_top.html"><img src="../img/bt_03-2.gif" alt="返却" width="100" height="35" border="0"></a></td>
+            <td><a href="../chakuyou/chakuyou.html"><img src="../img/bt_04.gif" alt="着用状況" width="100" height="35" border="0"></a></td>
+            <td><a href="./rireki.html"><img src="../img/bt_05.gif" alt="申請履歴" width="100" height="35" border="0"></a></td>
+            <td><a href="../denpyo/denpyo_irai.html"><img src="../img/bt_06.gif" alt="着払い伝票依頼" width="100" height="35" border="0"></a></td>
+            <td><img src="../img/bt_07.gif" alt="管理機能" width="118" height="35" border="0"></td>
+          </tr>
+          <tr>
+            <td colspan="7" class="headimg" height="20px" align="right"><a href="../index.html"><img src="../img/logout.gif" alt="ログアウト" width="82" height="21" border="0"></a></td>
+          </tr> 
+        </table>
+        <!--{/include}-->
+        <!--{//satrt}-->
+        <div id="contents">
+          <h1>ユニフォーム申請明細</h1>
+          <table border="0" width="700" cellpadding="0" cellspacing="0" class="tb_1">
+            <tr height="30">
+              <td width="100" class="line"><span class="fbold">申請番号</span></td>
+              <td class="line">{requestNo}</td>
+              <td width="100" class="line"><span class="fbold">申請日</span></td>
+              <td class="line">
+                <!--{if(!isEmptyRequestDay)}-->
+                {dateFormat(requestDay, "y/m/d")}
+                <!--{/if}-->
+                <!--{if(isEmptyRequestDay)}-->
+                <!--{{
+                &nbsp;
+                }}-->
+                <!--{/if}-->
+              </td>
+            </tr>
+            <tr height="30">
+              <td class="line"><span class="fbold">施設名</span></td>
+              <td colspan="3" class="line">{compCd}：{compName}</td>
+            </tr>
+            <tr height="30">
+              <td class="line"><span class="fbold">職員コード</span></td>
+              <td  class="line">{staffCode}</td>
+              <td width="100" class="line"><span class="fbold">職員名</span></td>
+              <td width="335" class="line">
+                {personName}
+              </td>
+            </tr>
+            <tr height="30">
+              <td class="line"><span class="fbold">返却理由</span></td>
+              <td colspan="3" class="line">
+                <!--{if(selectedReason1)}-->
+                サイズ交換
+                <!--{/if}-->
+                <!--{if(selectedReason2)}-->
+                <!--{{
+                汚損・破損交換
+                }}-->
+                <!--{/if}-->
+                <!--{if(selectedReason3)}-->
+                <!--{{
+                紛失交換
+                }}-->
+                <!--{/if}-->
+                <!--{if(selectedReason4)}-->
+                <!--{{
+                不良品交換
+                }}-->
+                <!--{/if}-->
+                <!--{if(selectedReason5)}-->
+                <!--{{
+                初回サイズ交換
+                }}-->
+                <!--{/if}-->
+                <!--{if(selectedReason11)}-->
+                <!--{{
+                退職・異動返却
+                }}-->
+                <!--{/if}-->
+                <!--{if(selectedReason12)}-->
+                <!--{{
+                その他返却
+                }}-->
+                <!--{/if}-->
+              </td>
+            </tr>
+
+            <tr height="30">
+              <td class="line"><span class="fbold">メモ</span></td>
+              <td colspan="3" class="line">
+                <!--{if(isEmptyMemo)}-->
+                <!--{{
+                &nbsp;
+                }}-->
+                <!--{/if}-->
+                <!--{if(!isEmptyMemo)}-->
+                {memo}
+                <!--{/if}-->
+              </td>
+            </tr>
+          </table>
+          <!--{if(!isLoss)}-->
+          <h3>◆返却申請明細</h3>
+          <!--{/if}-->
+          <!--{if(isLoss)}-->
+          <!--{{
+          <h3>◆紛失申請明細</h3>
+          }}-->
+          <!--{/if}-->
+          <!--{if(!isLevelAdmin)}-->
+          <table width="620" border="0" class="tb_1" cellpadding="0" cellspacing="3">
+          <!--{/if}-->
+          <!--{if(isLevelAdmin)}-->
+          <table width="700" border="0" class="tb_1" cellpadding="0" cellspacing="3">
+          <!--{/if}-->
+            <tr>
+              <th align="center" width="40">No</th>
+              <th align="center" width="300">アイテム名</th>
+              <th align="center" width="80">サイズ</th>
+              <th align="center" width="100">単品番号</th>
+              <!--{if(!isLevelAdmin)}-->
+              <th align="center" width="100">状態</th>
+              <!--{/if}-->
+              <!--{if(isLevelAdmin)}-->
+              <th align="center" width="100">状態</th>
+              <!--{/if}-->
+              <!--{if(!selectedReason5)}-->
+              <th align="center" width="80">汚損・破損</th>
+              <!--{/if}-->
+              <!--{if(selectedReason5)}-->
+              <th align="center" width="80">未着用</th>
+              <!--{/if}-->
+            </tr>
+            <!--{iterate(returns)}-->
+            <tr height="20">
+              <td class="line2" align="center">{returns.num}</td>
+              <td class="line2" align="left">{returns.ItemName}</td>
+              <td class="line2" align="center">{returns.Size}</td>
+              <td class="line2" align="center">
+                <!--{if(returns.isEmptyBarCd)}-->
+                <!--{{
+                &nbsp;
+                }}-->
+                <!--{/if}-->
+                <!--{if(!returns.isEmptyBarCd)}-->
+                {returns.BarCd}
+                <!--{/if}-->
+              </td>
+
+              <td class="line2" align="center">
+                <!--{if(returns.statusIsBlue)}-->
+                <!--{{
+                <span style="color:blue">{returns.status}</span>
+                }}-->
+                <!--{/if}-->
+                <!--{if(returns.statusIsRed)}-->
+                <!--{{
+                <span style="color:red">{returns.status}</span>
+                }}-->
+                <!--{/if}-->
+                <!--{if(returns.statusIsTeal)}-->
+                <!--{{
+                <span style="color:Teal">{returns.status}</span>
+                }}-->
+                <!--{/if}-->
+                <!--{if(returns.statusIsGreen)}-->
+                <!--{{
+                <span style="color:green">{returns.status}</span>
+                }}-->
+                <!--{/if}-->
+                <!--{if(returns.statusIsGray)}-->
+                <!--{{
+                <span style="color:gray">{returns.status}</span>
+                }}-->
+                <!--{/if}-->
+                <!--{if(returns.statusIsPink)}-->
+                <!--{{
+                <span style="color:fuchsia">{returns.status}</span>
+                }}-->
+                <!--{/if}-->
+                <!--{if(returns.statusIsBlack)}-->
+                {returns.status}
+                <!--{/if}-->
+              </td>
+              <!--{if(!selectedReason5)}-->
+              <td class="line2" align="center">
+                <!--{if(returns.isBroken)}-->
+                <!--{{
+                有り
+                }}-->
+                <!--{/if}-->
+                <!--{if(!returns.isBroken)}-->
+                &nbsp;
+                <!--{/if}-->
+              </td>
+              <!--{/if}-->
+              <!--{if(selectedReason5)}-->
+              <td class="line2" align="center">
+                <!--{if(returns.isUnused)}-->
+                <!--{{
+                有り
+                }}-->
+                <!--{/if}-->
+                <!--{if(!returns.isUnused)}-->
+                &nbsp;
+                <!--{/if}-->
+              </td>
+              <!--{/if}-->
+            </tr>
+            <!--{/iterate}-->
+
+            <tr height="20">
+              <td colspan="6">
+                <!--{if(isSizeNoDisp)}-->
+                <span style="color:red"><b>※申請サイズは全てアスタリスク（*）で表示しています。</b></span><br>
+                <!--{/if}-->
+                <span style="color:red"><b>※単品番号（バーコード）をご確認の上、必ず該当商品をご返却下さい。</b></span>
+              </td>
+            </tr>
+
+          </table>
+          <br>
+          <form action="#" name="meisaiForm" method="post">
+            <table border="2" cellspacing="0" cellpadding="3" bordercolor="#FF0000" width="620">
+              <tr>
+                <td align="left">
+                  <b>この画面をプリントアウトして返却商品に貼り付けて一緒に送付してください。<b><br>
+                  <br>
+                  <b>＜返納物品の送付先＞<b><br>
+                  <b>〒270-2214　千葉県松戸市松飛台483番地2<b><br>
+                  <b>伊藤忠ロジスティクス株式会社　松戸事業所<b><br>
+                  <b>東関東物流センター　高橋様宛<b><br>
+                  <b>TEL: 047-311-7090<b><br>
+                  <br>
+                  <div align="center">
+                    <a href="javascript:window.print();"><img src="../img/thispage_print.gif" alt="この画面を印刷する" border="0"></a>
+                  </div>
+                </td>
+              </tr>
+            </table>
+            <input type="hidden" name="encodeHint" value="京">
+          </form>
+          <br>
+        </div>
+        <!--{include("../_global/_global.html#footer")}-->
+        <!--{/include}-->
+        <!--{//end}-->
+      </div>
+    </div>
+  </body>
+</html>

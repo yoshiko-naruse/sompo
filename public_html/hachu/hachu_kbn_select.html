@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <!--{include("../_global/_global.html#meta")}-->
+    <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="../main.css" rel="stylesheet" type="text/css">
+    <!--{/include}-->
+    <!--{include("../_global/_global.html#title")}-->
+    <title>ユニフォーム調達システム</title>
+    <!--{/include}-->
+  </head>
+  <body>
+    <div id="main">
+      <div align="center">
+        <!--{include("../_global/_global.html#header")}-->
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td colspan="7"><a href="../top.html"><img src="../img/logo.gif" alt="logo" width="163" height="42" border="0"></a><img src="../img/logo_02.gif" width="569" height="42"></td>
+          </tr>
+          <tr>
+            <td><a href="./hachu_top.html"><img src="../img/bt_01-2.gif" alt="発注" width="114" height="35" border="0"></a></td>
+            <td><a href="../koukan/koukan_top.html"><img src="../img/bt_02.gif" alt="交換" width="100" height="35" border="0"></a></td>
+            <td><a href="../henpin/henpin_top.html"><img src="../img/bt_03.gif" alt="返却" width="100" height="35" border="0"></a></td>
+            <td><a href="../chakuyou/chakuyou.html"><img src="../img/bt_04.gif" alt="着用状況" width="100" height="35" border="0"></a></td>
+            <td><a href="../rireki/rireki.html"><img src="../img/bt_05.gif" alt="申請履歴" width="100" height="35" border="0"></a></td>
+            <td><a href="../denpyo/denpyo_irai.html"><img src="../img/bt_06.gif" alt="着払い伝票依頼" width="100" height="35" border="0"></a></td>
+            <td><img src="../img/bt_07.gif" alt="管理機能" width="118" height="35" border="0"></td>
+          </tr>
+          <tr>
+            <td colspan="7" class="headimg" height="20px" align="right"><a href="../index.html"><img src="../img/logout.gif" alt="ログアウト" width="82" height="21" border="0"></a></td>
+          </tr>	
+        </table>
+        <!--{/include}-->
+        <div id="contents">
+        <!--{//satrt}-->
+        <h1>パターン選択</h1>
+        <br>
+        <form action="./hachu_top.php" name="topForm" method="post">
+          <table border="0" cellpadding="0" cellspacing="0">
+            <tr height="80">
+              <td class="line" width="200" align="center"><a href="#" onclick="document.topForm.appliReason.value='{APPLI_REASON_ORDER_JOB1}'; document.topForm.submit(); return false;"><img src="../img/bt_default.gif" alt="基本パターン" width="120" height="35" border="0"></a></td>
+              <td class="line" width="400" align="left">
+                  通常基本パターンの発注は、こちらから発注して下さい。
+              </td>
+            </tr>
+            <tr height="80">
+              <td class="line" width="200" align="center"><a href="#" onclick="document.topForm.appliReason.value='{APPLI_REASON_ORDER_PERSONAL}'; document.topForm.submit(); return false;"><img src="../img/bt_kobetsu_hachu.gif" alt="個別発注申請" width="120" height="35" border="0"></a></td>
+              <td class="line" width="400" align="left">
+                  部署異動に伴う貸与枚数不足等、イレギュラーの発注の際は、こちらから発注して下さい。
+              </td>
+            </tr>
+
+          </table>
+          <input type="hidden" name="appliReason">
+          <input type="hidden" name="staffId" value="{searchStaffId}" >
+        </form>
+        <!--{//end}-->
+        </div>
+        <!--{include("../_global/_global.html#footer")}-->
+        <!--{/include}-->
+      </div>
+    </div>
+  </body>
+</html>

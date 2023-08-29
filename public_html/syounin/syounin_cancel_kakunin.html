@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--{include("../_global/_global.html#meta")}-->
+    <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="../main.css" rel="stylesheet" type="text/css">
+    <!--{/include}-->
+    <!--{include("../_global/_global.html#title")}-->
+    <title>JTB　ユニフォーム調達システム</title>
+    <!--{/include}-->
+    <script language="JavaScript">
+    <!--
+    function confirmCancel() {
+
+      <!--{if(isAgree)}-->
+      if (confirm('承認を取り消してもよろしいですか')) {
+        document.confForm.submit();
+      }
+      <!--{/if}-->
+      <!--{if(!isAgree)}-->
+      if (confirm('否認を取り消してもよろしいですか')) {
+        document.confForm.submit();
+      }
+      <!--{/if}-->
+
+      return false;
+
+    }
+    // -->
+    </script>
+  </head>
+  <body>
+    <div id="main">
+      <div align="center">
+        <!--{include("../_global/_global.html#header")}-->
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td colspan="7"><a href="../top.html"><img src="../img/logo.gif" alt="logo" width="163" height="42" border="0"></a><img src="../img/logo_02.gif" width="569" height="42"></td>
+          </tr>
+          <tr>
+            <td><a href="./syounin.html"><img src="../img/bt_08-2.gif" alt="承認" width="114" height="35" border="0"></a></td>
+            <td><img src="../img/bt_02-3.gif" alt="" width="100" height="35" border="0"></td>
+            <td><img src="../img/bt_03-3.gif" alt="" width="100" height="35" border="0"></td>
+            <td><img src="../img/bt_04-3.gif" alt="" width="100" height="35" border="0"></td>
+            <td><img src="../img/bt_05-3.gif" alt="" width="100" height="35" border="0"></td>
+            <td><img src="../img/bt_06-3.gif" alt="" width="100" height="35" border="0"></td>
+            <td><img src="../img/bt_07-3.gif" alt="" width="118" height="35" border="0"></td>
+          </tr>
+          <tr>
+            <td colspan="7" class="headimg" height="20px" align="right"><a href="../index.html"><img src="../img/logout.gif" alt="ログアウト" width="82" height="21" border="0"></a></td>
+          </tr>	
+        </table>
+        <!--{/include}-->
+        <!--{//satrt}-->
+        <div id="contents">
+          <!--{if(isReturn)}-->
+          <h1>ユニフォーム返却確認</h1>
+          <table border="0" width="700" cellpadding="0" cellspacing="0" class="tb_1">
+            <tr height="30">
+              <td width="100" class="line"><span class="fbold">申請番号</span></td>
+              <td colspan="3" class="line">{requestNo}</td>
+            </tr>
+            <tr height="30">
+              <td class="line"><span class="fbold">事業所</span></td>
+              <td colspan="3" class="line">{compCd}：{compName}</td>
+            </tr>
+            <tr height="30">
+              <td class="line"><span class="fbold">職員コード</span></td>
+              <td width="120" class="line">{staffCode}</td>
+              <td width="80" class="line"><span class="fbold">着用者氏名</span></td>
+              <td width="400" class="line">{personName}</td>
+            </tr>
+            <tr height="30">
+              <td class="line"><span class="fbold">返却理由</span></td>
+              <td colspan="3" class="line">
+                <!--{if(selectedReason11)}-->
+                <!--{{
+                退店返却
+                }}-->
+                <!--{/if}-->
+                <!--{if(selectedReason12)}-->
+                <!--{{
+                その他返却
+                }}-->
+                <!--{/if}-->
+              </td>
+            </tr>
+            <tr height="30">
+              <td class="line"><span class="fbold">メモ</span></td>
+              <td colspan="3"  class="line">
+                <!--{if(isEmptyMemo)}-->
+                <!--{{
+                &nbsp;
+                }}-->
+                <!--{/if}-->
+                <!--{if(!isEmptyMemo)}-->
+                {memo}
+                <!--{/if}-->
+              </td>
+            </tr>
+          </table>
+          <!--{/if}-->
+          <!--{if(!isReturn)}-->
+          <!--{{
+          <!--{if(isOrder)}-->
+          <h1>ユニフォーム発注確認</h1>
+          <!--{/if}-->
+          <!--{if(!isOrder)}-->
+          <h1>ユニフォーム交換確認</h1>
+          <!--{/if}-->
+          <table border="0" width="700" cellpadding="0" cellspacing="0" class="tb_1">
+            <tr height="30">
+              <td width="100" class="line"><span class="fbold">申請番号</span></td>
+              <td colspan="3" class="line">{requestNo}</td>
+            </tr>
+            <tr height="30">
+              <td class="line"><span class="fbold">施設</span></td>
+              <td colspan="3" class="line">{compCd}：{compName}</td>
+            </tr>
+            <tr height="30">
+              <td class="line"><span class="fbold">職員コード</span></td>
+              <td width="120" class="line">{staffCode}</td>
+              <td width="80" class="line"><span class="fbold">職員名</span></td>
+              <td width="400" class="line">{personName}</td>
+            </tr>
+            <tr height="25">
+              <td><span class="fbold">出荷先</span></td>
+              <td>〒{zip1}-{zip2}</td>
+              <td colspan="2">{address}</td>
+            </tr>
+          </table>
+          <table border="0" width="700" cellpadding="0" cellspacing="0" class="tb_1">
+            <tr height="25">
+              <td width="100">&nbsp;</td>
+              <td width="120"<span class="fbold">出荷先名</span></td> 
+              <td width="480" colspan="5">{shipName}</td>
+            </tr>
+            <tr height="25">
+              <td width="100">&nbsp;</td>
+              <td width="120"<span class="fbold">ご担当者</span></td>
+              <td width="480" colspan="5">{staffName}</td>
+            </tr>
+            <tr height="25">
+              <td width="100" class="line">&nbsp;</td>
+              <td width="120" class="line"><span class="fbold">電話番号</span></td>
+              <td width="480" colspan="5" class="line">{tel}</td>
+            </tr>
+            <!--{if(!isOrder)}-->
+            <tr height="25">
+              <td width="100" class="line"><span class="fbold">交換理由</span></td>
+              <td colspan="6" class="line">
+                <!--{if(selectedReason1)}-->
+                サイズ交換
+                <!--{/if}-->
+                <!--{if(selectedReason2)}-->
+                <!--{{
+                汚損・破損交換
+                }}-->
+                <!--{/if}-->
+                <!--{if(selectedReason3)}-->
+                <!--{{
+                紛失交換
+                }}-->
+                <!--{/if}-->
+                <!--{if(selectedReason4)}-->
+                <!--{{
+                不良品交換
+                }}-->
+                <!--{/if}-->
+                <!--{if(selectedReason7)}-->
+                <!--{{
+                修理交換
+                }}-->
+                <!--{/if}-->
+              </td>
+            </tr>
+            <!--{/if}-->
+            <tr height="25">
+              <td width="100" class="line"><span class="fbold">メモ</span></td>
+              <td colspan="6" class="line">
+                <!--{if(isEmptyMemo)}-->
+                <!--{{
+                &nbsp;
+                }}-->
+                <!--{/if}-->
+                <!--{if(!isEmptyMemo)}-->
+                {memo}
+                <!--{/if}-->
+              </td>
+            </tr>
+          </table>
+          }}-->
+          <!--{/if}-->
+          <!--{if(isAgree)}-->
+          <h3>承認を取り消しますか？</h3>
+          <!--{/if}-->
+          <!--{if(!isAgree)}-->
+          <!--{{
+          <h3>否認を取り消しますか？</h3>
+          }}-->
+          <!--{/if}-->
+          <!--{// 返却の場合}-->
+          <!--{if(isReturn)}-->
+          <table width="540" border="0" class="tb_1" cellpadding="0" cellspacing="3">
+            <tr>
+              <th align="center" width="70">選択</th>
+              <th align="center" width="250">アイテム名</th>
+              <th align="center" width="100">サイズ</th>
+              <th align="center" width="120">単品番号</th>
+            </tr>
+            <!--{iterate(items)}-->
+            <!--{if(items.isCheckedReturn)}-->
+              <tr height="20">
+              <td class="line2" align="center">返却</td>
+            <!--{/if}-->
+            <!--{if(!items.isCheckedReturn)}-->
+            <!--{{
+            <tr height="20" class="chakuyo_1">
+              <td class="line2" align="center"><span style="color:Teal">紛失</span></td>
+            }}-->
+            <!--{/if}-->
+              <td class="line2" align="left">{items.ItemName}</td>
+              <td class="line2" align="center">{items.Size}</td>
+              <td class="line2" align="center">
+                  <!--{if(items.isEmptyBarCd)}-->
+                  <!--{{
+                  &nbsp;
+                  }}-->
+                  <!--{/if}-->
+                  <!--{if(!items.isEmptyBarCd)}-->
+                  {items.BarCd}
+                  <!--{/if}-->
+              </td>
+            </tr>
+            <!--{/iterate}-->
+          </table>
+          <!--{/if}-->
+          <!--{if(!isReturn)}-->
+          <!--{// 交換の場合}-->
+          <!--{if(!isOrder)}-->
+          <table width="580" border="0" class="tb_1" cellpadding="0" cellspacing="3">
+            <tr>
+              <th align="center" width="240">アイテム名</th>
+              <th align="center" width="100">現在のサイズ</th>
+              <th align="center" width="100">単品番号</th>
+              <th align="center" width="140">交換後のサイズ</th>
+            </tr>
+            <!--{iterate(items)}-->
+            <tr height="20">
+              <td class="line2" align="left">{items.ItemName}</td>
+              <td class="line2" align="center">{items.Size}</td>
+              <td class="line2" align="center">
+                  <!--{if(items.isEmptyBarCd)}-->
+                  <!--{{
+                  &nbsp;
+                  }}-->
+                  <!--{/if}-->
+                  <!--{if(!items.isEmptyBarCd)}-->
+                  {items.BarCd}
+                  <!--{/if}-->
+              </td>
+              <td class="line2" align="center"><b>{items.selectedSize}</b></td>
+              <!--{/if}-->
+            </tr>
+            <!--{/iterate}-->
+          </table>
+          <!--{/if}-->
+
+          <!--{// 発注の場合}-->
+          <!--{if(isOrder)}-->
+          <table width="550" border="0" class="tb_1" cellpadding="0" cellspacing="3">
+            <tr>
+              <th align="center" width="300">アイテム名</th>
+              <th align="center" width="150">サイズ</th>
+              <th align="center" width="100">着数</th>
+            </tr>
+            <!--{iterate(items)}-->
+            <tr height="20">
+              <td class="line2" align="left">{items.ItemName}</td>
+              <td class="line2" align="center">{items.selectedSize}</td>
+              <td class="line2" align="center">{items.itemNumber}着</td>
+            </tr>
+            <!--{/iterate}-->
+          </table>
+          <!--{/if}-->
+
+          <!--{if(haveTok)}-->
+          <!--{{
+          <br>
+          <table width="690" border="0" class="tb_2" cellpadding="0" cellspacing="1">
+            <tr>
+              <th align="center" width="50" rowspan="5">特注<br>入力</th>
+              <th align="center" width="80">身長</th>
+              <th align="center" width="80">体重</th>
+              <th align="center" width="80">バスト</th>
+              <th align="center" width="80">ウエスト</th>
+              <th align="center" width="80">ヒップ</th>
+              <th align="center" width="80">肩幅</th>
+              <th align="center" width="80">袖丈</th>
+              <th align="center" width="80">着丈</th>
+            </tr>
+            <tr>
+              <td align="center">{high}cm</td>
+              <td align="center">{weight}kg</td>
+              <td align="center">{bust}cm</td>
+              <td align="center">{waist}cm</td>
+              <td align="center">{hips}cm</td>
+              <td align="center">{shoulder}cm</td>
+              <td align="center">{sleeve}cm</td>
+              <td align="center">{kitake}cm</td>
+            </tr>
+            <tr>
+              <th align="center" width="65">裄丈</th>
+              <th align="center" width="65">股下</th>
+              <th align="center" width="65">首周り</th>
+              <th align="center" width="65" colspan="5">&nbsp;</th>
+            </tr>
+            <tr>
+              <td align="center">{yukitake}kg</td>
+              <td align="center">{inseam}cm</td>
+              <td align="center">{length}cm</td>
+              <td align="center" colspan="5">&nbsp;</td>
+            </tr>
+            <tr>
+              <th align="center">特注備考</th>
+              <td align="left" colspan="7">{tokMemo}</td>
+            </tr>
+          </table>
+          }}-->
+          <!--{/if}-->
+          <form action="syounin_cancel_kanryo.php" name="confForm" method="post">
+            <div class="bot">
+              <table width="330" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td width="150">
+                    &nbsp;
+                  </td>
+                  <td width="180">
+                    <!--{if(isAgree)}-->
+                    <span style="color:red">承認をキャンセルする場合は<br>キャンセルボタンを押して下さい</span><br>
+                    <!--{/if}-->
+                    <!--{if(!isAgree)}-->
+                    <!--{{
+                    <span style="color:red">否認をキャンセルする場合は<br>キャンセルボタンを押して下さい</span><br>
+                    }}-->
+                    <!--{/if}-->
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <!--{{
+                    <a href="#" onclick="document.confForm.action='./syounin.php'; document.confForm.submit(); return false;"><img src="../img/modoru.gif" alt="戻る" width="112" height="32" border="0"></a>
+                    }}-->
+                    <!--{}-->
+                    <a href="#"><img src="../img/modoru.gif" alt="戻る" width="112" height="32" border="0"></a>
+                    <!--{/}-->
+                  </td>
+                  <td>
+                    <!--{{
+                    <a href="#" onclick="confirmCancel();"><img src="../img/cancel.gif" alt="キャンセル" width="112" height="32" border="4" style="border-color:red"></a>
+                    }}-->
+                    <!--{}-->
+                    <a href="javaScript:history.back();"><img src="../img/cancel.gif" alt="キャンセル" width="112" height="32" border="4  style="border-color:red"></a>
+                    <!--{/}-->
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <!--{//ここでhidden値を生成する}-->
+            <input type="hidden" name="encodeHint" value="京">
+            <input type="hidden" value="1" name="confFlg">
+            <!--{include("../_global/_create_hidden.html#hidden")}-->
+            <!--{/include}-->
+          </form>
+          <!--{//end}-->
+          <!--{include("../_global/_global.html#footer")}-->
+          <!--{/include}-->
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

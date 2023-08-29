@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--{include("./_global/_global.html#meta")}-->
+    <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="./main.css" rel="stylesheet" type="text/css">
+    <!--{/include}-->
+    <!--{include("./_global/_global.html#title")}-->
+    <title>NTT DOCOMO 北陸　ユニフォーム調達システム</title>
+    <!--{/include}-->
+    <script language="JavaScript">
+    <!--
+    function dataSubmit() {
+        document.getElementById('submitKey').value = '1';
+        document.editForm.submit();    
+
+        return false;
+    }
+
+    function backSubmit() {
+        document.editForm.action='./editData.php';    
+        document.editForm.submit();    
+
+        return false;
+    }
+
+	function checkAll() {
+	
+		for (i = 0; i < document.editForm.elements.length; i++) {
+	    	if (document.editForm.elements[i].name.substring(0,6) == 'delete') {
+		       document.editForm.elements[i].checked = true;
+		    }
+		}
+	}
+
+    function getCheck() {
+        if (document.getElementById('allDelete').checked) {
+            checkAll();
+        }    
+    }
+
+    function untick() {
+        var allCheck = true;
+
+        for (i = 0; i < document.editForm.elements.length; i++) {
+            if (document.editForm.elements[i].name.substring(0,6) == 'delete') {
+               if (document.editForm.elements[i].checked == false) {
+                   allCheck = false;
+               }
+            }
+        }
+
+        if (allCheck) {
+            document.getElementById('allDelete').checked = true;
+        } else {
+            document.getElementById('allDelete').checked = false;
+        }
+    }
+    // -->
+    </script>
+  </head>
+  <body>
+    <div id="main">
+      <div align="center">
+        <!--{include("./_global/_global.html#header")}-->
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td colspan="7"><a href="top.html"><img src="./img/logo.gif" alt="logo" width="163" height="42" border="0"></a><img src="./img/logo_02.gif" width="569" height="42"></td>
+          </tr>
+          <tr>
+            <td><a href="./hachu/hachu_top.html"><img src="./img/bt_01.gif" alt="発注" width="114" height="35" border="0"></a></td>
+            <td><a href="./koukan/koukan_top.html"><img src="./img/bt_02.gif" alt="交換" width="100" height="35" border="0"></a></td>
+            <td><a href="./henpin/henpin_top.html"><img src="./img/bt_03.gif" alt="返却" width="100" height="35" border="0"></a></td>
+            <td><a href="./chakuyou/chakuyou.html"><img src="./img/bt_04.gif" alt="着用状況" width="100" height="35" border="0"></a></td>
+            <td><a href="./rireki/rireki.html"><img src="./img/bt_05.gif" alt="申請履歴" width="100" height="35" border="0"></a></td>
+            <td><a href="./denpyo/denpyo_irai.html"><img src="./img/bt_06.gif" alt="着払い伝票依頼" width="100" height="35" border="0"></a></td>
+            <td><img src="./img/bt_07.gif" alt="管理機能" width="118" height="35" border="0"></td>
+          </tr>
+          <tr>
+            <td colspan="7" class="headimg" height="20px" align="right"><a href="index.html"><img src="./img/logout.gif" alt="ログアウト" width="82" height="21" border="0"></a></td>
+          </tr>	
+        </table>
+        <!--{/include}-->
+      <form method="post" name="editForm" action="./editDataDetail.php">
+        <div id="contents">
+          <h1>申請データ変更詳細</h1>
+          <table border="0" width="700" cellpadding="0" cellspacing="0" class="tb_1">
+            <tr>
+              <td width="100" class="line"><span class="fbold">申請番号</span></td>
+              <td class="line">{order.AppliNo}</td>
+              <td width="60" class="line"><span class="fbold">申請日</span></td>
+              <td class="line">
+                <!--{if(!isEmptyRequestDay)}-->
+                {order.AppliDay}
+                <!--{/if}-->
+                <!--{if(isEmptyRequestDay)}-->
+                <!--{{
+                &nbsp;
+                }}-->
+                <!--{/if}-->
+              </td>
+            </tr>
+            <tr>
+              <td class="line"><span class="fbold">基地名</span></td>
+              <td colspan="3" class="line">{order.CompCd}：{order.CompName}</td>
+            </tr>
+            <tr>
+              <td class="line"><span class="fbold">職員コード</span></td>
+              <td  class="line">{order.StaffCode}</td>
+              <td width="80" class="line">
+                <span class="fbold">着用者氏名</span>
+              </td>
+              <td width="400" class="line">{order.PersonName}</td>
+            </tr>
+          <!--{if(!isMenu_hacyu)}-->
+          <!--{/if}-->
+          <!--{if(isMenu_hacyu)}-->
+            <tr>
+              <td class="line"><span class="fbold">出荷先</span></td>
+              <td  class="line" colspan="3">〒{order.zip1}-{order.zip2}</td>
+            </tr>
+          </table>
+          <table border="0" width="700" cellpadding="0" cellspacing="0" class="tb_1">
+            <tr>
+              <td width="100" class="line">&nbsp;</td>
+              <td width="100" class="line"><span class="fbold">住所</span></td>
+              <td width="482" colspan="5" class="line">{order.Adrr}</td>
+            </tr>
+            <tr>
+              <td width="100" class="line">&nbsp;</td>
+              <td width="100" class="line"><span class="fbold">出荷先名</span></td>
+              <td width="482" colspan="5" class="line">{order.ShipName}</td>
+            </tr>
+            <tr>
+              <td width="100" class="line">&nbsp;</td>
+              <td width="100" class="line"><span class="fbold">ご担当者</span></td>
+              <td width="482" colspan="5" class="line">{order.TantoName}</td>
+            </tr>
+            <tr>
+              <td width="100" class="line">&nbsp;</td>
+              <td width="100" class="line"><span class="fbold">電話番号</span></td>
+              <td width="482" colspan="5" class="line">{order.Tel}</td>
+            </tr>
+            <!--{/if}-->
+            <!--{if(isMenu_henpin)}-->
+            <tr>
+              <td width="80" class="line"><span class="fbold">
+                  <!--{if(selectedMode1)}-->
+                  返却
+                  <!--{/if}-->
+                  <!--{if(selectedMode2)}-->
+                  <!--{{
+                  交換
+                  }}-->
+                  <!--{/if}-->
+              </span></td>
+              <td colspan="6" class="line">
+                  <!--{if(selectedReason1)}-->
+                  退職・異動返却
+                  <!--{/if}-->
+                  <!--{if(selectedReason2)}-->
+                  <!--{{
+                  その他返却
+                  }}-->
+                  <!--{/if}-->
+                  <!--{if(selectedReason3)}-->
+                  <!--{{
+                  サイズ交換(無償)キャンセル
+                  }}-->
+                  <!--{/if}-->
+                  <!--{if(selectedReason4)}-->
+                  <!--{{
+                  サイズ交換(無償)
+                  }}-->
+                  <!--{/if}-->
+                  <!--{if(selectedReason5)}-->
+                  <!--{{
+                  汚損・破損交換(有償)
+                  }}-->
+                  <!--{/if}-->
+                  <!--{if(selectedReason6)}-->
+                  <!--{{
+                  紛失交換(有償)
+                  }}-->
+                  <!--{/if}-->
+                  <!--{if(selectedReason7)}-->
+                  <!--{{
+                  不良品交換(無償)
+                  }}-->
+                  <!--{/if}-->
+                  <!--{if(selectedReason8)}-->
+                  <!--{{
+                  役職変更による交換
+                  }}-->
+                  <!--{/if}-->
+                  <!--{if(selectedReason9)}-->
+                  <!--{{
+                  マタニティとの交換
+                  }}-->
+                  <!--{/if}-->
+              </td>
+            </tr>
+            <!--{/if}-->
+            <tr>
+              <td width="100" class="line"><span class="fbold">メモ</span></td>
+              <td colspan="6" class="line">
+                {order.Note}&nbsp;
+              </td>
+            </tr>
+            <!--{if(dispYoteiDay)}-->
+                    <tr>
+                      <td width="100" class="line"><span class="fbold">出荷日</span></td>
+                      <td colspan="6" class="line">{yoteiDay}&nbsp;</td>
+                    </tr>
+            <!--{/if}-->
+          </table>
+          <h3>◆発注or返品明細</h3>
+          <table width="760" border="0" class="tb_1" cellpadding="0" cellspacing="3">
+            <tr>
+              <th align="center" width="50">No</th>
+              <th align="center" width="200">アイテム名</th>
+              <th align="center" width="80">サイズ</th>
+              <th align="center" width="120">単品番号</th>
+              <th align="center" width="80">出荷日</th>
+              <th align="center" width="80">返品日</th>
+              <th align="center" width="100">状態</th>
+              <th align="center" width="50">削除</th>
+            </tr>
+
+            <!--{iterate(itemdata)}-->
+            <tr height="20" valign="middle">
+              <td class="line2" align="center">{itemdata.linNo}</td>
+              <td class="line2">{itemdata.ItemName}</td>
+              <td class="line2" align="center">{itemdata.Size}</td>
+              <td class="line2" align="center">
+              <!--{if(itemdata.IcTagCd)}-->
+              {itemdata.IcTagCd}
+              <!--{/if}-->
+              <!--{if(!itemdata.IcTagCd)}-->
+              &nbsp;
+              <!--{/if}-->
+              </td>
+              <!--{if(!itemdata.isEmptyShipDay)}-->
+              <td class="line2" align="center"><input type="text" size="12" name="shipDay[{itemdata.OrderDetID}]" value="{itemdata.ShipDay}"></td>
+              <!--{/if}-->
+              <!--{if(itemdata.isEmptyShipDay)}-->
+              <td class="line2" align="center"><input type="text" size="12" name="shipDay[{itemdata.OrderDetID}]" value=""></td>
+              <!--{/if}-->
+              <!--{if(!itemdata.isEmptyReturnDay)}-->
+              <td class="line2" align="center"><input type="text" size="12" name="returnDay[{itemdata.OrderDetID}]" value="{itemdata.ReturnDay}"></td>
+              <!--{/if}-->
+              <!--{if(itemdata.isEmptyReturnDay)}-->
+              <td class="line2" align="center"><input type="text" size="12" name="returnDay[{itemdata.OrderDetID}]" value=""></td>
+              <!--{/if}-->
+              <td class="line2" align="center">
+                {itemdata.statusBox}
+              </td>
+              <td class="line2" align="center"><input type="checkbox" name="delete[{itemdata.OrderDetID}]" onClick="untick();" value="1"></td>
+            </tr>
+            <!--{/iterate}-->
+
+            <tr>
+              <td colspan="8" align="right">
+               <input type="checkbox" value="1" id="allDelete" onClick="getCheck();"><label for="allDelete">この申請を全て削除</label>　
+              </td>
+            </tr>
+        </table>
+<!--{if(isError)}-->
+          <table width="760" border="0" class="tb_1" cellpadding="0" cellspacing="3">
+            <tr>
+             <td colspan="8" align="center"><span style="color:red"><b>{errMsg}</b></span></td>
+            </tr>
+　　　　　        </table>
+<!--{/if}-->
+
+
+
+        <br>
+      </div>
+      <br>
+      <div class="bot" align="center">
+        <a href="javascript:backSubmit();"><img src="../img/modoru.gif" alt="戻る" border="0"></a>&nbsp;&nbsp;<a href="javascript:dataSubmit();"><img src="../img/toroku.gif" alt="登録" border="0"></a>
+      </div>
+      <input type="hidden" name="searchFlg" value="1">
+      <input type="hidden" name="searchStaffCode" value="{searchStaffCode}">
+      <input type="hidden" name="searchAppliNo" value="{searchAppliNo}">
+      <input type="hidden" name="orderId" value="{order.OrderID}">
+      <input type="hidden" name="submitKey" id="submitKey">
+      </form>
+
+      </div>
+    </div>
+  </body>
+</html>

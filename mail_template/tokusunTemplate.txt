@@ -1,0 +1,13 @@
+　身長       ：　###HEIGHT###cm
+　体重       ：　###WEIGHT###kg
+　バスト     ：　###BUST###cm
+　ウエスト   ：　###WAIST###cm
+　ヒップ     ：　###HIPS###cm
+　肩幅       ：　###SHOULDER###cm
+　袖丈       ：　###SLEEVE###cm
+　首周り     ：　###SETALE###cm
+　着丈        ：　###KITAKE###cm
+　裄丈        ：　###YUKITAKE###cm
+　股下        ：　###INSEAM###cm
+　特注備考   ：　###TOKNOTE###
+------------------------------------------------------------

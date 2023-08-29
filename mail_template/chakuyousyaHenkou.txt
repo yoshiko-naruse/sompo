@@ -1,0 +1,13 @@
+関係者各位
+
+###HEAD###
+###DATE###
+下記の内容で着用者が変更されました。
+
+== 変更前 ==
+　職員コード 　　： ###STAFFCODE###
+　施設名　　     ： ###COMPCODE### ： ###COMPNAME###
+
+== 変更後 ==
+　職員コード 　　： ###NEWSTAFFCODE###
+　施設名　　     ： ###NEWCOMPCODE### ： ###NEWCOMPNAME###

@@ -1,0 +1,17 @@
+関係者各位
+
+###HEAD###
+###DATE###
+施設移動をお受け致しましたので、
+下記の未出荷商品につきましては出荷先の変更をお願い致します。
+
+　○旧情報
+　施設名　 　    ： ###COMPCODE### ： ###COMPNAME### 
+　職員コード　　 ： ###STAFFCODE###
+
+　○新情報
+　施設名　　     ： ###NEWCOMPCODE### ： ###NEWCOMPNAME### 
+　職員コード　　 ： ###NEWSTAFFCODE###
+
+
+###ORDER###
